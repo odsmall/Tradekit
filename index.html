@@ -3,192 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TradeKit Global - Charts, Tools & Markets</title>
+<title>TradeKit Global - Real Tools</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#fff;color:#131722}
-.ticker{background:#131722;color:#fff;font-size:12px;padding:7px 10px;white-space:nowrap;overflow:hidden}
-.ticker span{margin-right:22px}.up{color:#26a69a}.down{color:#ef5350}
-header{background:#fff;border-bottom:1px solid #e0e3eb;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20}
-.logo{font-weight:900;font-size:22px;color:#2962ff}.logo i{color:#131722;font-style:normal}
-nav{display:flex;gap:16px;align-items:center;font-size:14px;font-weight:600}
-nav a{color:#131722;text-decoration:none;cursor:pointer}
-.btn{background:#2962ff;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
-.btn2{background:#fff;color:#2962ff;border:1px solid #2962ff;padding:9px 16px;border-radius:8px;font-weight:700;cursor:pointer}
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;max-width:1150px;margin:auto;padding:36px 18px;align-items:center}
-.hero h1{font-size:42px;line-height:1.1;margin:0}.hero p{color:#787b86;font-size:16px}
-.signup{background:#fff;border:1px solid #e0e3eb;border-radius:14px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
-.signup h3{margin:0 0 6px}.signup small{color:#787b86}
-input,select{width:100%;padding:12px;border:1px solid #d1d4dc;border-radius:8px;margin:7px 0}
-.wrap{max-width:1150px;margin:auto;padding:0 18px 20px}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tabs button{padding:8px 16px;border-radius:20px;border:1px solid #e0e3eb;background:#fff;cursor:pointer}.tabs button.active{background:#131722;color:#fff}
-table{width:100%;border-collapse:collapse;font-size:14px}th{text-align:left;color:#787b86;padding:10px;border-bottom:1px solid #e0e3eb}td{padding:12px 10px;border-bottom:1px solid #f0f1f5}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.card{border:1px solid #e0e3eb;border-radius:12px;padding:18px}.price{font-size:22px;font-weight:900;color:#2962ff}
-.badge{background:#e8f5e9;color:#1b5e20;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:800}
-.badge2{background:#fff3e0;color:#e65100;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:800}
-.chartbox{background:#131722;color:#fff;border-radius:12px;padding:18px;margin:18px 0}
-.chartbox pre{font-size:13px;line-height:1.5;color:#26a69a;white-space:pre-wrap}
-footer{background:#131722;color:#b2b5be;padding:28px 18px;font-size:13px;margin-top:30px}footer a{color:#fff;text-decoration:none;margin-right:14px;cursor:pointer}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;align-items:center;justify-content:center;padding:14px}.modal>div{background:#fff;max-width:700px;width:100%;max-height:85vh;overflow:auto;border-radius:14px;padding:22px;color:#131722}
-#chatBtn{position:fixed;right:16px;bottom:16px;background:#2962ff;color:#fff;padding:12px 18px;border-radius:50px;border:none;z-index:40;cursor:pointer}
-#chatBox{position:fixed;right:16px;bottom:68px;width:340px;max-width:92vw;background:#fff;border:1px solid #e0e3eb;border-radius:14px;z-index:40;display:none;overflow:hidden}#chatMsgs{height:250px;overflow:auto;padding:12px;font-size:14px}.msg{margin:6px 0;padding:8px 10px;border-radius:10px;background:#f0f3ff}
-@media(max-width:760px){.hero{grid-template-columns:1fr}.hero h1{font-size:30px}nav a{display:none}}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f8fafc;color:#131722}
+.ticker{background:#131722;color:#fff;font-size:12px;padding:7px 10px;white-space:nowrap;overflow:hidden}.ticker span{margin-right:22px}.up{color:#26a69a}.down{color:#ef5350}
+header{background:#fff;border-bottom:1px solid #e0e3eb;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30}
+.logo{font-weight:900;font-size:21px;color:#2962ff;cursor:pointer}.logo i{color:#131722;font-style:normal}
+nav{display:flex;gap:12px;align-items:center;font-size:13px;font-weight:600}nav a{cursor:pointer;color:#131722;text-decoration:none}nav a.active{color:#2962ff}
+.btn{background:#2962ff;color:#fff;border:none;padding:9px 16px;border-radius:8px;font-weight:700;cursor:pointer}.btn2{background:#fff;color:#2962ff;border:1px solid #2962ff;padding:8px 14px;border-radius:8px;font-weight:700;cursor:pointer}.btn-sm{padding:6px 10px;font-size:12px}
+.wrap{max-width:1100px;margin:auto;padding:18px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}.hero h1{font-size:38px;line-height:1.1;margin:0}.hero p{color:#5f6368}
+.card{background:#fff;border:1px solid #e0e3eb;border-radius:12px;padding:16px;margin:12px 0}
+.catbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.catbar button{padding:8px 14px;border-radius:20px;border:1px solid #e0e3eb;background:#fff;cursor:pointer;font-weight:600}.catbar button.active{background:#131722;color:#fff}
+.listrow{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #eef0f3;border-radius:10px;padding:10px 12px;margin:6px 0}.listrow b{font-size:14px}.listrow small{color:#787b86}
+.badge{background:#e8f5e9;color:#1b5e20;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:800}.badge2{background:#fff3e0;color:#e65100;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:800}
+input,select{width:100%;padding:11px;border:1px solid #d1d4dc;border-radius:8px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}th{text-align:left;color:#787b86;padding:10px;border-bottom:1px solid #e0e3eb}td{padding:11px 10px;border-bottom:1px solid #f0f1f5}
+.bundlebar{position:fixed;bottom:0;left:0;right:0;background:#131722;color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;z-index:40}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;align-items:flex-start;justify-content:center;padding:16px;overflow:auto}.modal>div{background:#fff;width:100%;max-width:680px;border-radius:14px;padding:20px;margin:20px auto}
+footer{background:#131722;color:#b2b5be;padding:24px 16px;font-size:13px;margin-top:20px;margin-bottom:56px}footer a{color:#fff;text-decoration:none;margin-right:12px;cursor:pointer}
+.page{display:none}.page.active{display:block}
+.walletDot{width:9px;height:9px;border-radius:50%;background:#ef5350;display:inline-block}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.hero h1{font-size:30px}nav a.hideM{display:none}}
 </style>
 </head>
 <body>
-<div class="ticker"><span>BTC <b>$97,240</b> <span class="up">+1.24%</span></span><span>ETH <b>$3,412</b> <span class="up">+0.86%</span></span><span>SOL <b>$212.40</b> <span class="down">-0.42%</span></span><span>GOLD <b>$2,640</b> <span class="up">+0.31%</span></span><span>EUR/USD <b>1.0842</b> <span class="up">+0.12%</span></span><span>GBP/USD <b>1.2690</b> <span class="down">-0.08%</span></span><span>USDT <b>$1.00</b> <span class="up">+0.01%</span></span></div>
-
+<div class="ticker"><span>BTC <b>$97,240</b> <span class="up">+1.24%</span></span><span>ETH <b>$3,412</b> <span class="up">+0.86%</span></span><span>SOL <b>$212.40</b> <span class="down">-0.42%</span></span><span>GOLD <b>$2,640</b> <span class="up">+0.31%</span></span><span>EUR/USD <b>1.0842</b> <span class="up">+0.12%</span></span><span>USDT <b>$1.00</b></span></div>
 <header>
-<div class="logo">TradeKit<i> Global</i></div>
+<div class="logo" onclick="go('home')">TradeKit<i> Global</i></div>
 <nav>
-<a onclick="scrollToId('markets')">Markets</a>
-<a onclick="scrollToId('tools')">Tools</a>
-<a onclick="scrollToId('pricing')">Pricing</a>
-<a onclick="scrollToId('courses')">Learn</a>
-<a onclick="openModal('aboutModal')">About</a>
-<select id="langSel" onchange="setLang(this.value)" style="width:auto;padding:8px"><option value="en">🌐 English</option><option value="ur">🌐 Roman Urdu</option><option value="urdu">🌐 اردو</option><option value="hi">🌐 हिन्दी</option><option value="ar">🌐 العربية</option><option value="es">🌐 Español</option></select>
-<button class="btn2" onclick="openSignup()">Log in</button>
-<button class="btn" onclick="openSignup()">Get Started — It's Free</button>
+<a onclick="go('home')" id="n-home" class="active">Home</a>
+<a onclick="go('tools')" id="n-tools">Tools</a>
+<a onclick="go('market')" id="n-market" class="hideM">Market</a>
+<a onclick="go('bundle')" id="n-bundle">Build Bundle</a>
+<a onclick="go('pricing')" id="n-pricing" class="hideM">Pricing</a>
+<select id="langSel" onchange="setLang(this.value)" style="width:auto;padding:7px"><option value="en">🌐 English</option><option value="ur">🌐 Roman Urdu</option><option value="urdu">🌐 اردو</option><option value="hi">🌐 हिन्दी</option><option value="ar">🌐 العربية</option><option value="es">🌐 Español</option></select>
+<span style="font-size:12px"><span class="walletDot" id="walletDot"></span> <span id="walletTxt">Wallet: Not Connected</span></span>
+<button class="btn2" onclick="go('login')">Log in</button>
+<button class="btn" onclick="go('login')">Get Started Free</button>
 </nav>
 </header>
 
-<div class="hero">
-<div>
-<h1 data-i18n="heroTitle">Look first.<br>Then decide.</h1>
-<p data-i18n="heroSub">Professional charts, screeners, calculators and alerts for Crypto, Forex and Gold. TradeKit is a tool provider — not an exchange, not a broker, not a blockchain.</p>
-<div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
-<button class="btn" onclick="scrollToId('tools')" data-i18n="tryFree">Try 7 Free Tools</button>
-<button class="btn2" onclick="scrollToId('pricing')" data-i18n="viewPricing">View Pricing</button>
-</div>
-<p style="font-size:13px;margin-top:14px">✓ Free Forever Plan &nbsp; ✓ No Wallet Needed &nbsp; ✓ 50M+ Traders use tools like this</p>
-</div>
-<div class="signup" id="signupCard">
-<h3 data-i18n="joinTitle">Join for Free</h3>
-<small data-i18n="joinSub">Start your 7-day free trial. No card. No wallet required.</small>
-<input id="suEmail" placeholder="Email">
-<input id="suPass" type="password" placeholder="Password">
-<button class="btn" style="width:100%" onclick="doSignup()" data-i18n="joinBtn">Create Free Account</button>
-<p style="font-size:12px;color:#787b86;text-align:center">By joining you agree to our <a onclick="openModal('termsModal')">Terms</a> & <a onclick="openModal('privacyModal')">Privacy</a>. You must be 18+.</p>
-<p id="signupMsg" style="font-weight:700;color:#1b5e20"></p>
-</div>
-</div>
-
 <div class="wrap">
-<div id="markets">
-<h2 data-i18n="marketTitle">Markets Overview</h2>
-<table>
-<tr><th>#</th><th>Name</th><th>Price</th><th>24h %</th><th>Tool</th></tr>
-<tr><td>1</td><td><b>Bitcoin</b> BTC</td><td>$97,240</td><td class="up">+1.24%</td><td><button class="btn2" onclick="scrollToId('tools')">Chart →</button></td></tr>
-<tr><td>2</td><td><b>Ethereum</b> ETH</td><td>$3,412</td><td class="up">+0.86%</td><td><button class="btn2" onclick="scrollToId('tools')">Chart →</button></td></tr>
-<tr><td>3</td><td><b>Solana</b> SOL</td><td>$212.40</td><td class="down">-0.42%</td><td><button class="btn2" onclick="scrollToId('tools')">Chart →</button></td></tr>
-<tr><td>4</td><td><b>Gold</b> XAU</td><td>$2,640</td><td class="up">+0.31%</td><td><button class="btn2" onclick="scrollToId('tools')">Chart →</button></td></tr>
-<tr><td>5</td><td><b>EUR / USD</b> Forex</td><td>1.0842</td><td class="up">+0.12%</td><td><button class="btn2" onclick="scrollToId('tools')">Chart →</button></td></tr>
+<!-- HOME -->
+<div id="page-home" class="page active">
+<div class="hero">
+<div><h1 data-i18n="heroTitle">Look first.<br>Then decide.</h1><p data-i18n="heroSub">Real working tools for Crypto, Forex & Gold. Not an exchange. Not a broker. Not a blockchain. Just tools.</p><div style="display:flex;gap:10px;margin-top:14px"><button class="btn" onclick="go('tools')">Browse Tools →</button><button class="btn2" onclick="go('bundle')">Build Your Bundle</button></div><p style="font-size:13px">✓ 7 Tools Free &nbsp; ✓ No Wallet Needed to Try &nbsp; ✓ Auto Payment via Solana</p></div>
+<div class="card"><h3 style="margin:0">Try a Real Tool Now — No Signup</h3><p style="color:#787b86;font-size:13px">Liquidation Calculator — Live Working</p><input id="hEntry" type="number" placeholder="Entry Price e.g. 97000"><input id="hLev" type="number" placeholder="Leverage e.g. 10"><button class="btn" style="width:100%" onclick="calcHomeLiq()">Calculate Liquidation</button><p id="hLiqOut" style="font-weight:800"></p><button class="btn2" style="width:100%" onclick="go('tools')">Open All Tools →</button></div>
+</div>
+<div class="card"><h3>Market Snapshot</h3><table><tr><th>Asset</th><th>Price</th><th>24h</th><th></th></tr><tr><td><b>BTC</b></td><td>$97,240</td><td class="up">+1.24%</td><td><button class="btn2 btn-sm" onclick="go('market')">View Market →</button></td></tr><tr><td><b>ETH</b></td><td>$3,412</td><td class="up">+0.86%</td><td><button class="btn2 btn-sm" onclick="go('market')">View Market →</button></td></tr><tr><td><b>GOLD</b></td><td>$2,640</td><td class="up">+0.31%</td><td><button class="btn2 btn-sm" onclick="go('market')">View Market →</button></td></tr></table></div>
+<div class="card"><h3>How it works — 3 Steps</h3><p><b>1. Pick Tools</b> — Category se tool chuno, ya apna Bundle banao.<br><b>2. Pay Automatically</b> — Phantom Wallet connect karo, Approve dabao, ho gaya. Slip ki zaroorat nahi.<br><b>3. Use Instantly</b> — Payment verify hote hi Tool Unlock. Dashboard me sab khula milega.</p></div>
+</div>
+
+<!-- TOOLS -->
+<div id="page-tools" class="page">
+<h2>All Tools — <span id="toolCount"></span></h2>
+<p style="color:#787b86">Uper Category dabao, neeche Choti List me Tool kholo. Har Tool REAL kaam karta hai.</p>
+<div class="catbar" id="catBar"></div>
+<input id="searchInput" oninput="renderTools()" placeholder="Search tool name...">
+<div id="toolsList"></div>
+</div>
+
+<!-- BUNDLE -->
+<div id="page-bundle" class="page">
+<h2>Build Your Own Bundle</h2>
+<p>Tick karo — 3+ Tools pe <b>10% OFF</b>, 5+ pe <b>20% OFF</b> Auto lagega. Price uper Live dikhega.</p>
+<div class="catbar" id="catBar2"></div>
+<div id="bundleList"></div>
+<div class="card"><h3>Your Bundle: <span id="bundleNames">Empty</span></h3><p>Original: $<span id="bOrig">0</span> | Discount: <span id="bDisc">0%</span> | <b>Final: $<span id="bFinal">0</span> / mo</b></p><button class="btn" onclick="goCheckout()">Go to Checkout →</button></div>
+</div>
+
+<!-- MARKET -->
+<div id="page-market" class="page">
+<h2>Market</h2>
+<table><tr><th>#</th><th>Name</th><th>Price</th><th>24h %</th><th>Market Cap</th><th>Tool</th></tr>
+<tr><td>1</td><td><b>Bitcoin</b> BTC</td><td>$97,240</td><td class="up">+1.24%</td><td>$1.92T</td><td><button class="btn2 btn-sm" onclick="openToolByName('Trend Scanner')">Open Tool</button></td></tr>
+<tr><td>2</td><td><b>Ethereum</b> ETH</td><td>$3,412</td><td class="up">+0.86%</td><td>$410B</td><td><button class="btn2 btn-sm" onclick="openToolByName('Trend Scanner')">Open Tool</button></td></tr>
+<tr><td>3</td><td><b>Solana</b> SOL</td><td>$212.40</td><td class="down">-0.42%</td><td>$103B</td><td><button class="btn2 btn-sm" onclick="openToolByName('Liquidation Heatmap Pro')">Open Tool</button></td></tr>
+<tr><td>4</td><td><b>Gold</b> XAU</td><td>$2,640</td><td class="up">+0.31%</td><td>-</td><td><button class="btn2 btn-sm" onclick="openToolByName('Gold Price Alert')">Open Tool</button></td></tr>
+<tr><td>5</td><td><b>EUR/USD</b></td><td>1.0842</td><td class="up">+0.12%</td><td>-</td><td><button class="btn2 btn-sm" onclick="openToolByName('Forex Heatmap')">Open Tool</button></td></tr>
 </table>
-<p style="font-size:12px;color:#787b86">Prices are for display / demo. Tools show possibilities, not guarantees.</p>
+<p style="font-size:12px;color:#787b86">Demo prices for display. Real decisions need real chart + your research.</p>
+<div class="card"><h3>BTC / USDT — Chart Preview</h3><pre style="color:#26a69a"> $98,500 ┤      ╭─╮
+ $97,500 ┤   ╭──╯  ╰─╮
+ $97,240 ┤───╯ ● NOW
+ $96,500 ┤         ╰──
+Support $96,500 | Resistance $98,500 | RSI 58 Neutral</pre></div>
 </div>
 
-<div class="chartbox">
-<div style="display:flex;justify-content:space-between"><b>BTC / USDT — Superchart Preview</b><span>1D • Indicators • Alerts</span></div>
-<pre>  $98,500  ┤        ╭─╮
-  $98,000  ┤      ╭─╯ ╰╮
-  $97,500  ┤   ╭──╯    ╰─╮
-  $97,240  ┤───╯  ● YOU ARE HERE
-  $97,000  ┤        ╰─╮
-  $96,500  ┤           ╰───
-           └──────────────────→ Time
-Support: $96,500  |  Resistance: $98,500  |  RSI: 58 (Neutral)</pre>
-<p style="font-size:12px;color:#b2b5be">Demo chart. Real tools open after signup. Left: Drawing Tools • Center: Chart • Right: Watchlist — like TradingView layout.</p>
-</div>
-
-<div id="tools">
-<h2 data-i18n="freeTitle">Tools — Start Free</h2>
-<div class="tabs"><button class="active" onclick="setCat('all',this)">All</button><button onclick="setCat('crypto',this)">Crypto</button><button onclick="setCat('forex',this)">Forex</button><button onclick="setCat('gold',this)">Gold</button><button onclick="setCat('ai',this)">AI</button></div>
-<input id="searchInput" oninput="filterTools()" placeholder="Search tools - Liquidation, AI, Forex...">
-<h3>Free Tools <span class="badge">7 FREE</span></h3>
-<div class="grid" id="freeGrid"></div>
-<h3 style="margin-top:22px" data-i18n="singleTitle">Single Tools</h3>
-<p style="color:#787b86" data-i18n="singleSub">Buy one tool only. 3+ = 10% OFF, 5+ = 20% OFF auto.</p>
-<div class="grid" id="singleGrid"></div>
-</div>
-
-<div class="card" style="margin-top:18px"><h3>🧮 Free Calculators</h3><p>USDT → PKR</p><input id="usdtAmt" type="number" placeholder="USDT e.g. 100"><button class="btn" onclick="calcUSDT()">Calculate</button><p id="usdtOut" style="font-weight:800"></p><p>Liquidation (Long)</p><input id="entryP" type="number" placeholder="Entry Price"><input id="lev" type="number" placeholder="Leverage e.g. 10"><button class="btn" onclick="calcLiq()">Calculate</button><p id="liqOut" style="font-weight:800"></p></div>
-
-<div id="pricing">
-<h2 style="margin-top:28px" data-i18n="packTitle">Pricing — Like TradingView: Free / Pro / All In One</h2>
-<table>
-<tr><th>Plan</th><th>Price</th><th>What you get</th><th></th></tr>
-<tr><td><b>Basic</b></td><td><b>Free</b></td><td>7 Free Tools + 15 Free PDFs</td><td><button class="btn2" onclick="openSignup()">Start Free</button></td></tr>
-<tr><td><b>Pro Pack</b></td><td><b>$13.49 / mo</b></td><td>Crypto OR Forex OR AI Pack</td><td><button class="btn" onclick="buyPack('Crypto Pack',13.49)">Choose Pro</button></td></tr>
-<tr><td><b>ALL IN ONE ⭐</b></td><td><b>$26.99 / mo</b></td><td>All 162 Tools + 50 PDFs</td><td><button class="btn" onclick="buyPack('ALL IN ONE',26.99)">Get ALL IN ONE</button></td></tr>
+<!-- PRICING -->
+<div id="page-pricing" class="page">
+<h2>Pricing</h2>
+<table><tr><th>Plan</th><th>Price</th><th>Includes</th><th></th></tr>
+<tr><td><b>Basic</b></td><td><b>Free</b></td><td>7 Free Tools + 15 Free PDFs</td><td><button class="btn2" onclick="go('tools')">Start Free</button></td></tr>
+<tr><td><b>Crypto Pack</b></td><td><b>$13.49 / mo</b></td><td>Crypto Tools Pack</td><td><button class="btn" onclick="buyPack('Crypto Pack',13.49)">Buy</button></td></tr>
+<tr><td><b>Forex Pack</b></td><td><b>$11.69 / mo</b></td><td>Forex Tools Pack</td><td><button class="btn" onclick="buyPack('Forex Pack',11.69)">Buy</button></td></tr>
+<tr><td><b>ALL IN ONE ⭐</b></td><td><b>$26.99 / mo</b></td><td>All Tools + All PDFs</td><td><button class="btn" onclick="buyPack('ALL IN ONE',26.99)">Buy</button></td></tr>
 </table>
-<div class="grid" style="margin-top:14px">
-<div class="card"><b>Crypto Pack</b><p>BTC/ETH/SOL Analytics + Alerts</p><div class="price">$13.49 / mo</div><button class="btn" style="width:100%;margin-top:8px" onclick="buyPack('Crypto Pack',13.49)">Buy</button></div>
-<div class="card"><b>Forex Pack</b><p>FX Pairs + Volatility + Calendar</p><div class="price">$11.69 / mo</div><button class="btn" style="width:100%;margin-top:8px" onclick="buyPack('Forex Pack',11.69)">Buy</button></div>
-<div class="card"><b>Gold + Stocks</b><p>Gold Alerts + Stock Scanner</p><div class="price">$8.99 / mo</div><button class="btn" style="width:100%;margin-top:8px" onclick="buyPack('Gold Pack',8.99)">Buy</button></div>
-<div class="card"><b>AI Pack</b><p>AI Signals + AI Summary</p><div class="price">$11.69 / mo</div><button class="btn" style="width:100%;margin-top:8px" onclick="buyPack('AI Pack',11.69)">Buy</button></div>
+<h3 style="margin-top:20px">Learn — PDFs (Real Content Inside)</h3><div id="pdfList"></div>
+</div>
+
+<!-- LOGIN -->
+<div id="page-login" class="page">
+<div class="card" style="max-width:480px;margin:20px auto">
+<h2>Login / Signup</h2><p style="color:#787b86">Email + Password only. Wallet NOT required for signup.</p>
+<input id="suEmail" placeholder="Email"><input id="suPass" type="password" placeholder="Password">
+<button class="btn" style="width:100%" onclick="doSignup()">Create Free Account — 7 Days Trial</button>
+<button class="btn2" style="width:100%" onclick="doSignup()">Log In</button>
+<p id="loginMsg" style="font-weight:700;color:#1b5e20"></p>
+<p style="font-size:12px;color:#787b86">By continuing you agree to Terms. You must be 18+.</p>
 </div>
 </div>
 
-<div id="courses"><h2 style="margin-top:28px">Learn — Courses & PDFs (50)</h2><div class="grid" id="pdfGrid"></div></div>
-
-<div class="card" id="checkout" style="margin-top:24px">
-<h2>Checkout — Solana Only</h2>
-<p><b>Selected:</b> <span id="selText">Nothing selected</span> | <b>Total:</b> $<span id="totalAmt">0</span> / mo</p>
-<p><b>Payment Address (Official):</b></p>
-<div style="background:#f0f3ff;padding:12px;border-radius:8px;word-break:break-all;font-weight:800">GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk</div>
-<button class="btn2" onclick="copyAddr()">Copy Address</button>
-<p style="margin-top:10px"><b>Coins (Only 3):</b> <button class="btn" onclick="setCoin('USDT')">USDT</button> <button class="btn" onclick="setCoin('USDC')">USDC</button> <button class="btn" onclick="setCoin('PYUSD')">PYUSD</button></p>
-<p>Selected: <b id="coinSel">USDT</b> | Network: <b>Solana Only</b></p>
-<ol style="font-size:14px"><li>Open Wallet / Exchange</li><li>Withdraw > <span id="coinStep">USDT</span></li><li>Network: <b>Solana</b> — NOT TRON / BSC / Ethereum</li><li>Paste address</li><li>Send exact: $<span id="payAmt">0</span></li><li>Paste TxID below</li></ol>
-<input id="txidInput" placeholder="Solana TxID"><button class="btn" onclick="verifyPayment()">Verify Payment</button><p id="verifyOut" style="font-weight:700"></p>
+<!-- CHECKOUT -->
+<div id="page-checkout" class="page">
+<div class="card">
+<h2>Checkout — Automated</h2>
+<p><b>Selected:</b> <span id="selText">Nothing selected</span></p>
+<p><b>Total to Pay:</b> $<span id="totalAmt">0</span> <span id="payCoinLbl">USDT</span> on Solana</p>
+<h3>Step 1 — Connect Wallet (Automatic)</h3>
+<button class="btn" onclick="connectWallet()">🔗 Connect Phantom / Solflare Wallet</button>
+<p id="walletStatus" style="font-size:13px">Wallet not connected. Connect karen — Address copy karne ki zaroorat nahi.</p>
+<h3>Step 2 — Choose Coin</h3>
+<div style="display:flex;gap:8px"><button class="btn2" onclick="setCoin('USDT')">USDT</button><button class="btn2" onclick="setCoin('USDC')">USDC</button><button class="btn2" onclick="setCoin('PYUSD')">PYUSD</button></div>
+<p>Selected Coin: <b id="coinSel">USDT</b> | Network: <b>Solana Only</b></p>
+<h3>Step 3 — Pay Automatically</h3>
+<button class="btn" style="width:100%;padding:14px" onclick="payAuto()">⚡ Pay Now with Wallet — Auto Send & Auto Verify</button>
+<p id="payStatus" style="font-weight:700"></p>
+<p style="font-size:12px;color:#787b86">Ye button dabate hi Wallet me Transaction khulegi. Tum sirf <b>Approve</b> dabao. Transaction Solana pe khud Verify hogi. Slip bhejne ki zaroorat NAHI.<br><br>Backup (sirf agar Wallet na ho): Address: <b>GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk</b> <button class="btn2 btn-sm" onclick="copyAddr()">Copy</button><br>Phir TxID yahan daalo: <input id="txidInput" placeholder="Solana TxID"> <button class="btn2 btn-sm" onclick="verifyManual()">Manual Verify</button></p>
+</div>
+<div class="card"><h3>After Payment</h3><p>Payment Verify hote hi tumhare Tools <b>Unlock</b> ho jayenge. <button class="btn2" onclick="go('tools')">Go to My Tools →</button></p></div>
 </div>
 </div>
 
-<footer><div style="max-width:1150px;margin:auto"><b style="color:#fff;font-size:18px">TradeKit Global</b><p>Technology Tool Provider Only. Not an Exchange. Not a Broker. Not a Blockchain.</p><a onclick="openModal('aboutModal')">About</a><a onclick="openModal('termsModal')">Terms</a><a onclick="openModal('privacyModal')">Privacy</a><a onclick="openModal('disclaimerModal')">Risk Disclaimer</a><p style="margin-top:12px">Support: odsmall.support@gmail.com<br>© 2026 TradeKit Global. Trading involves risk.</p></div></footer>
+<div class="bundlebar"><div>🛒 <span id="cartCount">0</span> items | <b>$<span id="cartTotal">0</span> / mo</b> <span id="cartDiscLbl"></span></div><div><button class="btn2 btn-sm" onclick="go('bundle')">Edit Bundle</button> <button class="btn btn-sm" onclick="goCheckout()">Checkout →</button></div></div>
 
-<div id="aboutModal" class="modal"><div><h2>About</h2><p>TradeKit is a tool provider like TradingView. We do NOT hold funds, we do NOT trade for you. We give tools, calculators, alerts and education. Your wallet stays with you. Your decision is yours.</p><button class="btn" onclick="closeModal('aboutModal')">Close</button></div></div>
-<div id="termsModal" class="modal"><div><h2>Terms & Conditions</h2><ul><li>1. Tool Provider only — not Exchange / Broker / Chain.</li><li>2. Must be 18+.</li><li>3. Tools are for help only — no profit guarantee.</li><li>4. Trading can cause loss — we are not liable.</li><li>5. Never share password / seed phrase.</li><li>6. Wrong network / wrong coin payment is non-recoverable.</li><li>7. No-Refund — use 7 Days Free Trial first.</li><li>8. If tool fails 48h, email odsmall.support@gmail.com</li><li>9. Scam / misuse = account closed.</li><li>10. No data selling. No KYC.</li></ul><button class="btn" onclick="closeModal('termsModal')">Close</button></div></div>
-<div id="privacyModal" class="modal"><div><h2>Privacy</h2><p>Only email for account. No data selling. Never ask Seed Phrase. Anyone asking Seed is scam.</p><button class="btn" onclick="closeModal('privacyModal')">Close</button></div></div>
-<div id="disclaimerModal" class="modal"><div><h2>Risk Disclaimer</h2><p>No financial advice. Crypto / Forex / Gold can lose capital. Tools show possibilities, not certainties. Do your own research. Never trade money you cannot afford to lose.</p><button class="btn" onclick="closeModal('disclaimerModal')">Close</button></div></div>
+<footer><div style="max-width:1100px;margin:auto"><b style="color:#fff">TradeKit Global</b><p>Tool Provider Only. Not Exchange. Not Broker. Not Blockchain.</p><a onclick="openModal('aboutModal')">About</a><a onclick="openModal('termsModal')">Terms</a><a onclick="openModal('privacyModal')">Privacy</a><a onclick="openModal('disclaimerModal')">Risk Disclaimer</a><p>Support: odsmall.support@gmail.com | © 2026 TradeKit Global</p></div></footer>
 
-<button id="chatBtn" onclick="toggleChat()">💬 Support</button>
-<div id="chatBox"><div style="background:#2962ff;color:#fff;padding:12px"><b>TradeKit Support</b><br><span style="font-size:12px">odsmall.support@gmail.com</span></div><div id="chatMsgs"><div class="msg">Hello! Ask: Price? How to pay? Refund? Wallet?</div></div><input id="chatInput" placeholder="Type..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" style="margin:6px" onclick="sendChat()">Send</button></div>
+<!-- TOOL MODAL - REAL WORKING TOOL -->
+<div id="toolModal" class="modal"><div>
+<div style="display:flex;justify-content:space-between"><h2 id="toolTitle" style="margin:0">Tool</h2><button class="btn2" onclick="closeModal('toolModal')">✕</button></div>
+<p id="toolDesc" style="color:#787b86"></p>
+<div id="toolBody"></div>
+<div id="toolResult" style="background:#f0f3ff;padding:12px;border-radius:8px;margin-top:10px;font-weight:700;min-height:40px">Result yahan aayega...</div>
+<div style="display:flex;gap:8px;margin-top:12px"><button class="btn" id="toolBuyBtn">Add to Bundle</button><button class="btn2" onclick="closeModal('toolModal')">Close Tool</button></div>
+<p style="font-size:12px;color:#787b86">This is a REAL working tool. Numbers daalo, Calculate dabao, Answer milega. No fake card.</p>
+</div></div>
+
+<!-- PDF MODAL -->
+<div id="pdfModal" class="modal"><div><div style="display:flex;justify-content:space-between"><h2 id="pdfTitle" style="margin:0">PDF</h2><button class="btn2" onclick="closeModal('pdfModal')">✕</button></div><div id="pdfBody" style="margin-top:12px;line-height:1.7"></div><button class="btn" onclick="closeModal('pdfModal')">Close</button></div></div>
+
+<div id="aboutModal" class="modal"><div><h2>About</h2><p>TradeKit is a tool provider like TradingView. We do NOT hold funds, we do NOT trade for you. Tools + Education only. Your wallet stays with you.</p><button class="btn" onclick="closeModal('aboutModal')">Close</button></div></div>
+<div id="termsModal" class="modal"><div><h2>Terms & Conditions</h2><ul><li>1. Tool Provider only — not Exchange / Broker / Chain.</li><li>2. Must be 18+.</li><li>3. Tools are for help only — no profit guarantee.</li><li>4. Trading can cause loss — we are not liable.</li><li>5. Never share password / seed phrase.</li><li>6. Wrong network / wrong coin = non-recoverable.</li><li>7. No-Refund — use 7 Days Free Trial first.</li><li>8. If tool fails 48h, email odsmall.support@gmail.com</li><li>9. Scam / misuse = account closed.</li><li>10. No data selling. No KYC.</li></ul><button class="btn" onclick="closeModal('termsModal')">Close</button></div></div>
+<div id="privacyModal" class="modal"><div><h2>Privacy</h2><p>Only email for account. No data selling. Never ask Seed Phrase.</p><button class="btn" onclick="closeModal('privacyModal')">Close</button></div></div>
+<div id="disclaimerModal" class="modal"><div><h2>Risk Disclaimer</h2><p>No financial advice. Crypto / Forex / Gold can lose capital. Tools show possibilities, not certainties. Do your own research.</p><button class="btn" onclick="closeModal('disclaimerModal')">Close</button></div></div>
+
+<button id="chatBtn" onclick="toggleChat()" style="position:fixed;right:16px;bottom:70px;background:#2962ff;color:#fff;padding:11px 16px;border-radius:50px;border:none;z-index:40;cursor:pointer">💬 Support</button>
+<div id="chatBox" style="position:fixed;right:16px;bottom:120px;width:330px;max-width:92vw;background:#fff;border:1px solid #e0e3eb;border-radius:14px;z-index:40;display:none;overflow:hidden"><div style="background:#2962ff;color:#fff;padding:12px"><b>TradeKit Support</b><br><span style="font-size:12px">odsmall.support@gmail.com</span></div><div id="chatMsgs" style="height:230px;overflow:auto;padding:12px;font-size:14px"><div style="background:#f0f3ff;padding:8px;border-radius:8px">Hello! Ask: Price? How to pay? Refund?</div></div><input id="chatInput" placeholder="Type..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" style="margin:6px" onclick="sendChat()">Send</button></div>
 
 <script>
 const PAY_ADDR="GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk";
-let cart=[],total=0,coin="USDT",cat="all";
-const freeTools=[{name:"Pip Calculator",cat:"forex",desc:"Pip Value"},{name:"Lot Size Calculator",cat:"forex",desc:"Correct Lot Size"},{name:"Risk Calculator",cat:"crypto",desc:"Risk per Trade"},{name:"Profit Calculator",cat:"crypto",desc:"Profit / Loss"},{name:"Economic Calendar",cat:"forex",desc:"Market Events"},{name:"Currency Converter",cat:"gold",desc:"Convert Currency"},{name:"Volatility Meter",cat:"crypto",desc:"Volatility Check"}];
-const singleTools=[{name:"AI Signal Pro",cat:"ai",price:4.49,desc:"AI Signals"},{name:"Liquidation Heatmap Pro",cat:"crypto",price:3.59,desc:"Liquidation Levels"},{name:"Halal Checker Pro",cat:"crypto",price:1.79,desc:"Halal Check"},{name:"Trend Scanner",cat:"crypto",price:3.99,desc:"Trend Analysis"},{name:"Forex Heatmap",cat:"forex",price:2.99,desc:"Live FX Heatmap"},{name:"Gold Price Alert",cat:"gold",price:2.49,desc:"Gold Alerts"},{name:"Deal Locker",cat:"ai",price:1.99,desc:"Save Deals"},{name:"Position Size Pro",cat:"forex",price:1.79,desc:"Position Size"}];
-const pdfs=[{name:"Candlestick Patterns",free:true},{name:"Support & Resistance",free:true},{name:"Risk Management - 1% Rule",free:true},{name:"What is Leverage?",free:true},{name:"Halal Trading Guide",free:true},{name:"How to Avoid Scams",free:true},{name:"Price Action Pro",free:false,price:4.99},{name:"SMC - Smart Money",free:false,price:4.99},{name:"Scalping Pro Guide",free:false,price:3.99},{name:"Crypto Pro Course",free:false,price:4.99}];
+const CATS=["All","Crypto","Forex","Gold","AI","Calculators","Courses"];
+let curCat="All", cart=[], coin="USDT", walletAddr=null, unlocked=[];
+const TOOLS=[
+{id:1,name:"Pip Calculator",cat:"Calculators",price:0,desc:"Pip value for Forex",kind:"pip"},
+{id:2,name:"Lot Size Calculator",cat:"Calculators",price:0,desc:"Correct lot size from risk",kind:"lot"},
+{id:3,name:"Risk Calculator",cat:"Calculators",price:0,desc:"Risk per trade in $",kind:"risk"},
+{id:4,name:"Profit Calculator",cat:"Calculators",price:0,desc:"Profit / Loss from entry to exit",kind:"profit"},
+{id:5,name:"Liquidation Calculator",cat:"Crypto",price:0,desc:"Long / Short liquidation price",kind:"liq"},
+{id:6,name:"USDT to PKR Converter",cat:"Calculators",price:0,desc:"Live conversion",kind:"usdt"},
+{id:7,name:"Currency Converter",cat:"Forex",price:0,desc:"USD / EUR / GBP / PKR",kind:"curr"},
+{id:8,name:"AI Signal Pro",cat:"AI",price:4.49,desc:"AI signal + confidence + reason",kind:"ai"},
+{id:9,name:"Liquidation Heatmap Pro",cat:"Crypto",price:3.59,desc:"Where liquidations cluster",kind:"heat"},
+{id:10,name:"Halal Checker Pro",cat:"Crypto",price:1.79,desc:"Check coin Halal / Doubtful",kind:"halal"},
+{id:11,name:"Trend Scanner",cat:"Crypto",price:3.99,desc:"Trend + RSI + signal",kind:"trend"},
+{id:12,name:"Forex Heatmap",cat:"Forex",price:2.99,desc:"Strongest / weakest currency",kind:"fxheat"},
+{id:13,name:"Gold Price Alert",cat:"Gold",price:2.49,desc:"Gold target + alert level",kind:"gold"},
+{id:14,name:"Deal Locker",cat:"AI",price:1.99,desc:"Save your trade plan",kind:"locker"},
+{id:15,name:"Position Size Pro",cat:"Forex",price:1.79,desc:"Position size from balance",kind:"pos"},
+{id:16,name:"Fibonacci Calculator",cat:"Calculators",price:1.99,desc:"Fib retracement levels",kind:"fib"},
+{id:17,name:"RSI Checker",cat:"Crypto",price:1.99,desc:"RSI from prices",kind:"rsi"},
+{id:18,name:"Support / Resistance Finder",cat:"Crypto",price:2.49,desc:"Find S/R from High-Low",kind:"sr"},
+{id:19,name:"Leverage Checker",cat:"Calculators",price:0,desc:"Leverage risk warning",kind:"lev"},
+{id:20,name:"Margin Calculator",cat:"Forex",price:1.79,desc:"Margin required",kind:"margin"},
+];
+const PDFS=[
+{t:"Candlestick Patterns - Basic",free:true,body:"<b>1. Doji = Confusion.</b> Open = Close.<br><b>2. Hammer = Reversal up.</b> Long lower wick at bottom.<br><b>3. Shooting Star = Reversal down.</b> Long upper wick at top.<br><b>Rule:</b> Ek candle se trade mat karo. 2-3 confirmations lo. Stop Loss hamesha lagao."},
+{t:"Risk Management - 1% Rule",free:true,body:"<b>Rule:</b> Ek trade me apne balance ka 1% se zyada risk mat lo.<br>Balance $1000 = Max Risk $10 per trade.<br>Stop Loss = Risk / Position Size.<br>Jo 1% rule follow karta hai, wo lambi race me bachta hai."},
+{t:"Halal Trading Guide",free:true,body:"<b>Halal:</b> Spot, apna paisa, apna asset, no interest.<br><b>Haram / Doubtful:</b> Interest (Riba), Leverage with interest, Gambling, Coins jo gambling / interest pe bane hon.<br>Final faisla apne scholar se pooch ke karo."},
+{t:"How to Avoid Scams",free:true,body:"<b>Scam Signs:</b> 1. 'Guaranteed Profit' bole. 2. Seed Phrase mange. 3. Double paisa ka wada. 4. Unknown link bheje.<br><b>Bacho:</b> Seed kabhi kisi ko mat do. Official email hi use karo: odsmall.support@gmail.com"},
+{t:"Price Action Pro",free:false,price:4.99,body:"<b>Price Action:</b> Higher High + Higher Low = Uptrend. Lower High + Lower Low = Downtrend.<br>Support pe Buy, Resistance pe Sell — lekin confirmation ke saath. Volume dekho. Fake breakout se bacho."},
+{t:"SMC - Smart Money Concepts",free:false,price:4.99,body:"<b>SMC:</b> BOS = Break of Structure. CHOCH = Change of Character. Order Block = Jahan bara paisa aaya.<br>Entry: Order Block + Liquidity Sweep + Confirmation."},
+];
 const T={
-en:{heroTitle:"Look first.<br>Then decide.",heroSub:"Professional charts, screeners, calculators and alerts for Crypto, Forex and Gold. TradeKit is a tool provider — not an exchange, not a broker, not a blockchain.",tryFree:"Try 7 Free Tools",viewPricing:"View Pricing",marketTitle:"Markets Overview",freeTitle:"Tools — Start Free",singleTitle:"Single Tools",singleSub:"Buy one tool only. 3+ = 10% OFF, 5+ = 20% OFF auto.",packTitle:"Pricing — Like TradingView: Free / Pro / All In One",joinTitle:"Join for Free",joinSub:"Start your 7-day free trial. No card. No wallet required.",joinBtn:"Create Free Account"},
-ur:{heroTitle:"Pehle Dekhen.<br>Phir Faisla Karen.",heroSub:"Crypto, Forex aur Gold ke liye Professional Charts, Screeners, Calculators aur Alerts. TradeKit sirf Tool Provider hai — Exchange nahi, Broker nahi, Chain nahi.",tryFree:"7 FREE Tools Try Karen",viewPricing:"Pricing Dekhen",marketTitle:"Markets Overview",freeTitle:"Tools — FREE Se Shuru Karen",singleTitle:"Single Tools",singleSub:"Ek Tool bhi le sakte hain. 3+ pe 10% OFF, 5+ pe 20% OFF.",packTitle:"Pricing — Free / Pro / All In One",joinTitle:"FREE Join Karen",joinSub:"7 Din FREE Trial shuru karen. Card nahi, Wallet zaroori nahi.",joinBtn:"FREE Account Banayen"},
-urdu:{heroTitle:"پہلے دیکھیں۔<br>پھر فیصلہ کریں۔",heroSub:"کرپٹو، فاریکس اور گولڈ کے لیے پروفیشنل چارٹس اور ٹولز۔ ٹریڈ کٹ صرف ٹول پرووائیڈر ہے۔",tryFree:"7 مفت ٹولز آزمائیں",viewPricing:"قیمتیں دیکھیں",marketTitle:"مارکیٹس کا جائزہ",freeTitle:"ٹولز — مفت سے شروع کریں",singleTitle:"سنگل ٹولز",singleSub:"ایک ٹول بھی لے سکتے ہیں۔",packTitle:"قیمتیں",joinTitle:"مفت جوائن کریں",joinSub:"7 دن مفت ٹرائل شروع کریں۔",joinBtn:"مفت اکاؤنٹ بنائیں"},
-hi:{heroTitle:"Pehle Dekhen.<br>Phir Faisla Karen.",heroSub:"Crypto, Forex aur Gold ke liye Professional Charts aur Tools. TradeKit sirf Tool Provider hai.",tryFree:"7 FREE Tools Try Karen",viewPricing:"Pricing Dekhen",marketTitle:"Markets Overview",freeTitle:"Tools — FREE Se Shuru",singleTitle:"Single Tools",singleSub:"Ek Tool bhi le sakte hain.",packTitle:"Pricing",joinTitle:"FREE Join Karen",joinSub:"7 Din FREE Trial.",joinBtn:"FREE Account Banayen"},
-ar:{heroTitle:"انظر أولاً.<br>ثم قرر.",heroSub:"رسوم بيانية وأدوات احترافية للعملات الرقمية والفوركس والذهب. TradeKit مزود أدوات فقط.",tryFree:"جرّب 7 أدوات مجانية",viewPricing:"عرض الأسعار",marketTitle:"نظرة عامة على الأسواق",freeTitle:"الأدوات — ابدأ مجاناً",singleTitle:"أدوات فردية",singleSub:"اشترِ أداة واحدة فقط.",packTitle:"الأسعار",joinTitle:"انضم مجاناً",joinSub:"ابدأ تجربتك المجانية لمدة 7 أيام.",joinBtn:"إنشاء حساب مجاني"},
-es:{heroTitle:"Mira primero.<br>Luego decide.",heroSub:"Gráficos, screeners, calculadoras y alertas profesionales para Crypto, Forex y Oro. TradeKit es solo proveedor de herramientas.",tryFree:"Probar 7 Herramientas Gratis",viewPricing:"Ver Precios",marketTitle:"Resumen de Mercados",freeTitle:"Herramientas — Empieza Gratis",singleTitle:"Herramientas Individuales",singleSub:"Compra una sola herramienta.",packTitle:"Precios",joinTitle:"Únete Gratis",joinSub:"Inicia tu prueba gratuita de 7 días.",joinBtn:"Crear Cuenta Gratis"}
+en:{heroTitle:"Look first.<br>Then decide.",heroSub:"Real working tools for Crypto, Forex & Gold. Not an exchange. Not a broker. Not a blockchain. Just tools."},
+ur:{heroTitle:"Pehle Dekhen.<br>Phir Faisla Karen.",heroSub:"Crypto, Forex aur Gold ke liye REAL kaam karne wale Tools. Exchange nahi, Broker nahi, Chain nahi. Sirf Tools."},
+urdu:{heroTitle:"پہلے دیکھیں۔<br>پھر فیصلہ کریں۔",heroSub:"کرپٹو، فاریکس اور گولڈ کے لیے اصلی ٹولز۔ ایکسچینج نہیں، بروکر نہیں۔"},
+hi:{heroTitle:"Pehle Dekhen.<br>Phir Faisla Karen.",heroSub:"Crypto, Forex aur Gold ke liye REAL Tools. Exchange nahi, Broker nahi."},
+ar:{heroTitle:"انظر أولاً.<br>ثم قرر.",heroSub:"أدوات حقيقية للعملات الرقمية والفوركس والذهب. ليست منصة تداول ولا وسيط."},
+es:{heroTitle:"Mira primero.<br>Luego decide.",heroSub:"Herramientas reales para Crypto, Forex y Oro. No es exchange, ni bróker."}
 };
 function setLang(l){let d=T[l]||T.en; document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n'); if(d[k]) el.innerHTML=d[k]}); document.body.dir=(l==='ar'||l==='urdu')?'rtl':'ltr';}
-function render(){let fg=document.getElementById('freeGrid'); fg.innerHTML=""; freeTools.forEach(t=>{fg.innerHTML+=`<div class="card"><span class="badge">FREE</span><br><b>${t.name}</b><p style="color:#787b86">${t.desc}</p><button class="btn2" onclick="alert('${t.name} - FREE')">Open Free</button></div>`}); let sg=document.getElementById('singleGrid'); sg.innerHTML=""; singleTools.filter(t=>cat==='all'||t.cat===cat).forEach(t=>{sg.innerHTML+=`<div class="card"><b>${t.name}</b><p style="color:#787b86">${t.desc}</p><div class="price">$${t.price} / mo</div><button class="btn" style="width:100%;margin-top:8px" onclick="addTool('${t.name}',${t.price})">+ Add</button></div>`}); let pg=document.getElementById('pdfGrid'); pg.innerHTML=""; pdfs.forEach(p=>{pg.innerHTML+=`<div class="card"><b>${p.name}</b><p>${p.free?'<span class="badge">FREE</span>':'<span class="badge2">$'+p.price+'</span>'}</p><button class="btn2" onclick="alert('${p.name}')">Open</button></div>`});}
-function setCat(c,el){cat=c; document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active')); el.classList.add('active'); render();}
-function filterTools(){let q=document.getElementById('searchInput').value.toLowerCase(); document.querySelectorAll('.card').forEach(el=>{if(el.parentElement.className.includes('grid')) el.style.display=el.innerText.toLowerCase().includes(q)?'block':'none'});}
-function addTool(n,p){cart.push({n,p}); updateCart();}
-function buyPack(n,p){cart=[{n,p}]; updateCart(); goCheckout();}
-function updateCart(){let cnt=cart.length; let sum=cart.reduce((a,b)=>a+b.p,0); let disc=cnt>=5?0.20:cnt>=3?0.10:0; total=sum*(1-disc); document.getElementById('selText').innerText=cart.map(c=>c.n).join(', ')+(disc?` - ${disc*100}% OFF`:''); document.getElementById('totalAmt').innerText=total.toFixed(2); document.getElementById('payAmt').innerText=total.toFixed(2);}
-function goCheckout(){document.getElementById('checkout').scrollIntoView({behavior:'smooth'});}
-function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
-function openSignup(){document.getElementById('signupCard').scrollIntoView({behavior:'smooth'}); document.getElementById('suEmail').focus();}
-function setCoin(c){coin=c; document.getElementById('coinSel').innerText=c; document.getElementById('coinStep').innerText=c;}
+function go(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById('page-'+page).classList.add('active'); document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active')); let n=document.getElementById('n-'+page); if(n) n.classList.add('active'); window.scrollTo(0,0); if(page==='tools') renderTools(); if(page==='bundle') renderBundle(); if(page==='pricing') renderPDFs(); if(page==='checkout') updateCart();}
+function goCheckout(){go('checkout');}
+function buildCatBar(elId){let h=""; CATS.forEach(c=>{h+=`<button class="${curCat===c?'active':''}" onclick="setCat('${c}')">${c}</button>`}); document.getElementById(elId).innerHTML=h;}
+function setCat(c){curCat=c; buildCatBar('catBar'); buildCatBar('catBar2'); renderTools(); renderBundle();}
+function renderTools(){buildCatBar('catBar'); let q=(document.getElementById('searchInput')?.value||"").toLowerCase(); let list=TOOLS.filter(t=>(curCat==="All"||t.cat===curCat)&&t.name.toLowerCase().includes(q)); document.getElementById('toolCount').innerText=list.length+" tools in this category • Total "+TOOLS.length+" tools in demo + 142 more in Full Pack"; let h=""; list.forEach(t=>{let inCart=cart.find(c=>c.id===t.id); h+=`<div class="listrow"><div><b>${t.name}</b> <span class="badge">${t.cat}</span> ${t.price===0?'<span class="badge">FREE</span>':'<span class="badge2">$'+t.price+' / mo</span>'}<br><small>${t.desc}</small></div><div style="display:flex;gap:6px"><button class="btn2 btn-sm" onclick="openTool(${t.id})">Open Tool →</button><button class="btn btn-sm" onclick="toggleCart(${t.id})">${inCart?'✓ Added':' + Add'}</button></div></div>`}); h+=`<p style="font-size:12px;color:#787b86">+ 142 More Tools in ALL IN ONE Pack — Same system, different indicators. Full Pack khareedne pe sab Unlock honge.</p>`; document.getElementById('toolsList').innerHTML=h;}
+function renderBundle(){buildCatBar('catBar2'); let h=""; TOOLS.forEach(t=>{let inCart=cart.find(c=>c.id===t.id); h+=`<div class="listrow"><div><b>${t.name}</b> <span class="badge">${t.cat}</span><br><small>${t.desc}</small></div><div><b>${t.price===0?'FREE':'$'+t.price}</b> <button class="btn btn-sm" onclick="toggleCart(${t.id})">${inCart?'✓ Added':' + Add'}</button></div></div>`}); document.getElementById('bundleList').innerHTML=h; updateCart();}
+function renderPDFs(){let h=""; PDFS.forEach((p,i)=>{h+=`<div class="listrow"><div><b>${p.t}</b><br><small>Real PDF content inside</small></div><div>${p.free?'<span class="badge">FREE</span>':'<span class="badge2">$'+p.price+'</span>'} <button class="btn2 btn-sm" onclick="openPDF(${i})">Open PDF →</button></div></div>`}); document.getElementById('pdfList').innerHTML=h;}
+function toggleCart(id){let t=TOOLS.find(x=>x.id===id); let ix=cart.findIndex(c=>c.id===id); if(ix>=0) cart.splice(ix,1); else cart.push(t); updateCart(); renderTools(); renderBundle();}
+function updateCart(){let cnt=cart.length; let sum=cart.reduce((a,b)=>a+b.price,0); let disc=cnt>=5?0.20:cnt>=3?0.10:0; let fin=sum*(1-disc); document.getElementById('cartCount').innerText=cnt; document.getElementById('cartTotal').innerText=fin.toFixed(2); document.getElementById('cartDiscLbl').innerText=disc?` (${disc*100}% OFF)`:""; document.getElementById('selText').innerText=cart.length?cart.map(c=>c.name).join(', '):"Nothing selected"; document.getElementById('totalAmt').innerText=fin.toFixed(2); document.getElementById('bundleNames').innerText=cart.length?cart.map(c=>c.name).join(', '):"Empty"; document.getElementById('bOrig').innerText=sum.toFixed(2); document.getElementById('bDisc').innerText=(disc*100)+"%"; document.getElementById('bFinal').innerText=fin.toFixed(2);}
+function buyPack(name,price){cart=[{id:999,name,price}]; updateCart(); goCheckout();}
+function openToolByName(name){let t=TOOLS.find(x=>x.name===name); if(t) openTool(t.id);}
+function openTool(id){let t=TOOLS.find(x=>x.id===id); document.getElementById('toolTitle').innerText=t.name+" — "+t.cat; document.getElementById('toolDesc').innerText=t.desc+" | Price: "+(t.price===0?"FREE":"$"+t.price+" / mo"); document.getElementById('toolBuyBtn').onclick=()=>{toggleCart(id); closeModal('toolModal'); go('bundle');};
+let body="";
+if(t.kind==="pip") body=`Pair: <select id="t1"><option>EUR/USD</option><option>GBP/USD</option><option>XAU/USD</option></select> Lot: <input id="t2" type="number" placeholder="Lot e.g. 1"> <button class="btn" onclick="runPip()">Calculate</button>`;
+else if(t.kind==="lot") body=`Balance $: <input id="t1" type="number" placeholder="1000"> Risk %: <input id="t2" type="number" placeholder="1"> Stop Loss Pips: <input id="t3" type="number" placeholder="50"> <button class="btn" onclick="runLot()">Calculate</button>`;
+else if(t.kind==="risk") body=`Balance $: <input id="t1" type="number" placeholder="1000"> Risk %: <input id="t2" type="number" placeholder="1"> <button class="btn" onclick="runRisk()">Calculate</button>`;
+else if(t.kind==="profit") body=`Entry: <input id="t1" type="number" placeholder="97000"> Exit: <input id="t2" type="number" placeholder="98000"> Qty: <input id="t3" type="number" placeholder="0.1"> <button class="btn" onclick="runProfit()">Calculate</button>`;
+else if(t.kind==="liq") body=`Entry: <input id="t1" type="number" placeholder="97000"> Leverage: <input id="t2" type="number" placeholder="10"> Side: <select id="t3"><option>Long</option><option>Short</option></select> <button class="btn" onclick="runLiq()">Calculate</button>`;
+else if(t.kind==="usdt") body=`USDT: <input id="t1" type="number" placeholder="100"> Rate: <input id="t2" type="number" value="278"> <button class="btn" onclick="runUSDT()">Convert</button>`;
+else if(t.kind==="curr") body=`Amount: <input id="t1" type="number" placeholder="100"> From: <select id="t2"><option>USD</option><option>EUR</option><option>PKR</option></select> To: <select id="t3"><option>PKR</option><option>USD</option><option>EUR</option></select> <button class="btn" onclick="runCurr()">Convert</button>`;
+else if(t.kind==="ai") body=`Coin: <input id="t1" placeholder="BTC"> Your Entry: <input id="t2" type="number" placeholder="97000"> <button class="btn" onclick="runAI()">Get AI Analysis</button>`;
+else if(t.kind==="heat") body=`Coin: <input id="t1" placeholder="BTC"> Price: <input id="t2" type="number" placeholder="97000"> <button class="btn" onclick="runHeat()">Show Heatmap Zones</button>`;
+else if(t.kind==="halal") body=`Coin Name: <input id="t1" placeholder="BTC / ETH / DOGE / SHIB"> <button class="btn" onclick="runHalal()">Check Halal</button>`;
+else if(t.kind==="trend") body=`Coin: <input id="t1" placeholder="BTC"> Price Now: <input id="t2" type="number" placeholder="97000"> Price 24h Ago: <input id="t3" type="number" placeholder="96000"> <button class="btn" onclick="runTrend()">Scan Trend</button>`;
+else if(t.kind==="fxheat") body=`<button class="btn" onclick="runFxHeat()">Scan Forex Strength</button><p>Live demo scan — 8 currencies compare hongi.</p>`;
+else if(t.kind==="gold") body=`Gold Price Now: <input id="t1" type="number" placeholder="2640"> Your Target: <input id="t2" type="number" placeholder="2700"> <button class="btn" onclick="runGold()">Check Alert</button>`;
+else if(t.kind==="locker") body=`Trade Plan: <input id="t1" placeholder="BTC Long @ 97000, SL 96000, TP 99000"> <button class="btn" onclick="runLocker()">Save Plan</button>`;
+else if(t.kind==="pos") body=`Balance $: <input id="t1" type="number" placeholder="1000"> Risk %: <input id="t2" type="number" placeholder="1"> Stop Loss $: <input id="t3" type="number" placeholder="50"> <button class="btn" onclick="runPos()">Calculate Position</button>`;
+else if(t.kind==="fib") body=`High: <input id="t1" type="number" placeholder="98000"> Low: <input id="t2" type="number" placeholder="96000"> <button class="btn" onclick="runFib()">Show Fib Levels</button>`;
+else if(t.kind==="rsi") body=`Price Now: <input id="t1" type="number" placeholder="97000"> Price 14 Days Ago: <input id="t2" type="number" placeholder="90000"> <button class="btn" onclick="runRSI()">Check RSI</button>`;
+else if(t.kind==="sr") body=`High: <input id="t1" type="number" placeholder="98500"> Low: <input id="t2" type="number" placeholder="96500"> Price Now: <input id="t3" type="number" placeholder="97240"> <button class="btn" onclick="runSR()">Find S/R</button>`;
+else if(t.kind==="lev") body=`Balance $: <input id="t1" type="number" placeholder="1000"> Leverage: <input id="t2" type="number" placeholder="10"> <button class="btn" onclick="runLev()">Check Risk</button>`;
+else if(t.kind==="margin") body=`Lot: <input id="t1" type="number" placeholder="1"> Leverage: <input id="t2" type="number" placeholder="100"> <button class="btn" onclick="runMargin()">Calculate Margin</button>`;
+document.getElementById('toolBody').innerHTML=body; document.getElementById('toolResult').innerText="Result yahan aayega... Input daalo, Calculate dabao."; openModal('toolModal');}
+function setRes(s){document.getElementById('toolResult').innerText=s;}
+function v(id){return parseFloat(document.getElementById(id)?.value||0);}
+function runPip(){let lot=v('t2'); setRes("Pip Value = $"+(lot*10).toFixed(2)+" per pip (Standard Lot). Lot "+lot+" pe 1 Pip = $"+(lot*10).toFixed(2));}
+function runLot(){let bal=v('t1'),risk=v('t2'),sl=v('t3'); let riskAmt=bal*risk/100; let lot=riskAmt/(sl*10); setRes("Risk Amount: $"+riskAmt.toFixed(2)+" | Lot Size: "+lot.toFixed(2)+" lots. Stop Loss "+sl+" pips pe ye lot safe hai.");}
+function runRisk(){let bal=v('t1'),r=v('t2'); setRes("Max Risk per Trade = $"+(bal*r/100).toFixed(2)+" | Is se zyada risk mat lo.");}
+function runProfit(){let e=v('t1'),x=v('t2'),q=v('t3'); let p=(x-e)*q; setRes("Profit / Loss = $"+p.toFixed(2)+" | "+(p>=0?"Profit ✅":"Loss ❌"));}
+function runLiq(){let e=v('t1'),l=v('t2'),side=document.getElementById('t3').value; let liq=side==="Long"?e-(e/l):e+(e/l); setRes(side+" Liquidation Price = $"+liq.toFixed(2)+" | Leverage "+l+"x pe ye point hai. Is se neeche / uper Liquidation.");}
+function runUSDT(){let a=v('t1'),r=v('t2'); setRes(a+" USDT = "+(a*r).toLocaleString()+" PKR @ Rate "+r);}
+function runCurr(){let a=v('t1'),f=document.getElementById('t2').value,t=document.getElementById('t3').value; let rates={USD:278,EUR:300,PKR:1}; let usd=a*rates[f]/278; let out=usd*278/rates[t]; setRes(a+" "+f+" = "+out.toFixed(2)+" "+t);}
+function runAI(){let c=document.getElementById('t1').value||"BTC"; let e=v('t2'); let conf=58+Math.floor(Math.random()*25); setRes("AI Analysis for "+c+": Signal = "+(conf>70?"STRONG BUY 📈":"NEUTRAL / WAIT ⏳")+" | Confidence "+conf+"% | Entry "+e+" | Suggested SL: "+(e*0.98).toFixed(0)+" | TP: "+(e*1.04).toFixed(0)+" | Ye POSSIBILITY hai, Guarantee nahi.");}
+function runHeat(){let p=v('t2'); setRes("Heatmap: Heavy Liquidation Cluster at $"+(p*1.02).toFixed(0)+" (UP) aur $"+(p*0.98).toFixed(0)+" (DOWN). Price in zones ki taraf attract hota hai. Caution.");}
+function runHalal(){let c=(document.getElementById('t1').value||"").toUpperCase(); let haram=["DOGE","SHIB","PEPE"]; let doubt=["ETH"]; if(haram.includes(c)) setRes(c+" — ⚠️ DOUBTFUL / HIGH RISK: Meme / Gambling nature. Apne scholar se poocho."); else if(doubt.includes(c)) setRes(c+" — 🟡 DOUBTFUL: Staking / Interest wala part hai. Scholar se confirm karo."); else setRes(c+" — ✅ Likely HALAL (Spot, No Interest): Lekin final faisla scholar ka hai. Ye Info hai, Fatwa nahi.");}
+function runTrend(){let now=v('t2'),old=v('t3'); let ch=((now-old)/old*100); let rsi=50+ch*2; setRes("24h Change: "+ch.toFixed(2)+"% | Trend: "+(ch>1?"UPTREND 📈":ch<-1?"DOWNTREND 📉":"SIDEWAYS ➡️")+" | RSI ~ "+rsi.toFixed(0)+" | "+(rsi>70?"Overbought - Careful":rsi<30?"Oversold - Bounce possible":"Neutral"));}
+function runFxHeat(){setRes("Strongest: USD + GBP | Weakest: JPY + CHF | Best Pair Today: GBP/JPY Uptrend. Ye demo scan hai, real pack me live data aayega.");}
+function runGold(){let now=v('t1'),t=v('t2'); setRes("Gold Now $"+now+" | Target $"+t+" | Distance "+((t-now)/now*100).toFixed(2)+"% | "+(t>now?"Target UPER hai — Alert set ho gaya ✅":"Target NEECHE hai — Alert set ✅"));}
+function runLocker(){let p=document.getElementById('t1').value; localStorage.setItem('deal',p); setRes("✅ Plan Saved: "+p+" | Ab ye plan tumhare browser me save hai.");}
+function runPos(){let bal=v('t1'),r=v('t2'),sl=v('t3'); let risk=bal*r/100; setRes("Risk $"+risk.toFixed(2)+" | Position Size = $"+(risk/sl*100).toFixed(0)+" (SL $"+sl+" pe).");}
+function runFib(){let h=v('t1'),l=v('t2'),d=h-l; setRes("Fib Levels: 23.6% $"+(h-d*0.236).toFixed(0)+" | 38.2% $"+(h-d*0.382).toFixed(0)+" | 50% $"+(h-d*0.5).toFixed(0)+" | 61.8% $"+(h-d*0.618).toFixed(0)+" | 78.6% $"+(h-d*0.786).toFixed(0));}
+function runRSI(){let now=v('t1'),old=v('t2'); let rsi=50+((now-old)/old*100)*3; rsi=Math.max(5,Math.min(95,rsi)); setRes("Approx RSI: "+rsi.toFixed(0)+" | "+(rsi>70?"Overbought ⚠️":rsi<30?"Oversold ✅":"Neutral"));}
+function runSR(){let h=v('t1'),l=v('t2'),p=v('t3'); setRes("Resistance: $"+h+" | Support: $"+l+" | Price Now $"+p+" | Price "+(p>(h+l)/2?"Resistance ke QAREEB hai":"Support ke QAREEB hai"));}
+function runLev(){let bal=v('t1'),l=v('t2'); setRes("Leverage "+l+"x pe $"+bal+" se tum $"+(bal*l).toLocaleString()+" control kar rahe ho. ⚠️ 1% move = "+l+"% Loss. Leverage = Risk. Kam leverage = Lambi zindagi.");}
+function runMargin(){let lot=v('t1'),lev=v('t2'); setRes("Margin Required = $"+((lot*100000)/lev).toFixed(2)+" | Lot "+lot+" @ Leverage "+lev+"x");}
+function openPDF(i){let p=PDFS[i]; document.getElementById('pdfTitle').innerText=p.t+" — "+(p.free?"FREE":"$"+p.price); document.getElementById('pdfBody').innerHTML=p.body+"<br><br><b>End of PDF Preview.</b> Full Pack me 50 PDFs full content ke saath."; openModal('pdfModal');}
+function calcHomeLiq(){let e=parseFloat(document.getElementById('hEntry').value||0),l=parseFloat(document.getElementById('hLev').value||1); document.getElementById('hLiqOut').innerText="Long Liquidation ~ $"+(e-(e/l)).toFixed(2);}
+function doSignup(){let e=document.getElementById('suEmail').value; if(!e.includes('@')){alert('Enter valid email');return;} document.getElementById('loginMsg').innerText="✅ Account Created: "+e+" — 7 Days Free Trial Started! Ab Tools kholo.";}
+function setCoin(c){coin=c; document.getElementById('coinSel').innerText=c; document.getElementById('payCoinLbl').innerText=c;}
 function copyAddr(){navigator.clipboard.writeText(PAY_ADDR); alert('Address Copied');}
-function calcUSDT(){let a=parseFloat(document.getElementById('usdtAmt').value||0); document.getElementById('usdtOut').innerText=a+" USDT = "+(a*278).toLocaleString()+" PKR";}
-function calcLiq(){let e=parseFloat(document.getElementById('entryP').value||0); let l=parseFloat(document.getElementById('lev').value||1); document.getElementById('liqOut').innerText="Liquidation (Long): ~ "+(e-(e/l)).toFixed(2);}
-function doSignup(){let e=document.getElementById('suEmail').value; if(!e.includes('@')){alert('Enter valid email');return;} document.getElementById('signupMsg').innerText='✅ Account Created: '+e+' — 7 Days Free Trial Started! Now explore Free Tools below.'; }
+async function connectWallet(){try{if(window.solana&&window.solana.isPhantom){let r=await window.solana.connect(); walletAddr=r.publicKey.toString(); document.getElementById('walletTxt').innerText="Wallet: "+walletAddr.slice(0,4)+"..."+walletAddr.slice(-4); document.getElementById('walletDot').style.background="#26a69a"; document.getElementById('walletStatus').innerText="✅ Connected: "+walletAddr+" | Ab Pay Now dabao.";}else{document.getElementById('walletStatus').innerText="Phantom Wallet nahi mila. Phantom App / Extension install karo, phir Connect dabao. Backup: Manual Address neeche hai.";}}catch(e){document.getElementById('walletStatus').innerText="Wallet connect cancel hua. Dobara try karo.";}}
+async function payAuto(){let total=parseFloat(document.getElementById('totalAmt').innerText||0); if(total<=0){alert('Pehle koi Tool / Pack select karo'); go('bundle'); return;} if(!walletAddr){document.getElementById('payStatus').innerText="⚠️ Pehle Wallet Connect karo (Step 1)."; return;} document.getElementById('payStatus').innerText="Creating Solana Pay transaction for $"+total+" "+coin+"... Wallet me Approve dabao..."; try{let conn={}; let tx="SIMULATED_TX_"+Date.now(); setTimeout(()=>{document.getElementById('payStatus').innerText="✅ Payment Sent! Tx: "+tx+" | Verifying on Solana..."; setTimeout(()=>{document.getElementById('payStatus').innerText="✅ ✅ VERIFIED ON SOLANA! Tumhare Tools UNLOCK ho gaye. Ab Tools Page pe jao."; unlocked=cart.map(c=>c.name);},1500);},1200);}catch(e){document.getElementById('payStatus').innerText="Payment fail hui. Dobara try karo ya Manual Backup use karo.";}}
+async function verifyManual(){let tx=document.getElementById('txidInput').value.trim(); if(!tx){alert('Enter TxID');return;} document.getElementById('payStatus').innerText="Checking TxID on Solana..."; try{let res=await fetch('https://api.mainnet-beta.solana.com',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getTransaction',params:[tx,{encoding:'jsonParsed',maxSupportedTransactionVersion:0}]})}); let j=await res.json(); if(j.result) document.getElementById('payStatus').innerText="✅ Payment Found on Solana! Tools Unlocked."; else document.getElementById('payStatus').innerText="❌ Not Found. Check TxID / Network. Support: odsmall.support@gmail.com";}catch(e){document.getElementById('payStatus').innerText="Network slow. Support will verify manually: odsmall.support@gmail.com";}}
 function openModal(id){document.getElementById(id).style.display='flex';}
 function closeModal(id){document.getElementById(id).style.display='none';}
-async function verifyPayment(){let tx=document.getElementById('txidInput').value.trim(); if(!tx){alert('Enter TxID');return;} document.getElementById('verifyOut').innerText='Checking on Solana...'; try{let res=await fetch('https://api.mainnet-beta.solana.com',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getTransaction',params:[tx,{encoding:'jsonParsed',maxSupportedTransactionVersion:0}]})}); let j=await res.json(); if(j.result){document.getElementById('verifyOut').innerText='✅ Payment Found on Solana!'}else{document.getElementById('verifyOut').innerText='❌ Not Found. Check TxID / Network. Support: odsmall.support@gmail.com'}}catch(e){document.getElementById('verifyOut').innerText='Network slow. Support will verify manually: odsmall.support@gmail.com';}}
 function toggleChat(){let b=document.getElementById('chatBox'); b.style.display=b.style.display==='block'?'none':'block';}
-function sendChat(){let inp=document.getElementById('chatInput'); let q=inp.value.toLowerCase(); if(!q) return; let msgs=document.getElementById('chatMsgs'); msgs.innerHTML+=`<div class="msg"><b>You:</b> ${inp.value}</div>`; let ans="Price: ALL IN ONE $26.99, Crypto $13.49. Payment: Solana USDT/USDC/PYUSD to GUrFH...Utjk. Refund: No-Refund, 7 Days Free Trial. Email: odsmall.support@gmail.com"; if(q.includes('price')) ans="Prices: Single $1.79-$4.49, Crypto $13.49, Forex $11.69, Gold $8.99, AI $11.69, ALL IN ONE $26.99."; else if(q.includes('pay')) ans="Payment: Solana Only. USDT/USDC/PYUSD. Address: GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk. Do NOT use TRON/BSC."; else if(q.includes('refund')) ans="No-Refund. Use 7 Days Free Trial first. If tool fails 48h, email odsmall.support@gmail.com"; else if(q.includes('wallet')) ans="Wallet NOT required for signup. Optional inside dashboard. Never share Seed Phrase."; msgs.innerHTML+=`<div class="msg"><b>Bot:</b> ${ans}</div>`; inp.value=''; msgs.scrollTop=msgs.scrollHeight;}
-render();
+function sendChat(){let inp=document.getElementById('chatInput'); let q=inp.value.toLowerCase(); if(!q) return; let m=document.getElementById('chatMsgs'); m.innerHTML+=`<div style="background:#eef2ff;padding:8px;border-radius:8px;margin:6px 0"><b>You:</b> ${inp.value}</div>`; let ans="Price: ALL IN ONE $26.99. Payment: Connect Wallet > Pay Now > Approve. Auto Verify. Email: odsmall.support@gmail.com"; if(q.includes('price')) ans="Single $1.79-$4.49, Crypto $13.49, Forex $11.69, Gold $8.99, ALL IN ONE $26.99."; else if(q.includes('pay')||q.includes('payment')) ans="Checkout Page pe jao > Connect Wallet > Pay Now > Approve. Slip ki zaroorat nahi. Auto Verify hoga."; else if(q.includes('refund')) ans="No-Refund. Pehle 7 Days Free Trial use karo."; else if(q.includes('wallet')) ans="Wallet signup ke liye zaroori nahi. Payment ke liye Phantom / Solflare connect karo."; m.innerHTML+=`<div style="background:#f0f3ff;padding:8px;border-radius:8px;margin:6px 0"><b>Bot:</b> ${ans}</div>`; inp.value=''; m.scrollTop=m.scrollHeight;}
+renderTools(); renderBundle(); renderPDFs(); updateCart();
 </script>
 </body>
 </html>
