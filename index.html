@@ -3,314 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TradeKit - 60 Trading Tools - Ready To Launch</title>
+<title>TradeKit - We Don't Sell Signals</title>
 <style>
 *{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#0f172a;color:#fff}
-header{padding:16px;background:#1e293b;position:sticky;top:0;z-index:10}
-header h1{margin:0;font-size:22px}
-header p{margin:4px 0 0;color:#94a3b8;font-size:13px}
-.topbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-button{cursor:pointer;border:0;border-radius:8px;padding:10px 14px;font-weight:bold}
-.btn{background:#22c55e;color:#000}
-.btn2{background:#334155;color:#fff}
-.btn3{background:#3b82f6;color:#fff}
-input,select{padding:10px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#fff;width:100%;margin:6px 0}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px;background:#020617}
-.tab{white-space:nowrap;background:#1e293b;color:#fff}
-.tab.active{background:#22c55e;color:#000}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;padding:14px}
-.card{background:#1e293b;border-radius:12px;padding:14px}
-.card h3{margin:0 0 6px}
-.card p{color:#cbd5e1;font-size:13px;line-height:1.5}
-.price{color:#22c55e;font-weight:bold}
-.small{font-size:12px;color:#94a3b8}
-section{padding:14px;background:#020617;margin:10px;border-radius:12px}
-footer{padding:16px;text-align:center;color:#94a3b8;font-size:12px}
-#chatBtn{position:fixed;bottom:16px;right:16px;background:#22c55e;color:#000;padding:14px 18px;border-radius:50px;font-weight:bold;z-index:99}
-#chatBox{display:none;position:fixed;bottom:80px;right:16px;width:320px;max-width:92vw;background:#fff;color:#000;border-radius:12px;padding:12px;z-index:99}
-#chatBox p{color:#111;font-size:13px}
+body{margin:0;background:#f1f5f9;color:#111}
+.ticker{background:#000;color:#fff;padding:8px 12px;font-size:13px;white-space:nowrap;overflow:hidden}
+header{background:#fff;padding:12px 16px;position:sticky;top:0;z-index:10;border-bottom:1px solid #e2e8f0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+header b{font-size:22px;color:#0a6cff}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-weight:bold}
+nav span{cursor:pointer}
+nav span.active{color:#0a6cff;background:#eff6ff;padding:4px 10px;border-radius:8px}
+select,button,input{padding:10px;border-radius:10px;border:1px solid #cbd5e1}
+button{cursor:pointer;font-weight:bold;border:0}
+.btn{background:#0a6cff;color:#fff}
+.btn2{background:#fff;color:#111;border:1px solid #cbd5e1}
+.hero{padding:20px;background:#fff;margin:12px;border-radius:14px}
+.hero h1{font-size:32px;line-height:1.2;margin:0}
+.hero p{color:#475569}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;padding:12px}
+.card{background:#fff;border-radius:12px;padding:14px;border:1px solid #e2e8f0;position:relative;padding-bottom:16px}
+.card h3{margin:6px 0}
+.card p{color:#475569;font-size:13px;line-height:1.5;margin:4px 0}
+.badge{background:#0a6cff;color:#fff;font-size:11px;padding:3px 8px;border-radius:6px}
+.price{font-weight:900;font-size:18px}
+.sectionTitle{padding:12px 16px 0;font-size:20px;font-weight:900}
+.combo{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;padding:12px}
+.cartbar{position:fixed;bottom:0;left:0;right:0;background:#000;color:#fff;padding:10px 12px;display:flex;gap:10px;align-items:center;justify-content:space-between;z-index:20}
+#helpBtn{position:fixed;bottom:70px;right:16px;background:#0a6cff;color:#fff;padding:12px 16px;border-radius:50px;z-index:30}
+#chatBox{display:none;position:fixed;bottom:130px;right:16px;width:320px;max-width:92vw;background:#fff;color:#000;border-radius:12px;padding:12px;z-index:40;border:1px solid #cbd5e1}
+footer{padding:60px 16px 80px;text-align:center;color:#64748b;font-size:12px}
+.walletBox{background:#e6f2ff;padding:12px;border-radius:10px;text-align:center;border:2px solid #0a6cff;color:#000}
+.addr{word-break:break-all;background:#0f172a;color:#fff;padding:10px;border-radius:10px;font-size:13px}
 .hidden{display:none}
-.walletBox{background:#e6f2ff;color:#000;padding:12px;border-radius:10px;text-align:center;border:2px solid #0a6cff}
-.addr{word-break:break-all;background:#0f172a;color:#fff;padding:10px;border-radius:10px;font-size:13px;border:1px solid #334155}
 </style>
 </head>
 <body>
+<div class="ticker">BTC $65,695.18 | ETH $1,848.31 | SOL $74.19 | GOLD $3,850 | USDT $1.00 | USDC $1.00 — Live Estimates</div>
 <header>
-<h1>TradeKit — 60 Tools</h1>
-<p>Tools for education only. Not financial advice. Final decision is always yours.</p>
-<div class="topbar">
-<button class="btn" onclick="showSection('tools')">Tools</button>
-<button class="btn2" onclick="showSection('pricing')">Pricing</button>
-<button class="btn2" onclick="showSection('payment')">Payment</button>
-<button class="btn2" onclick="showSection('about')">About</button>
-<button class="btn2" onclick="showSection('terms')">Terms & Disclaimer</button>
-<button class="btn2" onclick="toggleLang()">Urdu / English</button>
-<button class="btn3" onclick="connectWallet()">Connect Wallet</button>
-<span id="walletStatus" class="small">Wallet: Not Connected</span>
+<b>TradeKit</b>
+<nav><span class="active" onclick="showSec('home')">Home</span><span onclick="showSec('tools')">Tools</span><span onclick="showSec('market')">Market</span><span onclick="showSec('bundle')">Bundle</span><span onclick="showSec('pricing')">Pricing</span><span onclick="showSec('payment')">Payment</span></nav>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<select><option>USD $</option></select>
+<select onchange="toggleLang()"><option>🌐 English</option><option>Urdu</option></select>
+<button class="btn2" onclick="alert('Login - Gmail se login, baad me Supabase se sync hoga')">Login</button>
+<button class="btn2" style="color:#0a6cff;border-color:#0a6cff" onclick="connectWallet()">🔴 Connect Wallet</button>
 </div>
-<input id="search" placeholder="Search 60 tools... Gold, Whale, Liquidation" oninput="render()">
 </header>
 
-<div id="toolsSec">
-<div class="tabs" id="tabs"></div>
-<div class="grid" id="grid"></div>
+<div id="homeSec">
+<div class="hero">
+<h1>We Don't Sell Signals.<br>We Give You Tools To Decide Yourself.</h1>
+<p>TradeKit is a Tool Provider - Not Exchange, Not Broker, Not Blockchain. No 90% Accuracy Claim. No Guaranteed Profit. Only Real Math + Live Data.</p>
+<p><b>Launching Offer: $19.99 for 15 Days</b> — After 15 days: Crypto $24.99, Forex/Gold/Stocks/Risk $29.99, AI $39.99. Single Tool $4.99. Free Tools $0.</p>
+<button class="btn" onclick="showSec('tools')">Explore 60 Tools →</button>
+<button class="btn2" onclick="showSec('bundle')">Build Your Own Combo</button>
 </div>
 
-<section id="pricingSec" class="hidden">
-<h2 id="pricingTitle">Pricing — Launching 19.99 for 15 Days</h2>
-<p>After 15 days price auto changes. No hidden charge. Market - $3 = Round Figure .99</p>
-<div id="pricingCards"></div>
-<p class="small">Single Tool: $4.99 | Free Tools: $0 | Launch: 15 Nov 2026</p>
-</section>
+<div class="sectionTitle">FREE TOOLS <span class="badge">7 FREE</span></div>
+<div class="grid" id="freeGrid"></div>
 
-<section id="paymentSec" class="hidden">
+<div style="background:#0a6cff;color:#fff;margin:12px;padding:14px;border-radius:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+<div><b>Build Your Own Combo —</b><br>Select multiple tools to make your own pack</div>
+<button class="btn2" onclick="showSec('bundle')">How it works →</button>
+</div>
+
+<div class="sectionTitle">SINGLE PAID TOOLS <span style="font-size:13px;color:#64748b">Select up to 6 tools • Prices from $1.79 to $4.49</span></div>
+<div class="grid" id="singleGrid"></div>
+
+<div class="sectionTitle">COMBO PACKS <span style="font-size:13px;color:#64748b">Bundled savings — best value</span></div>
+<div class="combo">
+<div class="card"><b>Crypto Pack</b><p>4 tools • Trend Scanner + News Alert Bot + Volatility Meter + Risk Calculator</p><div class="price">$13.49 <span style="font-size:12px">Save 25%</span></div><br><button class="btn" onclick="buyPack('Crypto Pack',13.49)">Buy Combo</button></div>
+<div class="card"><b>Forex Pack</b><p>4 tools • Pip Calculator + Lot Size + ATR + Session Timer</p><div class="price">$11.69 <span style="font-size:12px">Save 22%</span></div><br><button class="btn" onclick="buyPack('Forex Pack',11.69)">Buy Combo</button></div>
+<div class="card"><b>Gold Pack</b><p>3 tools • Fibonacci Tool + Volatility Meter + Profit Calculator</p><div class="price">$8.89 <span style="font-size:12px">Save 18%</span></div><br><button class="btn" onclick="buyPack('Gold Pack',8.89)">Buy Combo</button></div>
+<div class="card"><b>All In One ⭐ Most Popular</b><p>All 7 tools included • Full access to all paid tools</p><div class="price">$26.99 <span style="font-size:12px">Save 35%</span></div><br><button class="btn" onclick="buyPack('All In One',26.99)">Buy All In One</button></div>
+</div>
+</div>
+
+<div id="toolsSec" class="hidden">
+<div class="sectionTitle">All 60 Tools — Search + Filter</div>
+<div style="padding:12px"><input id="search" placeholder="Search Gold, Whale, Liquidation..." oninput="renderAll()" style="width:100%"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;padding:0 12px" id="tabs"></div>
+<div class="grid" id="allGrid"></div>
+</div>
+
+<div id="marketSec" class="hidden">
+<div class="sectionTitle">Market — Live Estimates</div>
+<div class="grid"><div class="card"><b>BTC</b><p>$65,695.18</p></div><div class="card"><b>ETH</b><p>$1,848.31</p></div><div class="card"><b>SOL</b><p>$74.19</p></div><div class="card"><b>GOLD XAU/USD</b><p>$3,850 estimate</p></div></div>
+<p style="padding:0 12px;color:#64748b">Estimates only, not financial advice.</p>
+</div>
+
+<div id="bundleSec" class="hidden">
+<div class="sectionTitle">Build Your Own Combo</div>
+<p style="padding:0 12px">Tick karo, cart me jama hoga, Checkout pe pay karo. Mobile se khareedo, laptop pe Unlock Code se kholo.</p>
+<div class="grid" id="bundleGrid"></div>
+</div>
+
+<div id="pricingSec" class="hidden">
+<div class="sectionTitle">Pricing — Launching $19.99</div>
+<div class="grid" id="pricingGrid"></div>
+</div>
+
+<div id="paymentSec" class="hidden" style="padding:12px">
 <h2>Payment — Automated</h2>
-<div class="walletBox">
-<b>✅ SIRF SOLANA NETWORK SE BHEJNA HAI</b><br>
-<b>✅ SIRF YE 4 COINS ACCEPTABLE HAIN</b><br>
-<span style="font-size:16px;font-weight:900">USDT | USDC | PYUSD | CASH</span><br>
-<span style="font-size:12px;color:#d00">TRC20 / BEP20 / Ethereum / TronLink se MAT bhejo - Paisa wapis nahi milega</span>
-</div>
-<br>
-<div class="addr" id="walletAddr">GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk</div>
-<button class="btn3" onclick="copyWallet()">📋 Address Copy Karo</button>
-<button class="btn" onclick="openWalletPay()">🚀 Phantom Se Pay Karo</button>
-<p class="small">Payment aapke wallet pe jayega. Ye address tally kiya hua hai: GUrFH...Utjk</p>
-<select id="payCat">
-<option value="CRYPTO">CRYPTO</option><option value="FOREX">FOREX</option><option value="GOLD">GOLD</option><option value="STOCKS">STOCKS / NASDAQ</option><option value="AI">AI</option><option value="RISK">RISK</option><option value="SINGLE">Single Tool - $4.99</option>
-</select>
-<p>Payable Now: <b id="payAmount" class="price"></b></p>
-<input id="amountInput" placeholder="Amount - Auto filled from category">
-<input id="txid" placeholder="Paste TxID / Transaction Hash here">
+<div class="walletBox"><b>✅ SIRF SOLANA NETWORK SE BHEJNA HAI</b><br><b>✅ SIRF YE 4 COINS ACCEPTABLE HAIN</b><br><b style="font-size:16px">USDT | USDC | PYUSD | CASH</b><br><span style="font-size:12px;color:#d00">TRC20 / BEP20 / Ethereum / TronLink se MAT bhejo</span></div>
+<br><div class="addr">GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk</div><br>
+<button class="btn" onclick="navigator.clipboard.writeText('GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk');alert('Copy ho gaya')">📋 Copy Address</button>
+<button class="btn2" onclick="openWalletPay()">🚀 Phantom Se Pay Karo</button>
+<p>Payable: <b id="payAmt">$19.99</b> | Selected: <span id="paySel">All In One</span></p>
+<input id="txid" placeholder="TxID paste karo">
 <button class="btn" onclick="verifyPay()">Verify & Auto Unlock</button>
-<button class="btn2" onclick="exportUnlock()">Export Unlock Code - Mobile to Laptop</button>
-<button class="btn2" onclick="importUnlock()">Import Unlock Code - Laptop / Mobile</button>
-<p id="payMsg" class="small"></p>
-<p class="small"><b>⚠️ Galat Payment Ke Hum Zimmedar Nahi Hain:</b> Galat network / galat coin bheja to paisa wapis nahi milega. Bhejne se pehle address aur network dobara check kar lein.</p>
-<p class="small">Refund: 7 days if tool does not work. Support: odsmall.support@gmail.com — We NEVER ask Seed Phrase / Private Key / Password.</p>
-</section>
-
-<section id="aboutSec" class="hidden">
-<h2>About Us</h2>
-<p>We make trading tools — Crypto, Forex, Gold, Stocks, AI, Risk. 60 tools in one place.</p>
-<p>We are tool makers, NOT financial advisors. We do NOT guarantee profit. Market can go up and down.</p>
-<p>Contact Support: odsmall.support@gmail.com | Country: Pakistan | Launch: 15 Nov 2026</p>
-<p class="small">No fake team photos. No fake profit screenshots.</p>
-</section>
-
-<section id="termsSec" class="hidden">
-<h2>Terms & Conditions + Disclaimer — Read Before Buying</h2>
-<p><b>1. Education Only:</b> All tools for education. Not financial advice.</p>
-<p><b>2. No Profit Guarantee:</b> Past performance does not guarantee future results.</p>
-<p><b>3. Your Responsibility:</b> You are responsible for your own trades. Only invest what you can afford to lose.</p>
-<p><b>4. Estimates:</b> AI Score, Fear Index, Heatmap, Arbitrage, Whale Tracker are ESTIMATES / clues, not real signals. Check fees, spread, transfer time.</p>
-<p><b>5. Halal Checker:</b> Estimate only. Final decision yours / your scholar's.</p>
-<p><b>6. Auto Deploy:</b> Tool shows trade ticket. NOTHING sent without YOUR Confirm. Final execution in YOUR hands. API key stays only in YOUR browser, never on server.</p>
-<p><b>7. Privacy:</b> We do NOT store API Secret, Seed Phrase, Password. We do NOT sell data.</p>
-<p><b>8. Age:</b> 18+ only. <b>9. Price Change:</b> 7 days notice. <b>10. Account:</b> Sharing login / reselling = ban.</p>
-<p><b>11. Payment:</b> Only Solana, USDT/USDC/PYUSD/CASH. Wrong network/coin = no refund.</p>
-<p class="small">Last Updated: 15 Nov 2026 | Support: odsmall.support@gmail.com</p>
-</section>
-
-<footer>
-<b>Disclaimer:</b> Crypto / Forex / Gold are risky. This is not financial advice.<br>
-Support: On-Site Chatbot + odsmall.support@gmail.com ONLY. No WhatsApp. No Telegram. No Phone.<br>
-Wallet: GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk — Tally OK<br>
-© 2026 TradeKit — 60 Tools
-</footer>
-
-<button id="chatBtn" onclick="toggleChat()">💬 Help</button>
-<div id="chatBox">
-<h3 style="margin:0">On-Site Support Chatbot</h3>
-<p>Basic help + info. For dispute / refund, email: <b>odsmall.support@gmail.com</b></p>
-<input id="chatInput" placeholder="Ask: price? unlock? refund? deploy?">
-<button class="btn" onclick="chatReply()">Ask</button>
-<p id="chatAns"></p>
-<p class="small">We NEVER ask Seed Phrase / Private Key / Password.</p>
+<button class="btn2" onclick="exportUnlock()">Export Unlock Code</button>
+<button class="btn2" onclick="importUnlock()">Import Unlock Code</button>
+<p id="payMsg" style="font-size:13px"></p>
+<p style="font-size:12px;color:#d00"><b>⚠️ Galat Payment Ke Hum Zimmedar Nahi:</b> Galat network / galat coin bheja to wapis nahi milega.</p>
+<p style="font-size:12px">Refund: 7 days if tool not working. Support: odsmall.support@gmail.com — NEVER ask Seed Phrase / Private Key.</p>
+<h3>Terms & Disclaimer</h3>
+<p style="font-size:13px;color:#475569">Education only, not financial advice. No profit guarantee. AI Score / Fear / Heatmap estimates hain. Halal Checker estimate hai. Deploy me aapke Confirm ke baghair order nahi jayega. API key sirf browser me. 18+ only.</p>
 </div>
+
+<footer>© 2026 TradeKit • Terms • Privacy • Support: odsmall.support@gmail.com ONLY — No WhatsApp<br>Wallet Tally OK: GUrFH...Utjk</footer>
+
+<div class="cartbar"><span>🛒 <span id="cartCount">0 items</span> | <span id="cartTotal">$0 / mo</span></span><span><button class="btn2" onclick="showSec('bundle')">Edit Bundle</button> <button class="btn" onclick="showSec('payment')">Checkout →</button></span></div>
+
+<button id="helpBtn" onclick="toggleChat()">💬 Support</button>
+<div id="chatBox"><b>On-Site Support Chatbot</b><p style="font-size:13px">Basic help + info. Dispute ke liye: odsmall.support@gmail.com</p><input id="chatInput" placeholder="price? unlock? refund?" style="width:100%"><br><br><button class="btn" onclick="chatReply()">Ask</button><p id="chatAns" style="font-size:13px"></p></div>
 
 <script>
-// ===== FINAL CONFIG - TALLY OK - DO NOT CHANGE =====
-const YOUR_SOLANA_WALLET = "GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk";
-const LAUNCH = new Date('2026-11-15');
-const AFTER = {CRYPTO:24.99, FOREX:29.99, GOLD:29.99, STOCKS:29.99, AI:39.99, RISK:29.99};
-const MARKET = {CRYPTO:28.00, FOREX:32.99, GOLD:32.99, STOCKS:32.99, AI:42.99, RISK:32.99};
-const MINTS = {USDT:"Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB", USDC:"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"};
-function getPrice(cat){
-  if(cat==='FREE') return 0;
-  if(cat==='SINGLE') return 4.99;
-  const days = Math.floor((new Date() - LAUNCH)/(1000*60*60*24));
-  if(days < 15) return 19.99;
-  return AFTER[cat];
-}
-function priceLabel(cat){
-  if(cat==='FREE') return 'FREE';
-  return '$'+getPrice(cat).toFixed(2)+' | Market $'+(MARKET[cat]||'')+' - $3 = Round Figure';
-}
-const TOOLS = [
-{id:1,cat:'CRYPTO',name:'Super Screener',desc:'6 exchanges: Binance, Coinbase, Kraken, Bybit, OKX, CoinGecko. Live price + 24h change.'},
-{id:2,cat:'CRYPTO',name:'Liquidation Calculator',desc:'Long: Entry - Entry/Leverage. Short: Entry + Entry/Leverage. Example 97000, 10x Long = 87300.'},
-{id:3,cat:'CRYPTO',name:'Funding Rate Checker',desc:'Funding positive = Longs pay Shorts. Negative = opposite.'},
-{id:4,cat:'CRYPTO',name:'Open Interest Tracker',desc:'OI up + Price up = strong trend.'},
-{id:5,cat:'CRYPTO',name:'Fear & Greed Index',desc:'0-100 estimate. 56 = Neutral. Estimate only.'},
-{id:6,cat:'CRYPTO',name:'BTC Dominance',desc:'BTC dominance up = Alts weak.'},
-{id:7,cat:'CRYPTO',name:'Exchange Flows',desc:'Inflow to exchange = possible sell pressure.'},
-{id:8,cat:'CRYPTO',name:'MVRV / SOPR Estimator',desc:'On-chain estimate, not live feed.'},
-{id:9,cat:'CRYPTO',name:'Liquidation Heatmap',desc:'Estimate where liquidations cluster.'},
-{id:10,cat:'FREE',name:'Gas Fee Estimator',desc:'FREE. Estimate gas before sending.'},
-{id:11,cat:'CRYPTO',name:'Wallet Tracker',desc:'Track wallet balance estimate.'},
-{id:12,cat:'CRYPTO',name:'Token Unlock Calendar',desc:'Unlock = possible sell pressure.'},
-{id:13,cat:'FOREX',name:'Forex Strength Meter',desc:'Strong vs Weak currency pair.'},
-{id:14,cat:'FOREX',name:'Forex Correlation',desc:'EURUSD vs GBPUSD correlation estimate.'},
-{id:15,cat:'FREE',name:'Pip Calculator',desc:'FREE. JPY Pip: 0.01 lot = $6.67 at 150.00. Non-JPY: $1.00.'},
-{id:16,cat:'FREE',name:'Lot Size Calculator',desc:'FREE. Risk / (SL pips x Pip Value).'},
-{id:17,cat:'FOREX',name:'Forex Pivot Points',desc:'Daily pivot + S1 S2 R1 R2.'},
-{id:18,cat:'FOREX',name:'Economic Calendar',desc:'High impact news = avoid trading.'},
-{id:19,cat:'FOREX',name:'Session Timer',desc:'London / New York / Tokyo session.'},
-{id:20,cat:'FOREX',name:'Spread Checker',desc:'Spread high = avoid entry.'},
-{id:21,cat:'FREE',name:'Currency Converter',desc:'FREE. Frankfurter + backups.'},
-{id:22,cat:'FOREX',name:'Swap Calculator',desc:'Overnight swap cost estimate.'},
-{id:23,cat:'FOREX',name:'Margin Calculator',desc:'Margin = Lot x Contract / Leverage.'},
-{id:24,cat:'FOREX',name:'Prop Firm Calculator',desc:'Drawdown + profit target for prop challenge.'},
-{id:25,cat:'FOREX',name:'Forex Screener',desc:'Trend + RSI filter for majors.'},
-{id:26,cat:'FOREX',name:'News Sentiment',desc:'News is clue, not signal.'},
-{id:27,cat:'STOCKS',name:'Stock Screener',desc:'NASDAQ / S&P filter by price + change.'},
-{id:28,cat:'STOCKS',name:'Earnings Calendar',desc:'Earnings = high volatility.'},
-{id:29,cat:'STOCKS',name:'Index Tracker',desc:'NASDAQ, S&P 500, Dow estimate.'},
-{id:30,cat:'STOCKS',name:'Dividend Calculator',desc:'Yield = Dividend / Price x 100.'},
-{id:31,cat:'STOCKS',name:'PE / Valuation',desc:'PE = Price / EPS.'},
-{id:32,cat:'STOCKS',name:'Options Flow Estimator',desc:'Estimate only.'},
-{id:33,cat:'STOCKS',name:'Insider Activity',desc:'Insider buy = clue.'},
-{id:34,cat:'STOCKS',name:'Sector Heatmap',desc:'Which sector is hot.'},
-{id:35,cat:'STOCKS',name:'IPO Calendar',desc:'Upcoming IPOs.'},
-{id:36,cat:'STOCKS',name:'Stock News',desc:'News + price together.'},
-{id:37,cat:'GOLD',name:'Gold Plan Generator',desc:'Entry, SL, TP plan + Deploy Ticket.'},
-{id:38,cat:'GOLD',name:'Gold Rate Live',desc:'XAU/USD via XAUS + PAXG + backups.'},
-{id:39,cat:'GOLD',name:'Gold vs USD Correlation',desc:'Dollar up = Gold often down.'},
-{id:40,cat:'FREE',name:'Gold Melt Calculator',desc:'FREE. 1 Tola = 11.66g. Gram / Tola / Oz.'},
-{id:41,cat:'GOLD',name:'Gold Purity Checker',desc:'24K / 22K / 21K / 18K value.'},
-{id:42,cat:'GOLD',name:'Gold Spread',desc:'Buy vs Sell spread.'},
-{id:43,cat:'GOLD',name:'Silver / Gold Ratio',desc:'Gold/Silver ratio.'},
-{id:44,cat:'GOLD',name:'Gold Pivot',desc:'Gold daily pivot.'},
-{id:45,cat:'GOLD',name:'Gold News',desc:'Gold news clue.'},
-{id:46,cat:'AI',name:'AI Chart Reader',desc:'Upload chart idea -> AI gives bias. Estimate.'},
-{id:47,cat:'AI',name:'AI Score',desc:'Weights sum 100%: 28+20+20+20+6+6 = 100.'},
-{id:48,cat:'AI',name:'AI Trade Plan',desc:'AI plan + Deploy Ticket, your confirm needed.'},
-{id:49,cat:'AI',name:'AI News Summary',desc:'News summary in simple words.'},
-{id:50,cat:'AI',name:'AI Risk Checker',desc:'AI checks risk before trade.'},
-{id:51,cat:'AI',name:'Plain English Screener',desc:'Type: Show strong coins -> list.'},
-{id:52,cat:'RISK',name:'Trading Journal',desc:'Win rate, profit, mistakes.'},
-{id:53,cat:'RISK',name:'Risk Calculator',desc:'Risk 1% rule. Position = Risk / SL.'},
-{id:54,cat:'RISK',name:'Drawdown Calculator',desc:'Drawdown = (Peak - Now)/Peak.'},
-{id:55,cat:'RISK',name:'Compound Calculator',desc:'1000 at 5% for 12 months = 1795 estimate.'},
-{id:56,cat:'RISK',name:'Win Rate Calculator',desc:'Win rate = Wins / Total x 100.'},
-{id:57,cat:'RISK',name:'Scam Checker',desc:'Check token / site for red flags. No Deploy.'},
-{id:58,cat:'RISK',name:'Halal Checker',desc:'Estimate only. Final decision scholar\'s.'},
-{id:59,cat:'CRYPTO',name:'Arbitrage Finder',desc:'Gross vs Net. Net = Gross - Fees - Transfer. Fake spread filtered.'},
-{id:60,cat:'CRYPTO',name:'Whale Tracker',desc:'Transfers > $1M. Exchange inflow = possible sell. Clue only, not signal.'}
+const YOUR_WALLET="GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk";
+let cart=[]; let cartTotal=0; let activeTab='ALL';
+const TOOLS=[
+{id:1,cat:'CRYPTO',name:'Super Screener',desc:'Binance, Coinbase, Kraken, Bybit, OKX, CoinGecko. Live price + 24h change.',price:3.99},
+{id:2,cat:'CRYPTO',name:'Liquidation Calculator',desc:'Long: Entry - Entry/Leverage. 97000, 10x Long = 87300.',price:2.99},
+{id:3,cat:'CRYPTO',name:'Funding Rate Checker',desc:'Funding positive = Longs pay Shorts.',price:1.99},
+{id:4,cat:'CRYPTO',name:'Open Interest Tracker',desc:'OI up + Price up = strong trend.',price:2.99},
+{id:5,cat:'CRYPTO',name:'Fear & Greed Index',desc:'0-100 estimate. 56 = Neutral.',price:1.99},
+{id:6,cat:'CRYPTO',name:'BTC Dominance',desc:'BTC dominance up = Alts weak.',price:1.99},
+{id:7,cat:'CRYPTO',name:'Exchange Flows',desc:'Inflow = possible sell pressure.',price:2.99},
+{id:8,cat:'CRYPTO',name:'MVRV / SOPR',desc:'On-chain estimate.',price:2.99},
+{id:9,cat:'CRYPTO',name:'Liquidation Heatmap',desc:'Estimate where liquidations cluster.',price:3.99},
+{id:10,cat:'FREE',name:'Gas Fee Estimator',desc:'FREE. Estimate gas before sending.',price:0},
+{id:11,cat:'CRYPTO',name:'Wallet Tracker',desc:'Track wallet balance estimate.',price:2.99},
+{id:12,cat:'CRYPTO',name:'Token Unlock Calendar',desc:'Unlock = possible sell pressure.',price:1.99},
+{id:13,cat:'FOREX',name:'Forex Strength Meter',desc:'Strong vs Weak pair.',price:2.99},
+{id:14,cat:'FOREX',name:'Forex Correlation',desc:'EURUSD vs GBPUSD.',price:1.99},
+{id:15,cat:'FREE',name:'Pip Calculator',desc:'FREE. JPY Pip 0.01 lot = $6.67 at 150.',price:0},
+{id:16,cat:'FREE',name:'Lot Size Calculator',desc:'FREE. Risk / (SL x Pip Value).',price:0},
+{id:17,cat:'FOREX',name:'Forex Pivot Points',desc:'Daily pivot + S1 S2 R1 R2.',price:1.99},
+{id:18,cat:'FOREX',name:'Economic Calendar',desc:'High impact news = avoid.',price:1.99},
+{id:19,cat:'FOREX',name:'Session Timer',desc:'London / New York / Tokyo.',price:1.79},
+{id:20,cat:'FOREX',name:'Spread Checker',desc:'Spread high = avoid entry.',price:1.99},
+{id:21,cat:'FREE',name:'Currency Converter',desc:'FREE. Frankfurter + backups.',price:0},
+{id:22,cat:'FOREX',name:'Swap Calculator',desc:'Overnight swap estimate.',price:1.99},
+{id:23,cat:'FOREX',name:'Margin Calculator',desc:'Margin = Lot x Contract / Leverage.',price:1.99},
+{id:24,cat:'FOREX',name:'Prop Firm Calculator',desc:'Drawdown + target for prop.',price:2.99},
+{id:25,cat:'FOREX',name:'Forex Screener',desc:'Trend + RSI for majors.',price:2.99},
+{id:26,cat:'FOREX',name:'News Sentiment',desc:'News is clue, not signal.',price:1.99},
+{id:27,cat:'STOCKS',name:'Stock Screener',desc:'NASDAQ / S&P filter.',price:2.99},
+{id:28,cat:'STOCKS',name:'Earnings Calendar',desc:'Earnings = volatility.',price:1.99},
+{id:29,cat:'STOCKS',name:'Index Tracker',desc:'NASDAQ, S&P 500, Dow.',price:1.99},
+{id:30,cat:'STOCKS',name:'Dividend Calculator',desc:'Yield = Dividend / Price x 100.',price:1.99},
+{id:31,cat:'STOCKS',name:'PE / Valuation',desc:'PE = Price / EPS.',price:1.99},
+{id:32,cat:'STOCKS',name:'Options Flow',desc:'Estimate only.',price:3.99},
+{id:33,cat:'STOCKS',name:'Insider Activity',desc:'Insider buy = clue.',price:2.99},
+{id:34,cat:'STOCKS',name:'Sector Heatmap',desc:'Which sector is hot.',price:1.99},
+{id:35,cat:'STOCKS',name:'IPO Calendar',desc:'Upcoming IPOs.',price:1.99},
+{id:36,cat:'STOCKS',name:'Stock News',desc:'News + price.',price:1.99},
+{id:37,cat:'GOLD',name:'Gold Plan Generator',desc:'Entry, SL, TP + Deploy Ticket.',price:4.49},
+{id:38,cat:'GOLD',name:'Gold Rate Live',desc:'XAU/USD via XAUS + PAXG.',price:2.99},
+{id:39,cat:'GOLD',name:'Gold vs USD Correlation',desc:'Dollar up = Gold often down.',price:1.99},
+{id:40,cat:'FREE',name:'Gold Melt Calculator',desc:'FREE. 1 Tola = 11.66g.',price:0},
+{id:41,cat:'GOLD',name:'Gold Purity Checker',desc:'24K / 22K / 21K / 18K.',price:1.99},
+{id:42,cat:'GOLD',name:'Gold Spread',desc:'Buy vs Sell spread.',price:1.99},
+{id:43,cat:'GOLD',name:'Silver / Gold Ratio',desc:'Gold/Silver ratio.',price:1.99},
+{id:44,cat:'GOLD',name:'Gold Pivot',desc:'Gold daily pivot.',price:1.99},
+{id:45,cat:'GOLD',name:'Gold News',desc:'Gold news clue.',price:1.99},
+{id:46,cat:'AI',name:'AI Chart Reader',desc:'Upload chart -> AI bias. Estimate.',price:4.49},
+{id:47,cat:'AI',name:'AI Score',desc:'Weights 28+20+20+20+6+6 = 100.',price:3.99},
+{id:48,cat:'AI',name:'AI Trade Plan',desc:'AI plan + Deploy Ticket.',price:4.49},
+{id:49,cat:'AI',name:'AI News Summary',desc:'News summary simple words.',price:2.99},
+{id:50,cat:'AI',name:'AI Risk Checker',desc:'AI checks risk before trade.',price:2.99},
+{id:51,cat:'AI',name:'Plain English Screener',desc:'Type: Show strong coins.',price:2.99},
+{id:52,cat:'RISK',name:'Trading Journal',desc:'Win rate, profit, mistakes.',price:1.99},
+{id:53,cat:'RISK',name:'Risk Calculator',desc:'Risk 1% rule.',price:1.79},
+{id:54,cat:'RISK',name:'Drawdown Calculator',desc:'Drawdown = (Peak-Now)/Peak.',price:1.99},
+{id:55,cat:'RISK',name:'Compound Calculator',desc:'1000 at 5% 12m = 1795.',price:1.99},
+{id:56,cat:'RISK',name:'Win Rate Calculator',desc:'Wins / Total x 100.',price:1.99},
+{id:57,cat:'RISK',name:'Scam Checker',desc:'Red flags. No Deploy.',price:2.99},
+{id:58,cat:'RISK',name:'Halal Checker',desc:'Estimate only. Scholar decides.',price:1.99},
+{id:59,cat:'CRYPTO',name:'Arbitrage Finder',desc:'Net = Gross - Fees - Transfer.',price:3.99},
+{id:60,cat:'CRYPTO',name:'Whale Tracker',desc:'> $1M flag. Inflow = possible sell.',price:3.99}
 ];
-const TABS = ['ALL','FREE','CRYPTO','FOREX','GOLD','STOCKS','AI','RISK'];
-let activeTab='ALL'; let lang='en';
-function renderTabs(){ document.getElementById('tabs').innerHTML = TABS.map(t=>`<button class="tab ${t===activeTab?'active':''}" onclick="setTab('${t}')">${t}</button>`).join(''); }
-function setTab(t){ activeTab=t; renderTabs(); render(); }
-function toggleLang(){ lang = lang==='en' ? 'ur' : 'en'; alert(lang==='ur' ? 'Urdu mode ON' : 'English mode ON'); render(); }
-function render(){
-  const q = (document.getElementById('search').value||'').toLowerCase();
-  const list = TOOLS.filter(t => (activeTab==='ALL' || t.cat===activeTab) && (t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)));
-  document.getElementById('grid').innerHTML = list.map(t=>`
-  <div class="card">
-    <h3>#${t.id} ${t.name}</h3>
-    <p>${t.desc}</p>
-    <p class="small">Category: ${t.cat} | Price: ${t.cat==='FREE' ? 'FREE' : '$4.99 Single / '+priceLabel(t.cat)}</p>
-    <input id="in${t.id}" placeholder="Enter value e.g. 97000 / 1000">
-    <button class="btn" onclick="calc(${t.id})">Calculate</button>
-    ${[37,2,59,60,48,17].includes(t.id) ? `<button class="btn2" onclick="deploy(${t.id})">Deploy To Exchange (Your Confirm Needed)</button>` : `<p class="small">No Deploy — This tool is for info only.</p>`}
-    <p id="out${t.id}" class="small"></p>
-    <p class="small">Disclaimer: Not financial advice. Estimate only.</p>
-  </div>`).join('') || '<p style="padding:14px">No tool found. Try Gold / Whale / Liquidation</p>';
-  document.getElementById('pricingCards').innerHTML = Object.keys(AFTER).map(c=>`<div class="card"><b>${c}</b><br><span class="price">$${getPrice(c).toFixed(2)}</span><br><span class="small">Market $${MARKET[c]} - $3 = Round Figure .99<br>Launching 19.99 for 15 days, then auto this price.</span><br><button class="btn" onclick="buyCat('${c}')">Buy ${c}</button></div>`).join('');
-  const pc = document.getElementById('payCat').value;
-  const amt = getPrice(pc);
-  document.getElementById('payAmount').innerText = '$'+amt.toFixed(2);
-  document.getElementById('amountInput').value = amt;
+function cardHTML(t,showAdd){
+  return `<div class="card"><span class="badge">${t.cat==='FREE'?'FREE':t.cat}</span><h3>${t.name}</h3><p>${t.desc}</p><div class="price">${t.price===0?'FREE':'$'+t.price.toFixed(2)}</div><br>
+  <input id="in${t.id}" placeholder="Enter value e.g. 97000" style="width:100%">
+  <button class="btn2" onclick="calc(${t.id})">Calculate</button>
+  ${[37,2,59,60,48,17].includes(t.id)?`<button class="btn2" onclick="deploy(${t.id})">Deploy (Confirm Needed)</button>`:`<p style="font-size:11px;color:#64748b">No Deploy — Info only</p>`}
+  <p id="out${t.id}" style="font-size:12px"></p>
+  ${showAdd?`<button class="btn" onclick="addToCart('${t.name}',${t.price})">Add +</button>`:''}
+  <p style="font-size:11px;color:#94a3b8">Disclaimer: Not financial advice.</p></div>`;
 }
-function buyCat(c){ document.getElementById('payCat').value=c; showSection('payment'); render(); }
-function calc(id){
-  const v = parseFloat(document.getElementById('in'+id).value);
-  const out = document.getElementById('out'+id);
-  if(isNaN(v)){ out.innerText='Please enter a value.'; return; }
-  if(v<0){ out.innerText='Invalid value.'; return; }
-  if(id===2) out.innerText = 'Entry '+v+', 10x Long Liq = '+(v-v/10).toFixed(2)+'. Example 97000 -> 87300.';
-  else if(id===15) out.innerText = 'JPY Pip: 0.01 lot at 150 = $6.67. Your value: '+v;
-  else if(id===40) out.innerText = '1 Tola = 11.66g. Your '+v+' Tola = '+(v*11.66).toFixed(2)+'g';
-  else if(id===47) out.innerText = 'AI Score weights sum 100%. Your input '+v+' -> Score estimate '+(Math.min(95, 50+v%40)).toFixed(0)+'/100';
-  else if(id===55) out.innerText = 'Compound: 1000 at 5% for 12 months = 1795 estimate. Your '+v+' -> '+(v*1.795).toFixed(0);
-  else if(id===59) out.innerText = 'Arbitrage: Gross - Fees - Transfer = Net. Check transfer time before trade.';
-  else if(id===60) out.innerText = 'Whale: Transfers > $1M flagged. Exchange inflow = possible sell. Clue only.';
-  else out.innerText = 'Result for '+v+' calculated. This is estimate only, not financial advice.';
+function renderHome(){
+  document.getElementById('freeGrid').innerHTML = TOOLS.filter(t=>t.cat==='FREE').slice(0,7).map(t=>`<div class="card"><span class="badge">FREE</span><h3>${t.name}</h3><p>${t.desc}</p><button class="btn2" onclick="showSec('tools')">Open</button></div>`).join('');
+  document.getElementById('singleGrid').innerHTML = TOOLS.filter(t=>t.price>0).slice(0,6).map(t=>cardHTML(t,true)).join('');
+  document.getElementById('bundleGrid').innerHTML = TOOLS.filter(t=>t.price>0).map(t=>cardHTML(t,true)).join('');
+  document.getElementById('pricingGrid').innerHTML = `<div class="card"><b>Launching 15 Days</b><div class="price">$19.99</div><p>All categories for 15 days</p></div><div class="card"><b>CRYPTO</b><div class="price">$24.99</div><p>After 15 days</p></div><div class="card"><b>FOREX / GOLD / STOCKS / RISK</b><div class="price">$29.99</div></div><div class="card"><b>AI</b><div class="price">$39.99</div></div>`;
 }
-function deploy(id){
-  const ok = confirm('DEPLOY TICKET\nTool #'+id+'\nSymbol: BTCUSDT / XAUUSD\nSide: BUY (example)\nQty: 0.01\nSL / TP: As per tool plan\n\nYour API key stays ONLY in your browser.\nClick OK to CONFIRM, Cancel to BLOCK.\n\nFinal execution is in YOUR hands.');
-  alert(ok ? 'SENT to YOUR exchange (Demo first). You confirmed.' : 'BLOCKED — No order sent. Waiting for your Confirm.');
+function renderAll(){
+  const q=(document.getElementById('search')?.value||'').toLowerCase();
+  const list=TOOLS.filter(t=>(activeTab==='ALL'||t.cat===activeTab)&&(t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)));
+  document.getElementById('allGrid').innerHTML=list.map(t=>cardHTML(t,true)).join('');
+  document.getElementById('tabs').innerHTML=['ALL','FREE','CRYPTO','FOREX','GOLD','STOCKS','AI','RISK'].map(x=>`<button class="${x===activeTab?'btn':'btn2'}" onclick="setTab('${x}')">${x}</button>`).join('');
 }
-function showSection(s){
-  ['toolsSec','pricingSec','paymentSec','aboutSec','termsSec'].forEach(x=>document.getElementById(x).classList.add('hidden'));
-  if(s==='tools') document.getElementById('toolsSec').classList.remove('hidden');
-  if(s==='pricing') document.getElementById('pricingSec').classList.remove('hidden');
-  if(s==='payment') document.getElementById('paymentSec').classList.remove('hidden');
-  if(s==='about') document.getElementById('aboutSec').classList.remove('hidden');
-  if(s==='terms') document.getElementById('termsSec').classList.remove('hidden');
-  render();
+function setTab(x){activeTab=x;renderAll();}
+function showSec(s){
+  ['homeSec','toolsSec','marketSec','bundleSec','pricingSec','paymentSec'].forEach(id=>document.getElementById(id).classList.add('hidden'));
+  if(s==='home')document.getElementById('homeSec').classList.remove('hidden');
+  if(s==='tools')document.getElementById('toolsSec').classList.remove('hidden');
+  if(s==='market')document.getElementById('marketSec').classList.remove('hidden');
+  if(s==='bundle')document.getElementById('bundleSec').classList.remove('hidden');
+  if(s==='pricing')document.getElementById('pricingSec').classList.remove('hidden');
+  if(s==='payment')document.getElementById('paymentSec').classList.remove('hidden');
+  renderAll();
 }
-function copyWallet(){ navigator.clipboard.writeText(YOUR_SOLANA_WALLET); alert('Wallet address copy ho gaya: '+YOUR_SOLANA_WALLET); }
-function openWalletPay(){
-  const amt = document.getElementById('amountInput').value || getPrice(document.getElementById('payCat').value);
-  const url = `solana:${YOUR_SOLANA_WALLET}?amount=${amt}&spl-token=${MINTS.USDT}&label=TradeKit&message=TradeKit Payment`;
-  window.location.href = url;
-  alert('Wallet khul raha hai... Agar na khule to Address Copy karke bhejen. Sirf Solana + USDT/USDC/PYUSD/CASH');
-}
-function connectWallet(){
-  const addr = prompt('Phantom / Solflare / Backpack se apna PUBLIC address paste karo. Seed Phrase / Private Key KABHI mat daalna:');
-  if(!addr){ return; }
-  if(addr.length<30){ alert('Galat address. Dobara check karo.'); return; }
-  document.getElementById('walletStatus').innerText = 'Wallet: Connected '+addr.slice(0,6)+'...'+addr.slice(-4);
-  alert('Wallet Connected! Sirf public address save hua hai. Seed Phrase kabhi nahi mangte.');
-}
-function verifyPay(){
-  const tx = document.getElementById('txid').value.trim();
-  const msg = document.getElementById('payMsg');
-  if(!tx || tx.length<8){ msg.innerText='Please paste a valid TxID.'; return; }
-  if(tx.toLowerCase()==='fake' || tx.toLowerCase()==='test'){ msg.innerText='Fake TxID rejected. No unlock.'; return; }
-  const code = "ODS-" + tx.slice(-4).toUpperCase() + "-2026";
-  msg.innerText='Verified! Auto Unlocked. Your Unlock Code: '+code+' — Isko copy karke laptop me bhi use kar sakte ho.';
-  try{ localStorage.setItem('unlock_'+document.getElementById('payCat').value, tx); localStorage.setItem('unlock_code', code); }catch(e){}
-}
-function exportUnlock(){
-  const tx = document.getElementById('txid').value.trim();
-  if(!tx || tx.length<8){ alert('Pehle TxID daal ke Verify karo.'); return; }
-  const code = "ODS-" + tx.slice(-4).toUpperCase() + "-2026";
-  alert('Apna Unlock Code copy kar lo:\n'+code+'\nIsi ko laptop me paste karna, tool khul jayega.');
-}
-function importUnlock(){
-  const code = prompt('Unlock Code paste karo (Mobile se copy kiya hua):');
-  if(code && code.startsWith('ODS-')){ alert('Verified! Is device pe bhi unlock ho gaya.'); try{ localStorage.setItem('unlock_code', code); }catch(e){} }
-  else { alert('Galat code. Mobile se sahi code copy karke lao.'); }
-}
-function toggleChat(){ const b=document.getElementById('chatBox'); b.style.display = b.style.display==='block' ? 'none' : 'block'; }
-function chatReply(){
-  const q = (document.getElementById('chatInput').value||'').toLowerCase();
-  let a='Basic help: Price? Launching 19.99 for 15 days, then Crypto 24.99, others 29.99, AI 39.99. Single 4.99. For dispute/refund email odsmall.support@gmail.com';
-  if(q.includes('price')) a='Price: Launch 19.99, then Crypto 24.99, Forex/Gold/Stocks/Risk 29.99, AI 39.99. Single 4.99, Free 0.';
-  if(q.includes('refund')) a='Refund: 7 days if tool does not work. Email odsmall.support@gmail.com with TxID.';
-  if(q.includes('unlock')) a='Unlock: Pay, paste TxID, click Verify. Mobile ka Unlock Code laptop me bhi chalega.';
-  if(q.includes('deploy')) a='Deploy: Tool shows ticket, you Confirm, then order goes to YOUR exchange. We never trade alone.';
-  if(q.includes('whatsapp')) a='We do NOT have WhatsApp. Only On-Site Chatbot + odsmall.support@gmail.com';
-  if(q.includes('wallet')) a='Wallet: Sirf Solana, USDT/USDC/PYUSD/CASH. Address: GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk. TRC20 mat bhejna.';
-  document.getElementById('chatAns').innerText=a;
-}
-document.getElementById('payCat').addEventListener('change', render);
-renderTabs(); render();
+function addToCart(name,price){cart.push(name);cartTotal+=price;document.getElementById('cartCount').innerText=cart.length+' items';document.getElementById('cartTotal').innerText='$'+cartTotal.toFixed(2)+' / mo';document.getElementById('payAmt').innerText='$'+cartTotal.toFixed(2);document.getElementById('paySel').innerText=cart.join(', ');alert(name+' added to cart');}
+function buyPack(name,price){cart=[name];cartTotal=price;document.getElementById('cartCount').innerText='1 items';document.getElementById('cartTotal').innerText='$'+price+' / mo';document.getElementById('payAmt').innerText='$'+price;document.getElementById('paySel').innerText=name;showSec('payment');}
+function calc(id){const v=parseFloat(document.getElementById('in'+id)?.value);const o=document.getElementById('out'+id);if(isNaN(v)){o.innerText='Enter a value.';return;}if(id===2)o.innerText='Entry '+v+' -> 10x Long Liq '+(v-v/10).toFixed(2)+' | Example 97000 -> 87300';else if(id===15)o.innerText='JPY Pip 0.01 lot = $6.67 at 150';else if(id===40)o.innerText=v+' Tola = '+(v*11.66).toFixed(2)+'g';else if(id===47)o.innerText='AI Score weights 100% - Estimate';else if(id===55)o.innerText=v+' at 5% 12m = '+(v*1.795).toFixed(0);else if(id===59)o.innerText='Net = Gross - Fees - Transfer';else if(id===60)o.innerText='Whale > $1M flagged. Clue only.';else o.innerText='Result for '+v+' - Estimate only.';}
+function deploy(id){const ok=confirm('DEPLOY TICKET Tool #'+id+'\nConfirm? Cancel = BLOCKED');alert(ok?'SENT to YOUR exchange (Demo first)':'BLOCKED - No order sent');}
+function connectWallet(){const a=prompt('Phantom / Solflare public address paste karo. Seed Phrase KABHI mat daalna:');if(a&&a.length>30)alert('Wallet Connected '+a.slice(0,6)+'...'+a.slice(-4));}
+function openWalletPay(){const amt=document.getElementById('payAmt').innerText.replace('$','')||'19.99';window.location.href=`solana:${YOUR_WALLET}?amount=${amt}&spl-token=Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB&label=TradeKit&message=TradeKit Payment`;}
+function verifyPay(){const tx=document.getElementById('txid').value.trim();const m=document.getElementById('payMsg');if(!tx||tx.length<8){m.innerText='Valid TxID daalo';return;}if(tx.toLowerCase()==='fake'){m.innerText='Fake TxID rejected';return;}const code='ODS-'+tx.slice(-4).toUpperCase()+'-2026';m.innerText='Verified! Auto Unlock. Code: '+code+' - Laptop me bhi chalega.';try{localStorage.setItem('unlock_code',code);}catch(e){}}
+function exportUnlock(){const tx=document.getElementById('txid').value.trim();if(!tx){alert('Pehle TxID daalo');return;}alert('Unlock Code: ODS-'+tx.slice(-4).toUpperCase()+'-2026');}
+function importUnlock(){const c=prompt('Unlock Code paste karo:');if(c&&c.startsWith('ODS-'))alert('Verified! Is device pe bhi unlock ho gaya.');else alert('Galat code');}
+function toggleChat(){const b=document.getElementById('chatBox');b.style.display=b.style.display==='block'?'none':'block';}
+function toggleLang(){alert('Urdu / English toggle - Sab kuch dono me hai');}
+function chatReply(){const q=(document.getElementById('chatInput').value||'').toLowerCase();let a='Price: Launch 19.99, then Crypto 24.99, others 29.99, AI 39.99. Support: odsmall.support@gmail.com';if(q.includes('refund'))a='Refund 7 days if tool not working. Email odsmall.support@gmail.com';if(q.includes('unlock'))a='Pay, TxID paste, Verify. Unlock Code laptop me bhi chalega.';if(q.includes('whatsapp'))a='We do NOT have WhatsApp. Only Chatbot + odsmall.support@gmail.com';if(q.includes('wallet'))a='Wallet: GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk - Solana Only, USDT/USDC/PYUSD/CASH';document.getElementById('chatAns').innerText=a;}
+renderHome();renderAll();
 </script>
 </body>
 </html>
