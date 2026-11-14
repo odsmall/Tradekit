@@ -3,197 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TradeKit Global - Trading Tools, Not Exchange</title>
+<title>TradeKit Global - Professional Trading Tools</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7ff;color:#0a1a4d}
-header{background:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,.08);z-index:10}
-.logo{font-weight:900;font-size:22px;color:#0a3fd6}button{cursor:pointer;border:none;border-radius:10px;padding:10px 14px;font-weight:700}
-.btn{background:#0a3fd6;color:#fff}.btn2{background:#eef2ff;color:#0a3fd6;border:1px solid #cbd5ff}
-.hero{background:linear-gradient(90deg,#0a3fd6,#4a7dff);color:#fff;padding:28px 18px;border-radius:0 0 20px 20px}
-.hero h1{margin:0;font-size:28px}.hero p{opacity:.95}
-.wrap{max-width:1100px;margin:auto;padding:16px}
-.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:12px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.tool{border:1px solid #e2e8ff;border-radius:14px;padding:14px;background:#fff}
-.tool b{font-size:16px}.price{font-size:20px;font-weight:900;color:#0a3fd6}
-input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5ff;border-radius:10px;margin:6px 0}
-.badge{background:#d1fae5;color:#065f46;padding:3px 8px;border-radius:20px;font-size:12px;font-weight:800}
-.badge-paid{background:#fef3c7;color:#92400e;padding:3px 8px;border-radius:20px;font-size:12px;font-weight:800}
-.disclaimer{background:#fffbeb;border:1px solid #fde68a;padding:12px;border-radius:12px;font-size:13px;margin:12px 0}
-.cartbar{position:fixed;bottom:0;left:0;right:0;background:#0a1a4d;color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;z-index:20}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-.tabs button{background:#fff;border:1px solid #cbd5ff;color:#0a1a4d}
-.tabs button.active{background:#0a3fd6;color:#fff}
-.hidden{display:none}
-#chatBtn{position:fixed;right:16px;bottom:70px;background:#0a3fd6;color:#fff;padding:14px 16px;border-radius:50px;z-index:30;box-shadow:0 4px 16px rgba(0,0,0,.2)}
-#chatBox{position:fixed;right:16px;bottom:125px;width:320px;max-width:92vw;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:30;display:none;overflow:hidden}
-#chatMsgs{height:280px;overflow:auto;padding:12px;font-size:14px}
-.msg{margin:6px 0;padding:8px 10px;border-radius:10px;background:#eef2ff}
-footer{background:#0a1a4d;color:#fff;padding:22px 18px;margin-top:20px;font-size:13px}
-a{color:#0a3fd6}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f8fafc;color:#0f172a;line-height:1.6}
+header{background:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;box-shadow:0 1px 8px rgba(0,0,0,.07);z-index:20}
+.logo{font-weight:900;font-size:22px;color:#2563eb}.logo span{color:#0f172a}
+nav{display:flex;gap:16px;align-items:center;font-size:14px}
+nav a{color:#334155;text-decoration:none;font-weight:600;cursor:pointer}
+.btn{background:#2563eb;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+.btn2{background:#fff;color:#2563eb;border:1px solid #bfdbfe;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer}
+.hero{background:#0f172a;color:#fff;padding:48px 20px;text-align:center}
+.hero h1{font-size:36px;margin:0;line-height:1.2}.hero p{color:#cbd5e1;max-width:650px;margin:14px auto}
+.wrap{max-width:1100px;margin:auto;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px}
+.price{font-size:24px;font-weight:900;color:#2563eb}
+.badge{background:#dcfce7;color:#166534;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:800}
+.badge2{background:#fef9c3;color:#854d0e;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:800}
+input,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tabs button{padding:8px 16px;border-radius:20px;border:1px solid #cbd5e1;background:#fff;cursor:pointer}.tabs button.active{background:#2563eb;color:#fff}
+footer{background:#0f172a;color:#94a3b8;padding:30px 20px;font-size:13px;margin-top:30px}
+footer a{color:#fff;text-decoration:none;margin-right:14px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;align-items:center;justify-content:center;padding:16px}
+.modal>div{background:#fff;max-width:700px;width:100%;max-height:85vh;overflow:auto;border-radius:14px;padding:22px}
+#chatBtn{position:fixed;right:16px;bottom:16px;background:#2563eb;color:#fff;padding:13px 18px;border-radius:50px;border:none;z-index:40;box-shadow:0 4px 16px rgba(0,0,0,.2);cursor:pointer}
+#chatBox{position:fixed;right:16px;bottom:70px;width:340px;max-width:92vw;background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:40;display:none;overflow:hidden}
+#chatMsgs{height:260px;overflow:auto;padding:12px;font-size:14px}.msg{margin:6px 0;padding:8px 10px;border-radius:10px;background:#eff6ff}
+@media(max-width:640px){nav a{display:none}.hero h1{font-size:28px}}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">TradeKit Global</div>
-<div style="display:flex;gap:8px;align-items:center">
-<select id="countrySel" style="width:auto"><option>Pakistan - PKR</option><option>USA - USD</option><option>India - INR</option><option>UAE - AED</option><option>UK - GBP</option><option>Nigeria - NGN</option><option>Other - USD</option></select>
-<select id="langSel" style="width:auto"><option>Roman Urdu</option><option>English</option><option>Urdu</option></select>
-<button class="btn2" onclick="showPage('login')">Login</button>
-<button class="btn" onclick="showPage('home')">Get Started</button>
-</div>
+<div class="logo">TradeKit <span>Global</span></div>
+<nav>
+<a onclick="scrollToId('tools')">Tools</a>
+<a onclick="scrollToId('pricing')">Pricing</a>
+<a onclick="scrollToId('courses')">Courses</a>
+<a onclick="openModal('aboutModal')">About</a>
+<a onclick="openModal('termsModal')">Terms</a>
+<select id="langSel" onchange="setLang(this.value)" style="width:auto;padding:8px">
+<option value="en">🌐 English</option>
+<option value="ur">🌐 Roman Urdu</option>
+<option value="urdu">🌐 اردو</option>
+<option value="hi">🌐 हिन्दी</option>
+<option value="ar">🌐 العربية</option>
+<option value="es">🌐 Español</option>
+</select>
+<button class="btn" onclick="scrollToId('pricing')">Get Started</button>
+</nav>
 </header>
+
 <div class="hero">
-<h1>Trading Tools - 1 Jagah</h1>
-<p>Hum Exchange nahi hain. Hum Chain nahi hain. Hum sirf Tech Tool Provider hain - Jaise TradingView. Tools sirf HELP ke liye hain, Profit ki Guarantee nahi.</p>
-<p><b>7 Tools FREE • 155+ Paid Tools • 50 PDFs • Solana Payment Only</b></p>
+<h1 data-i18n="heroTitle">Professional Trading Tools.<br>One Platform.</h1>
+<p data-i18n="heroSub">TradeKit is a technology tool provider — not an exchange, not a broker, not a blockchain. Analytics, calculators, alerts and education in one place.</p>
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+<button class="btn" onclick="scrollToId('tools')" data-i18n="tryFree">Try 7 Free Tools →</button>
+<button class="btn2" style="background:#fff" onclick="scrollToId('pricing')" data-i18n="viewPricing">View Pricing</button>
 </div>
+<p style="font-size:13px;margin-top:14px">✓ 7 Tools Free &nbsp; ✓ No Wallet Required for Signup &nbsp; ✓ Solana Payments</p>
+</div>
+
 <div class="wrap">
-<div id="page-login" class="card">
-<h2>Signup / Login - Wallet Zaroori Nahi</h2>
-<p>Signup ke liye sirf Email + Password chahiye. Wallet Connect andar Dashboard me Optional hai.</p>
-<input id="suEmail" placeholder="Email - example@gmail.com">
-<input id="suPass" type="password" placeholder="Password">
-<button class="btn" onclick="doSignup()">Create Free Account - 7 Din FREE Trial</button>
-<p style="font-size:13px">Account bana ke aap hamari Terms ko maan rahe hain. 18+ hona lazmi hai. Support: <b>odsmall.support@gmail.com</b></p>
-<div class="disclaimer">⚠️ <b>Disclaimer:</b> TradeKit koi Exchange, Broker, ya Chain nahi hai. Hum sirf Tools dete hain. Ye Tools aap ko Trading ke liye PUSH nahi karte. Ye sirf POSSIBILITIES batate hain, jo 100% sahi nahi ho sakti. Final Decision aap ka apna hai. Loss ke hum zimmedar nahi hain.</div>
-<button class="btn2" onclick="showPage('home')">Continue Without Signup - FREE Tools Dekhen →</button>
+<div class="card" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+<div><b data-i18n="searchTitle">Find a Tool</b><br><span style="font-size:13px;color:#64748b" data-i18n="searchSub">Search across 160+ tools</span></div>
+<input id="searchInput" oninput="filterTools()" placeholder="Search - Liquidation, AI, Forex, Gold..." style="max-width:420px">
 </div>
-<div id="page-home">
-<div class="card">
-<h2>🔍 Search Tools</h2>
-<input id="searchInput" placeholder="Search - Liquidation, Halal, AI, Forex..." oninput="filterTools()">
-<div class="tabs">
-<button class="active" onclick="setCat('all',this)">All</button>
-<button onclick="setCat('crypto',this)">Crypto</button>
-<button onclick="setCat('forex',this)">Forex</button>
-<button onclick="setCat('gold',this)">Gold</button>
-<button onclick="setCat('ai',this)">AI</button>
-<button onclick="setCat('pdf',this)">PDFs / Courses</button>
-</div>
-</div>
-<h2>1. FREE Tools - Pehle Ye Dekhen <span class="badge">7 FREE</span></h2>
+
+<div id="tools">
+<h2 data-i18n="freeTitle">Free Tools</h2>
+<div class="tabs"><button class="active" onclick="setCat('all',this)">All</button><button onclick="setCat('crypto',this)">Crypto</button><button onclick="setCat('forex',this)">Forex</button><button onclick="setCat('gold',this)">Gold</button><button onclick="setCat('ai',this)">AI</button></div>
 <div class="grid" id="freeGrid"></div>
-<div class="card">
-<h3>🧮 FREE Calculator - Abhi Try Karen (Real Working)</h3>
-<p>USDT to PKR Converter:</p>
-<input id="usdtAmt" type="number" placeholder="USDT Amount - Example 100">
-<select id="usdtRate"><option value="278">Rate: 278 PKR</option><option value="280">Rate: 280 PKR</option></select>
-<button class="btn" onclick="calcUSDT()">Calculate</button>
-<p id="usdtOut" style="font-weight:800"></p>
-<p>Liquidation Calculator:</p>
-<input id="entryP" type="number" placeholder="Entry Price">
-<input id="lev" type="number" placeholder="Leverage - Example 10">
-<button class="btn" onclick="calcLiq()">Calculate Liquidation</button>
-<p id="liqOut" style="font-weight:800"></p>
-<p style="font-size:12px">Ye Calculator sirf andaza hai, 100% Guarantee nahi.</p>
 </div>
-<h2>2. Single Paid Tools - Akela Bhi Le Sakte Hain <span class="badge-paid"> $1.79 - $4.49 / Month </span></h2>
-<div class="card" style="background:#0a3fd6;color:#fff"><b>✨ Build Your Own Combo:</b> Neeche se Tick karke 3+ Tools select karen - 10% OFF, 5+ Tools pe 20% OFF. Apna khud ka Pack banayen.</div>
+
+<div class="card" style="margin-top:20px">
+<h3>🧮 Free Calculators</h3>
+<p>USDT to PKR</p><input id="usdtAmt" type="number" placeholder="USDT Amount e.g. 100">
+<button class="btn" onclick="calcUSDT()">Calculate</button><p id="usdtOut" style="font-weight:800"></p>
+<p>Liquidation (Long)</p><input id="entryP" type="number" placeholder="Entry Price"><input id="lev" type="number" placeholder="Leverage e.g. 10">
+<button class="btn" onclick="calcLiq()">Calculate</button><p id="liqOut" style="font-weight:800"></p>
+</div>
+
+<h2 style="margin-top:28px" data-i18n="singleTitle">Single Tools - Buy Individually</h2>
+<p style="color:#64748b" data-i18n="singleSub">Buy one tool only. 3+ tools = 10% OFF, 5+ tools = 20% OFF automatically.</p>
 <div class="grid" id="singleGrid"></div>
-<h2>3. Combo Packs - Neeche - Ready Packs</h2>
+
+<div id="pricing">
+<h2 style="margin-top:28px" data-i18n="packTitle">Combo Packs</h2>
 <div class="grid">
-<div class="tool"><b>Crypto Pack</b><p>BTC/ETH/SOL Analytics + Alerts + Signals</p><div class="price">$13.49 / Month</div><p><s>$14.95</s> - Market se 10% Kam</p><button class="btn" onclick="buyPack('Crypto Pack',13.49)">Buy Crypto Pack</button></div>
-<div class="tool"><b>Forex Pack</b><p>FX Pairs + Volatility + Calendar</p><div class="price">$11.69 / Month</div><button class="btn" onclick="buyPack('Forex Pack',11.69)">Buy Forex Pack</button></div>
-<div class="tool"><b>Gold + Stock Pack</b><p>Gold Signals + Stock Scanner</p><div class="price">$8.99 / Month</div><button class="btn" onclick="buyPack('Gold Pack',8.99)">Buy Gold Pack</button></div>
-<div class="tool"><b>AI Pack</b><p>AI Signals + AI Summary</p><div class="price">$11.69 / Month</div><button class="btn" onclick="buyPack('AI Pack',11.69)">Buy AI Pack</button></div>
-<div class="tool" style="border:2px solid #0a3fd6"><b>ALL IN ONE - Best Value ⭐</b><p>Sab Kuch - 162 Tools + 50 PDFs</p><div class="price">$26.99 / Month</div><p>Yearly: $179 / Saal - Lifetime: $299 Ek Baar</p><button class="btn" onclick="buyPack('ALL IN ONE',26.99)">Buy ALL IN ONE</button></div>
+<div class="card"><b>Crypto Pack</b><p>BTC / ETH / SOL Analytics + Alerts</p><div class="price">$13.49 <span style="font-size:14px;color:#64748b">/ mo</span></div><button class="btn" style="margin-top:10px;width:100%" onclick="buyPack('Crypto Pack',13.49)">Buy Crypto Pack</button></div>
+<div class="card"><b>Forex Pack</b><p>FX Pairs + Volatility + Calendar</p><div class="price">$11.69 <span style="font-size:14px;color:#64748b">/ mo</span></div><button class="btn" style="margin-top:10px;width:100%" onclick="buyPack('Forex Pack',11.69)">Buy Forex Pack</button></div>
+<div class="card"><b>Gold + Stocks</b><p>Gold Alerts + Stock Scanner</p><div class="price">$8.99 <span style="font-size:14px;color:#64748b">/ mo</span></div><button class="btn" style="margin-top:10px;width:100%" onclick="buyPack('Gold Pack',8.99)">Buy Gold Pack</button></div>
+<div class="card"><b>AI Pack</b><p>AI Signals + AI Summary</p><div class="price">$11.69 <span style="font-size:14px;color:#64748b">/ mo</span></div><button class="btn" style="margin-top:10px;width:100%" onclick="buyPack('AI Pack',11.69)">Buy AI Pack</button></div>
+<div class="card" style="border:2px solid #2563eb"><span class="badge">BEST VALUE</span><br><b style="font-size:18px">ALL IN ONE</b><p>All 162 Tools + 50 PDFs</p><div class="price">$26.99 <span style="font-size:14px;color:#64748b">/ mo</span></div><p style="font-size:13px">Yearly $179 • Lifetime $299</p><button class="btn" style="width:100%" onclick="buyPack('ALL IN ONE',26.99)">Buy ALL IN ONE</button></div>
 </div>
-<h2>4. PDFs / Short Courses - Total 50 - 15 FREE</h2>
+</div>
+
+<div id="courses">
+<h2 style="margin-top:28px">Courses & PDFs - 50 Total</h2>
 <div class="grid" id="pdfGrid"></div>
-<div class="disclaimer">📚 PDFs Download honge. Tools Website pe chalenge. PDFs sirf SEEKHNE ke liye hain, Trading ki Guarantee nahi.</div>
-<div class="card" id="checkout">
-<h2>Checkout - Solana Only - 3 Coins Only</h2>
-<p><b>Selected:</b> <span id="selText">Kuch select nahi kiya</span> | <b>Total:</b> $<span id="totalAmt">0</span> / Month</p>
-<p><b>Payment Address (TradeKit Official):</b></p>
-<div style="background:#eef2ff;padding:12px;border-radius:10px;word-break:break-all;font-weight:800">GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk</div>
+</div>
+
+<div class="card" id="checkout" style="margin-top:28px">
+<h2>Checkout - Solana Only</h2>
+<p><b>Selected:</b> <span id="selText">Nothing selected</span> | <b>Total:</b> $<span id="totalAmt">0</span> / mo</p>
+<p><b>Payment Address (Official):</b></p>
+<div style="background:#eff6ff;padding:12px;border-radius:8px;word-break:break-all;font-weight:800">GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk</div>
 <button class="btn2" onclick="copyAddr()">Copy Address</button>
-<p><b>Accepted Coins - Sirf Ye 3:</b></p>
+<p style="margin-top:12px"><b>Accepted Coins (Only these 3):</b></p>
 <div style="display:flex;gap:8px"><button class="btn" onclick="setCoin('USDT')">USDT</button><button class="btn" onclick="setCoin('USDC')">USDC</button><button class="btn" onclick="setCoin('PYUSD')">PYUSD</button></div>
-<p>Selected Coin: <b id="coinSel">USDT</b> | Network: <b>Solana Only</b></p>
-<h3>Kaise Bhejna Hai - Step by Step:</h3>
-<ol>
-<li>Apna Wallet / Binance kholen</li>
-<li>Withdraw > <span id="coinStep">USDT</span> select karen</li>
-<li>Network: <b>Solana</b> select karen - TRON / BSC / Ethereum MAT karen</li>
-<li>Uper wala Address paste karen</li>
-<li>Exact Amount bhejen: $<span id="payAmt">0</span></li>
-<li>TxID copy karke neeche daalen</li>
-</ol>
-<input id="txidInput" placeholder="Solana TxID Yahan Paste Karen - Example: 5xK...9pL">
-<button class="btn" onclick="verifyPayment()">Verify Payment - Auto Check</button>
-<p id="verifyOut" style="font-weight:800"></p>
-<div class="disclaimer">⚠️ <b>Galat Payment ki Zimmedari:</b> Agar aap ne TRON / BSC / Ethereum se bheja, ya SOL / BTC / koi aur Coin bheja, ya galat Address pe bheja, to paisa WAPIS NAHI MILEGA. Galat Payment ke hum zimmedar NAHI hain. Bhejne se pehle Address aur Network dobara check karen. Support: odsmall.support@gmail.com</div>
+<p>Selected: <b id="coinSel">USDT</b> | Network: <b>Solana Only</b></p>
+<ol style="font-size:14px"><li>Open your Wallet / Exchange</li><li>Withdraw > <span id="coinStep">USDT</span></li><li>Network: <b>Solana</b> — Do NOT use TRON / BSC / Ethereum</li><li>Paste address above</li><li>Send exact amount: $<span id="payAmt">0</span></li><li>Paste TxID below</li></ol>
+<input id="txidInput" placeholder="Solana TxID - e.g. 5xK...9pL">
+<button class="btn" onclick="verifyPayment()">Verify Payment</button>
+<p id="verifyOut" style="font-weight:700"></p>
+<p style="font-size:12px;color:#64748b">Wrong network / wrong coin payments are non-recoverable. Please double-check before sending. Support: odsmall.support@gmail.com</p>
 </div>
-<div class="card">
-<h2>Wallet Connect - Optional - Andar Se</h2>
-<p>Signup ke liye Wallet zaroori nahi. Agar aap chahein to andar se Wallet connect kar sakte hain.</p>
-<button class="btn2" onclick="alert('Wallet Connect - Phantom / Ghost se connect karen. Ye Optional hai. Seed Phrase kabhi kisi ko mat den.')">Connect Phantom / Ghost Wallet (Optional)</button>
-<p style="font-size:12px">Hum aap ki Seed Phrase kabhi nahi mangenge. Koi bhi Seed Phrase mange to wo Scam hai.</p>
-</div>
-<div class="card">
-<h2>About Us</h2>
-<p><b>TradeKit Global</b> ek Tech Tool Provider hai. Hum koi Exchange nahi hain, hum koi Chain nahi hain, hum koi Broker nahi hain. Hum sirf Trading Tools, Calculators, PDFs aur Seekhne ka material dete hain - Jaise TradingView deta hai.</p>
-<p>Hum aap ka paisa hold nahi karte, hum aap ke liye Trade nahi karte, hum aap ko Signal de ke Trade karne ko majboor nahi karte. Aap ka Wallet aap ke paas hai, aap ka Decision aap ka hai.</p>
-<p>Contact: <b>odsmall.support@gmail.com</b></p>
-</div>
-<div class="card">
-<h2>Terms & Conditions - Zaroor Parhen</h2>
-<ul>
-<li>1. TradeKit sirf Tech Tool Provider hai, Exchange / Broker / Chain nahi hai.</li>
-<li>2. 18+ hona lazmi hai.</li>
-<li>3. Tools sirf HELP ke liye hain, Profit ki Guarantee nahi.</li>
-<li>4. Trading me Loss ho sakta hai, Loss ke hum zimmedar nahi.</li>
-<li>5. Account aap ka zimma hai, Password / Seed kisi ko mat den.</li>
-<li>6. Galat Network / Galat Coin se bheja paisa Wapis nahi milega.</li>
-<li>7. No-Refund Policy hai - Sirf 7 Din FREE Trial hai, pehle FREE try karen, phir Pay karen.</li>
-<li>8. Agar Tool 48 Ghante tak bilkul na chale, to Support ko Email karen - odsmall.support@gmail.com</li>
-<li>9. Kisi bhi kisam ka Scam, Copy, ya Galat Use pe Account Band ho sakta hai.</li>
-<li>10. Hum aap ka Data nahi bechte, KYC nahi mangte.</li>
-</ul>
-<div class="disclaimer"><b>Full Disclaimer:</b> Ye Website koi Financial Advice nahi deti. Crypto / Forex / Gold Trading me paisa doob sakta hai. Apni Research khud karen. Kisi ke kehne pe Trade na karen. Hum aap ke Loss ya Profit ke zimmedar nahi hain.</div>
+
+<div class="card" style="margin-top:16px">
+<h3>Signup - Free Trial</h3>
+<input id="suEmail" placeholder="Email">
+<input id="suPass" type="password" placeholder="Password">
+<button class="btn" onclick="doSignup()">Create Free Account - 7 Days Free Trial</button>
+<p style="font-size:12px;color:#64748b">No wallet required for signup. Wallet connect is optional inside dashboard. By signing up you agree to our Terms.</p>
 </div>
 </div>
-</div>
-<div class="cartbar">
-<div>🛒 <span id="cartCount">0</span> Tools | Total: $<span id="cartTotal">0</span> / Month</div>
-<button style="background:#fff;color:#0a1a4d" onclick="goCheckout()">Checkout →</button>
-</div>
-<button id="chatBtn" onclick="toggleChat()">💬 Support Chat</button>
-<div id="chatBox">
-<div style="background:#0a3fd6;color:#fff;padding:12px"><b>TradeKit Support Bot</b><br><span style="font-size:12px">Basic Info + Support - Email: odsmall.support@gmail.com</span></div>
-<div id="chatMsgs"><div class="msg">Assalam-o-Alaikum! Main TradeKit Support Bot hun. Puchen: Price? Payment kaise karun? Refund? Tool kaise use karun?</div></div>
-<input id="chatInput" placeholder="Apna sawal likhen..." onkeydown="if(event.key==='Enter')sendChat()">
-<button class="btn" style="margin:6px" onclick="sendChat()">Send</button>
-</div>
+
 <footer>
-<b>TradeKit Global</b> - Tech Tool Provider Only. Not an Exchange. Not a Chain. Not a Broker.<br>
-Support Email: <b>odsmall.support@gmail.com</b> | Terms | Privacy | About | Disclaimer<br>
-© 2026 TradeKit Global. Trading me Risk hai. Apni Research khud karen.
+<div style="max-width:1100px;margin:auto">
+<b style="color:#fff;font-size:18px">TradeKit Global</b>
+<p>Technology Tool Provider Only. Not an Exchange. Not a Broker. Not a Blockchain.</p>
+<a onclick="openModal('aboutModal')">About</a><a onclick="openModal('termsModal')">Terms & Conditions</a><a onclick="openModal('privacyModal')">Privacy Policy</a><a onclick="openModal('disclaimerModal')">Risk Disclaimer</a>
+<p style="margin-top:14px">Support: odsmall.support@gmail.com<br>© 2026 TradeKit Global. Trading involves risk.</p>
+</div>
 </footer>
+
+<div id="aboutModal" class="modal"><div><h2>About TradeKit Global</h2><p>TradeKit Global is a technology tool provider. We do NOT hold your funds, we do NOT trade on your behalf, we do NOT force you to trade. We provide tools, calculators, alerts and education — similar to TradingView.</p><p>Your wallet stays with you. Your decision is yours.</p><button class="btn" onclick="closeModal('aboutModal')">Close</button></div></div>
+<div id="termsModal" class="modal"><div><h2>Terms & Conditions</h2><ul><li>1. TradeKit is a Tech Tool Provider only — not an Exchange / Broker / Chain.</li><li>2. You must be 18+.</li><li>3. Tools are for assistance only — no profit guarantee.</li><li>4. Trading can cause loss — we are not liable for your loss.</li><li>5. Your account is your responsibility. Never share password / seed phrase.</li><li>6. Payment sent via wrong network / wrong coin is non-recoverable.</li><li>7. No-Refund Policy — please use 7 Days Free Trial first, then pay.</li><li>8. If a tool does not work at all for 48 hours, email odsmall.support@gmail.com</li><li>9. Scam / copy / misuse can lead to account closure.</li><li>10. We do not sell your data. No KYC required.</li></ul><button class="btn" onclick="closeModal('termsModal')">Close</button></div></div>
+<div id="privacyModal" class="modal"><div><h2>Privacy Policy</h2><p>We collect only email for account creation. We do not sell data. We do not ask for Seed Phrase. Anyone asking for Seed Phrase is a scam.</p><button class="btn" onclick="closeModal('privacyModal')">Close</button></div></div>
+<div id="disclaimerModal" class="modal"><div><h2>Risk Disclaimer</h2><p>This website does not provide financial advice. Crypto / Forex / Gold trading can result in loss of capital. Tools show possibilities, not certainties. Do your own research. Never trade with money you cannot afford to lose. TradeKit is not responsible for your profit or loss.</p><button class="btn" onclick="closeModal('disclaimerModal')">Close</button></div></div>
+
+<button id="chatBtn" onclick="toggleChat()">💬 Support</button>
+<div id="chatBox"><div style="background:#2563eb;color:#fff;padding:12px"><b>TradeKit Support</b><br><span style="font-size:12px">odsmall.support@gmail.com</span></div><div id="chatMsgs"><div class="msg">Hello! Ask me: Price? How to pay? Refund? Wallet?</div></div><input id="chatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" style="margin:6px" onclick="sendChat()">Send</button></div>
+
 <script>
 const PAY_ADDR="GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk";
-let cart=[], total=0, coin="USDT", cat="all";
-const freeTools=[{name:"Pip Calculator",cat:"forex",desc:"Pip Value nikalen"},{name:"Lot Size Calculator",cat:"forex",desc:"Sahi Lot Size"},{name:"Risk Calculator",cat:"crypto",desc:"Risk per Trade"},{name:"Profit Calculator",cat:"crypto",desc:"Profit / Loss"},{name:"Economic Calendar",cat:"forex",desc:"Market Events"},{name:"Currency Converter",cat:"gold",desc:"Currency Convert"},{name:"Volatility Meter",cat:"crypto",desc:"Volatility Check"}];
-const singleTools=[{name:"AI Signal Pro",cat:"ai",price:4.49,desc:"AI Signals"},{name:"Liquidation Heatmap Pro",cat:"crypto",price:3.59,desc:"Liquidation Levels"},{name:"Halal Checker Pro",cat:"crypto",price:1.79,desc:"Halal / Haram Check"},{name:"Trend Scanner",cat:"crypto",price:3.99,desc:"Trend Analysis"},{name:"Forex Heatmap",cat:"forex",price:2.99,desc:"Live FX Heatmap"},{name:"Gold Price Alert",cat:"gold",price:2.49,desc:"Gold Alerts"},{name:"Deal Locker",cat:"ai",price:1.99,desc:"Deal Save Karen"},{name:"Position Size Pro",cat:"forex",price:1.79,desc:"Position Size"}];
-const pdfs=[{name:"Candlestick Patterns - Basic",free:true},{name:"Support & Resistance",free:true},{name:"Risk Management - 1% Rule",free:true},{name:"Leverage Kya Hai",free:true},{name:"Halal Trading Guide",free:true},{name:"Scam Se Kaise Bachen",free:true},{name:"Price Action Pro",free:false,price:4.99},{name:"SMC - Smart Money Concepts",free:false,price:4.99},{name:"Scalping Pro Guide",free:false,price:3.99},{name:"Crypto Pro Full Course",free:false,price:4.99}];
-function render(){let fg=document.getElementById('freeGrid'); fg.innerHTML=""; freeTools.forEach(t=>{fg.innerHTML+=`<div class="tool"><span class="badge">FREE</span><br><b>${t.name}</b><p>${t.desc}</p><button class="btn2" onclick="alert('${t.name} - FREE Tool khul gaya')">Open FREE</button></div>`}); let sg=document.getElementById('singleGrid'); sg.innerHTML=""; singleTools.filter(t=>cat==='all'||t.cat===cat).forEach(t=>{sg.innerHTML+=`<div class="tool"><b>${t.name}</b><p>${t.desc} - ${t.cat}</p><div class="price">$${t.price} / Month</div><button class="btn" onclick="addTool('${t.name}',${t.price})">+ Add</button></div>`}); let pg=document.getElementById('pdfGrid'); pg.innerHTML=""; pdfs.forEach(p=>{pg.innerHTML+=`<div class="tool"><b>${p.name}</b><p>${p.free?'<span class="badge">FREE</span>':'<span class="badge-paid">$'+p.price+'</span>'}</p><button class="btn2" onclick="alert('${p.name} - PDF')">Open PDF</button></div>`});}
+let cart=[],total=0,coin="USDT",cat="all";
+const freeTools=[{name:"Pip Calculator",cat:"forex",desc:"Pip Value"},{name:"Lot Size Calculator",cat:"forex",desc:"Correct Lot Size"},{name:"Risk Calculator",cat:"crypto",desc:"Risk per Trade"},{name:"Profit Calculator",cat:"crypto",desc:"Profit / Loss"},{name:"Economic Calendar",cat:"forex",desc:"Market Events"},{name:"Currency Converter",cat:"gold",desc:"Convert Currency"},{name:"Volatility Meter",cat:"crypto",desc:"Volatility Check"}];
+const singleTools=[{name:"AI Signal Pro",cat:"ai",price:4.49,desc:"AI Signals"},{name:"Liquidation Heatmap Pro",cat:"crypto",price:3.59,desc:"Liquidation Levels"},{name:"Halal Checker Pro",cat:"crypto",price:1.79,desc:"Halal Check"},{name:"Trend Scanner",cat:"crypto",price:3.99,desc:"Trend Analysis"},{name:"Forex Heatmap",cat:"forex",price:2.99,desc:"Live FX Heatmap"},{name:"Gold Price Alert",cat:"gold",price:2.49,desc:"Gold Alerts"},{name:"Deal Locker",cat:"ai",price:1.99,desc:"Save Deals"},{name:"Position Size Pro",cat:"forex",price:1.79,desc:"Position Size"}];
+const pdfs=[{name:"Candlestick Patterns",free:true},{name:"Support & Resistance",free:true},{name:"Risk Management - 1% Rule",free:true},{name:"What is Leverage?",free:true},{name:"Halal Trading Guide",free:true},{name:"How to Avoid Scams",free:true},{name:"Price Action Pro",free:false,price:4.99},{name:"SMC - Smart Money",free:false,price:4.99},{name:"Scalping Pro Guide",free:false,price:3.99},{name:"Crypto Pro Course",free:false,price:4.99}];
+const T={
+en:{heroTitle:"Professional Trading Tools.<br>One Platform.",heroSub:"TradeKit is a technology tool provider — not an exchange, not a broker, not a blockchain. Analytics, calculators, alerts and education in one place.",tryFree:"Try 7 Free Tools →",viewPricing:"View Pricing",searchTitle:"Find a Tool",searchSub:"Search across 160+ tools",freeTitle:"Free Tools",singleTitle:"Single Tools - Buy Individually",singleSub:"Buy one tool only. 3+ tools = 10% OFF, 5+ tools = 20% OFF automatically.",packTitle:"Combo Packs"},
+ur:{heroTitle:"Professional Trading Tools.<br>Ek Hi Jagah.",heroSub:"TradeKit sirf Tech Tool Provider hai — Exchange nahi, Broker nahi, Chain nahi. Analytics, Calculators, Alerts aur Seekhna sab ek jagah.",tryFree:"7 FREE Tools Try Karen →",viewPricing:"Pricing Dekhen",searchTitle:"Tool Dhoondhen",searchSub:"160+ Tools me se dhoondhen",freeTitle:"FREE Tools",singleTitle:"Single Tools - Akela Lein",singleSub:"Ek Tool bhi le sakte hain. 3+ Tools pe 10% OFF, 5+ pe 20% OFF.",packTitle:"Combo Packs"},
+urdu:{heroTitle:"پروفیشنل ٹریڈنگ ٹولز۔<br>ایک ہی جگہ۔",heroSub:"ٹریڈ کٹ صرف ٹیک ٹول پرووائیڈر ہے — ایکسچینج نہیں، بروکر نہیں، چین نہیں۔",tryFree:"7 مفت ٹولز آزمائیں →",viewPricing:"قیمتیں دیکھیں",searchTitle:"ٹول تلاش کریں",searchSub:"160+ ٹولز میں تلاش کریں",freeTitle:"مفت ٹولز",singleTitle:"سنگل ٹولز",singleSub:"ایک ٹول بھی لے سکتے ہیں۔ 3+ پر 10% رعایت، 5+ پر 20% رعایت۔",packTitle:"کمبو پیکس"},
+hi:{heroTitle:"Professional Trading Tools.<br>Ek Hi Jagah.",heroSub:"TradeKit sirf Tech Tool Provider hai — Exchange nahi, Broker nahi, Chain nahi.",tryFree:"7 FREE Tools Try Karen →",viewPricing:"Pricing Dekhen",searchTitle:"Tool Dhoondhen",searchSub:"160+ Tools me search karen",freeTitle:"FREE Tools",singleTitle:"Single Tools",singleSub:"Ek Tool bhi le sakte hain. 3+ pe 10% OFF, 5+ pe 20% OFF.",packTitle:"Combo Packs"},
+ar:{heroTitle:"أدوات تداول احترافية.<br>منصة واحدة.",heroSub:"TradeKit مزود أدوات تقنية فقط — ليست منصة تداول ولا وسيط ولا سلسلة.",tryFree:"جرّب 7 أدوات مجانية →",viewPricing:"عرض الأسعار",searchTitle:"ابحث عن أداة",searchSub:"ابحث في أكثر من 160 أداة",freeTitle:"أدوات مجانية",singleTitle:"أدوات فردية",singleSub:"اشترِ أداة واحدة فقط. 3+ خصم 10%، 5+ خصم 20%.",packTitle:"باقات مجمعة"},
+es:{heroTitle:"Herramientas de Trading Profesionales.<br>Una Plataforma.",heroSub:"TradeKit es solo un proveedor de herramientas tecnológicas — no es exchange, ni bróker, ni blockchain.",tryFree:"Probar 7 Herramientas Gratis →",viewPricing:"Ver Precios",searchTitle:"Buscar Herramienta",searchSub:"Buscar en más de 160 herramientas",freeTitle:"Herramientas Gratis",singleTitle:"Herramientas Individuales",singleSub:"Compra una sola herramienta. 3+ = 10% OFF, 5+ = 20% OFF.",packTitle:"Paquetes Combo"}
+};
+function setLang(l){let d=T[l]||T.en; document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n'); if(d[k]) el.innerHTML=d[k]}); if(l==='ar'||l==='urdu') document.body.dir='rtl'; else document.body.dir='ltr';}
+function render(){let fg=document.getElementById('freeGrid'); fg.innerHTML=""; freeTools.forEach(t=>{fg.innerHTML+=`<div class="card"><span class="badge">FREE</span><br><b>${t.name}</b><p style="color:#64748b">${t.desc}</p><button class="btn2" onclick="alert('${t.name} - FREE Tool')">Open Free</button></div>`}); let sg=document.getElementById('singleGrid'); sg.innerHTML=""; singleTools.filter(t=>cat==='all'||t.cat===cat).forEach(t=>{sg.innerHTML+=`<div class="card"><b>${t.name}</b><p style="color:#64748b">${t.desc}</p><div class="price">$${t.price} <span style="font-size:14px;color:#64748b">/ mo</span></div><button class="btn" style="margin-top:10px;width:100%" onclick="addTool('${t.name}',${t.price})">+ Add</button></div>`}); let pg=document.getElementById('pdfGrid'); pg.innerHTML=""; pdfs.forEach(p=>{pg.innerHTML+=`<div class="card"><b>${p.name}</b><p>${p.free?'<span class="badge">FREE</span>':'<span class="badge2">$'+p.price+'</span>'}</p><button class="btn2" onclick="alert('${p.name}')">Open</button></div>`});}
 function setCat(c,el){cat=c; document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active')); el.classList.add('active'); render();}
-function filterTools(){let q=document.getElementById('searchInput').value.toLowerCase(); document.querySelectorAll('.tool').forEach(el=>{el.style.display=el.innerText.toLowerCase().includes(q)?'block':'none'});}
+function filterTools(){let q=document.getElementById('searchInput').value.toLowerCase(); document.querySelectorAll('.card').forEach(el=>{if(el.parentElement.className.includes('grid')) el.style.display=el.innerText.toLowerCase().includes(q)?'block':'none'});}
 function addTool(n,p){cart.push({n,p}); updateCart();}
 function buyPack(n,p){cart=[{n,p}]; updateCart(); goCheckout();}
-function updateCart(){let cnt=cart.length; let sum=cart.reduce((a,b)=>a+b.p,0); let disc=0; if(cnt>=5) disc=0.20; else if(cnt>=3) disc=0.10; let final=sum*(1-disc); total=final; document.getElementById('cartCount').innerText=cnt; document.getElementById('cartTotal').innerText=final.toFixed(2); document.getElementById('selText').innerText=cart.map(c=>c.n).join(', ')+(disc?` - ${disc*100}% OFF (Build Your Own Combo)`:''); document.getElementById('totalAmt').innerText=final.toFixed(2); document.getElementById('payAmt').innerText=final.toFixed(2);}
+function updateCart(){let cnt=cart.length; let sum=cart.reduce((a,b)=>a+b.p,0); let disc=cnt>=5?0.20:cnt>=3?0.10:0; total=sum*(1-disc); document.getElementById('selText').innerText=cart.map(c=>c.n).join(', ')+(disc?` - ${disc*100}% OFF`:''); document.getElementById('totalAmt').innerText=total.toFixed(2); document.getElementById('payAmt').innerText=total.toFixed(2);}
 function goCheckout(){document.getElementById('checkout').scrollIntoView({behavior:'smooth'});}
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
 function setCoin(c){coin=c; document.getElementById('coinSel').innerText=c; document.getElementById('coinStep').innerText=c;}
-function copyAddr(){navigator.clipboard.writeText(PAY_ADDR); alert('Address Copy Ho Gaya: '+PAY_ADDR);}
-function calcUSDT(){let a=parseFloat(document.getElementById('usdtAmt').value||0); let r=parseFloat(document.getElementById('usdtRate').value); document.getElementById('usdtOut').innerText=a+" USDT = "+(a*r).toLocaleString()+" PKR";}
-function calcLiq(){let e=parseFloat(document.getElementById('entryP').value||0); let l=parseFloat(document.getElementById('lev').value||1); let liq=e-(e/l); document.getElementById('liqOut').innerText="Liquidation (Long): ~ "+liq.toFixed(2);}
-function showPage(p){document.getElementById('page-login').style.display=p==='login'?'block':'none'; document.getElementById('page-home').style.display=p==='home'?'block':'none'; if(p==='home')document.getElementById('page-login').style.display='none';}
-function doSignup(){let e=document.getElementById('suEmail').value; if(!e.includes('@')){alert('Sahi Email likhen');return;} alert('Account Ban Gaya: '+e+' - 7 Din FREE Trial Shuru. Wallet ki zaroorat nahi.'); showPage('home');}
-async function verifyPayment(){let tx=document.getElementById('txidInput').value.trim(); if(!tx){alert('Pehle TxID daalen');return;} document.getElementById('verifyOut').innerText='Checking on Solana... 1-2 Minute wait karen...'; try{let res=await fetch('https://api.mainnet-beta.solana.com',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getTransaction',params:[tx,{encoding:'jsonParsed',maxSupportedTransactionVersion:0}]})}); let j=await res.json(); if(j.result){document.getElementById('verifyOut').innerText='✅ Payment Found on Solana! Tool Unlock ho raha hai. Agar Amount sahi hai to 1-2 Minute me Active ho jayega. Support: odsmall.support@gmail.com';}else{document.getElementById('verifyOut').innerText='❌ Payment Nahi Mili. TxID dobara check karen. Galat Network / Galat Coin to nahi bheja? Support: odsmall.support@gmail.com';}}catch(e){document.getElementById('verifyOut').innerText='Network slow hai. TxID save kar liya hai, Support 2-4 Ghante me Manual Verify karega: odsmall.support@gmail.com';}}
+function copyAddr(){navigator.clipboard.writeText(PAY_ADDR); alert('Address Copied');}
+function calcUSDT(){let a=parseFloat(document.getElementById('usdtAmt').value||0); document.getElementById('usdtOut').innerText=a+" USDT = "+(a*278).toLocaleString()+" PKR";}
+function calcLiq(){let e=parseFloat(document.getElementById('entryP').value||0); let l=parseFloat(document.getElementById('lev').value||1); document.getElementById('liqOut').innerText="Liquidation (Long): ~ "+(e-(e/l)).toFixed(2);}
+function doSignup(){let e=document.getElementById('suEmail').value; if(!e.includes('@')){alert('Enter valid email');return;} alert('Account Created: '+e+' - 7 Days Free Trial Started.');}
+function openModal(id){document.getElementById(id).style.display='flex';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+async function verifyPayment(){let tx=document.getElementById('txidInput').value.trim(); if(!tx){alert('Enter TxID first');return;} document.getElementById('verifyOut').innerText='Checking on Solana...'; try{let res=await fetch('https://api.mainnet-beta.solana.com',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getTransaction',params:[tx,{encoding:'jsonParsed',maxSupportedTransactionVersion:0}]})}); let j=await res.json(); if(j.result){document.getElementById('verifyOut').innerText='✅ Payment Found on Solana! Tool will activate shortly.'}else{document.getElementById('verifyOut').innerText='❌ Payment Not Found. Check TxID / Network. Support: odsmall.support@gmail.com'}}catch(e){document.getElementById('verifyOut').innerText='Network slow. TxID saved, Support will verify manually: odsmall.support@gmail.com';}}
 function toggleChat(){let b=document.getElementById('chatBox'); b.style.display=b.style.display==='block'?'none':'block';}
-function sendChat(){let inp=document.getElementById('chatInput'); let q=inp.value.toLowerCase(); if(!q) return; let msgs=document.getElementById('chatMsgs'); msgs.innerHTML+=`<div class="msg"><b>Aap:</b> ${inp.value}</div>`; let ans="Main aap ki help karta hun. Price: All In One $26.99, Crypto $13.49. Payment: Solana pe USDT/USDC/PYUSD bhejen is Address pe: GUrFH...Utjk. Refund: No-Refund, 7 Din FREE Trial hai. Zyada help ke liye Email karen: odsmall.support@gmail.com"; if(q.includes('price')||q.includes('paisa')||q.includes('kitne')) ans="Prices: FREE 7 Tools FREE hain. Single Tool $1.79-$4.49. Crypto Pack $13.49, Forex $11.69, Gold $8.99, AI $11.69, ALL IN ONE $26.99. Market se 10% Kam."; else if(q.includes('payment')||q.includes('pay')||q.includes('bhej')) ans="Payment: Solana Only. Coin: USDT / USDC / PYUSD. Address: GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk. Network: Solana. TRON/BSC mat bhejen, paisa wapis nahi milega."; else if(q.includes('refund')) ans="Refund Policy: No-Refund hai. Is liye pehle 7 Din FREE Trial use karen. Agar Tool 48 Ghante tak bilkul na chale to odsmall.support@gmail.com pe Email karen."; else if(q.includes('wallet')||q.includes('phantom')||q.includes('ghost')) ans="Wallet: Signup ke liye Wallet zaroori nahi. Wallet Connect andar Dashboard me Optional hai. Seed Phrase kabhi kisi ko mat den."; else if(q.includes('exchange')||q.includes('chain')) ans="Hum Exchange / Chain / Broker NAHI hain. Hum sirf Tech Tool Provider hain, jaise TradingView."; else if(q.includes('halal')) ans="Halal Checker Tool se aap Coin ka Halal/Haram check kar sakte hain. Ye sirf Info hai, Final Faisla aap ka hai."; msgs.innerHTML+=`<div class="msg"><b>Bot:</b> ${ans}</div>`; inp.value=''; msgs.scrollTop=msgs.scrollHeight;}
-render(); showPage('home');
+function sendChat(){let inp=document.getElementById('chatInput'); let q=inp.value.toLowerCase(); if(!q) return; let msgs=document.getElementById('chatMsgs'); msgs.innerHTML+=`<div class="msg"><b>You:</b> ${inp.value}</div>`; let ans="Price: ALL IN ONE $26.99, Crypto $13.49. Payment: Solana - USDT/USDC/PYUSD to GUrFH...Utjk. Refund: No-Refund, 7 Days Free Trial. Email: odsmall.support@gmail.com"; if(q.includes('price')||q.includes('cost')) ans="Prices: Single $1.79-$4.49, Crypto $13.49, Forex $11.69, Gold $8.99, AI $11.69, ALL IN ONE $26.99."; else if(q.includes('pay')||q.includes('payment')) ans="Payment: Solana Only. USDT / USDC / PYUSD. Address: GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk. Do NOT use TRON/BSC."; else if(q.includes('refund')) ans="No-Refund Policy. Please use 7 Days Free Trial first. If tool does not work for 48h, email odsmall.support@gmail.com"; else if(q.includes('wallet')) ans="Wallet is NOT required for signup. Wallet connect is optional inside dashboard. Never share Seed Phrase."; msgs.innerHTML+=`<div class="msg"><b>Bot:</b> ${ans}</div>`; inp.value=''; msgs.scrollTop=msgs.scrollHeight;}
+render();
 </script>
 </body>
 </html>
