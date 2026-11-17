@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profit Calculator - TradeKit</title>
+<link rel="stylesheet" href="../style.css">
+<style>.box{max-width:480px;margin:auto;padding:14px}.inp{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:12px;margin-bottom:10px;font-size:15px}label{font-size:12px;font-weight:bold}.res{background:#0f172a;color:#fff;padding:14px;border-radius:14px;margin-top:10px}.btn{width:100%;padding:12px;background:#0f172a;color:#fff;border:0;border-radius:12px;font-weight:bold;font-size:15px}.back{display:inline-block;margin:14px;text-decoration:none;font-weight:bold;color:#0f172a}</style>
+</head><body>
+<a href="../index.html" class="back">← Back</a>
+<div class="box">
+<h2>🛠️ Profit Calculator</h2>
+<p style="font-size:13px;color:#64748b">Buy price, Sell price, Amount likho - Profit khud nikal jayega.</p>
+
+<label>Buy Price (USDT)</label>
+<input id="buy" class="inp" type="number" placeholder="Example: 100" oninput="calc()">
+
+<label>Sell Price (USDT)</label>
+<input id="sell" class="inp" type="number" placeholder="Example: 110" oninput="calc()">
+
+<label>Amount</label>
+<input id="amt" class="inp" type="number" value="1" oninput="calc()">
+
+<button class="btn" onclick="calc()">Calculate Profit</button>
+
+<div class="res" id="result">Profit: 0 USDT<br>Profit %: 0%</div>
+<p style="font-size:12px;color:#64748b;margin-top:10px">⚠️ Ye sirf hisaab ke liye hai. TradeKit tumhara paisa hold nahi karta.</p>
+</div>
+<script src="../lang.js"></script>
+<script>
+function calc(){
+  var b = parseFloat(document.getElementById('buy').value) || 0;
+  var s = parseFloat(document.getElementById('sell').value) || 0;
+  var a = parseFloat(document.getElementById('amt').value) || 1;
+  var profit = (s - b) * a;
+  var pct = b > 0 ? ((s - b) / b * 100) : 0;
+  var color = profit >= 0 ? '#4ade80' : '#f87171';
+  document.getElementById('result').innerHTML = 'Profit: <b style="color:'+color+'">'+profit.toFixed(2)+' USDT</b><br>Profit %: <b style="color:'+color+'">'+pct.toFixed(2)+'%</b>';
+}
+</script>
+</body></html>
