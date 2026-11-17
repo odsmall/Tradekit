@@ -1,0 +1,17 @@
+*{box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:#fff;color:#0f172a;margin:0}
+.top{background:#0f172a;color:#fff;padding:18px;text-align:center}
+.top h1{margin:0;font-size:28px;letter-spacing:2px}
+.top p{margin:4px 0 0;font-size:12px;opacity:.7}
+#langBtn{background:#fff;color:#0f172a;border:0;padding:6px 12px;border-radius:9999px;font-weight:bold;font-size:12px;margin-top:8px;cursor:pointer}
+.wrap{max-width:480px;margin:auto;padding:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px;text-decoration:none;color:#0f172a;display:block}
+.card h3{margin:0;font-size:16px}.card p{font-size:12px;color:#64748b}
+.card span{font-size:12px;font-weight:bold}
+.warn{background:#fef3c7;border:1px dashed #f59e0b;border-radius:12px;padding:12px;font-size:12px;margin-top:14px}
+.lang-modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99;display:flex;align-items:flex-end;justify-content:center}
+.lang-modal.hidden{display:none}
+.lang-box{background:#fff;width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:16px;max-height:80vh;overflow:auto}
+.lang-item{width:100%;text-align:left;padding:11px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;margin-bottom:8px;font-weight:bold;cursor:pointer}
+.lang-item.active{background:#0f172a;color:#fff}
+.close-btn{width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:12px;background:#fff;font-weight:bold;margin-top:6px}
