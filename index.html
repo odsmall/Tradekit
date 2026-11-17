@@ -1,213 +1,32 @@
-<!DOCTYPE html><html lang="ur"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ODS TradeKit - 60 Real Tools</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:#0b1020;color:#fff}
-header{position:sticky;top:0;z-index:10;background:#0b1020;border-bottom:1px solid #222;padding:12px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-header h1{font-size:18px;margin:0}header h1 span{color:#22d3ee}.pill{background:#1e293b;border:1px solid #334155;padding:6px 10px;border-radius:99px;font-size:12px}
-button{background:#22d3ee;color:#000;border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
-input,select{width:100%;padding:10px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#fff;margin:6px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:14px}
-.card{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:12px;cursor:pointer}.card.locked{opacity:.55}
-.card b{font-size:14px}.card p{font-size:12px;color:#94a3b8;margin:6px 0}.card .tag{font-size:11px;color:#22d3ee}
-#modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:flex-start;justify-content:center;padding:14px;overflow:auto}
-.box{background:#0f172a;border:1px solid #334155;border-radius:16px;max-width:640px;width:100%;padding:16px}
-#res{white-space:pre-wrap;background:#020617;border:1px solid #1e293b;border-radius:12px;padding:12px;margin-top:10px;font-size:13px;line-height:1.6}
-.note{font-size:12px;color:#fbbf24}.ok{color:#22c55e}.err{color:#f87171}
-.pay{background:#111827;border:1px solid #f59e0b;border-radius:14px;padding:12px;margin:12px}
-</style></head><body>
-<header><h1>ODS <span>TradeKit</span> - 60 Real Tools</h1><span class="pill">60/60 Real - No Fake</span><span class="pill">Any Solana Wallet</span><button onclick="openPay()">🔓 Unlock ALL $26.99</button><button onclick="openImport()">Import Code</button></header>
-
-<div class="pay" id="payBox" style="display:none">
-<b>Pay with Any Solana Wallet - Phantom / Solflare / Backpack / Exchange</b><br>
-<span class="note">Sirf Solana Network - TRC20 / BEP20 Nahi - USDT ya USDC Bhejo</span><br><br>
-Wallet: <b id="walletTxt"></b> <button onclick="copyWallet()">Copy</button><br><br>
-Pack: <select id="packSel"><option value="ALL">ALL 60 Tools - $26.99</option><option value="CRYPTO">Crypto Only - $13.49</option><option value="FOREX">Forex Only - $13.49</option><option value="AI">AI Only - $13.49</option></select><br>
-TxID Paste Karo: <input id="txidIn" placeholder="Solana TxID / Signature"><button onclick="verifyPay()">Verify Payment</button><div id="payRes"></div>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradeKit</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="top">
+<h1>TRADEKIT</h1>
+<p data-i18n="subtitle">Tools • Guides • P2P Hub - Non-Custodial</p>
+<button id="langBtn" onclick="openLang()">🌐 <span id="curLangLabel">English</span> ▼</button>
 </div>
 
-<div class="pay" id="importBox" style="display:none">Code: <input id="codeIn" placeholder="ODS-XXXX-XXXX ya DEMO-1234"><button onclick="importCode()">Unlock</button><div id="impRes"></div></div>
+<div class="wrap">
+<h2 data-i18n="pick_tool">Pick Your Tool 👇</h2>
+<div class="grid">
+<a href="#" class="card"><h3>🛠️ Tools</h3><p>Profit Calculator</p><span>Open →</span></a>
+<a href="#" class="card"><h3>📄 PDF Guides</h3><p>Wallet Setup Guide</p><span>Open →</span></a>
+<a href="#" class="card"><h3>🤖 AI</h3><p>Ask TradeKit AI</p><span>Open →</span></a>
+<a href="#" class="card"><h3>🤝 P2P Hub</h3><p>Direct Listings</p><span>Open →</span></a>
+</div>
+<div class="warn" data-i18n="warn">⚠️ Safe Rule: TradeKit never holds your money. Always pay direct to seller. Verify first, then pay.</div>
+</div>
 
-<div style="padding:0 14px"><input id="search" placeholder="Search tool... e.g. RSI, Lot, PE" oninput="render()"></div>
-<div class="grid" id="grid"></div>
-<div id="modal"><div class="box"><button onclick="closeModal()" style="float:right">✕</button><h2 id="mTitle"></h2><p id="mDesc" class="note"></p><div id="mForm"></div><button onclick="runTool()">Calculate - Real Formula</button><div id="res">Result Yahan Aayega...</div><p class="note">Sources neeche likhe hain - Ek Fail to Doosra Try Hoga - Kabhi Khali Nahi Jayega</p></div></div>
-
-<script>
-const WALLET="GUrFH4WNMaWEJThnmZAe5JrCAJDamRHzUrHLZPszUtjk";
-const APPS_SCRIPT_URL="PASTE_YOUR_APPS_SCRIPT_URL_HERE"; // <-- Yahan Apps Script Link Daalo
-document.getElementById("walletTxt").textContent=WALLET;
-let unlocked = localStorage.getItem("ods_unlock")==="1";
-let current=null;
-
-// 60 TOOLS - LOCKED - Har Ek ka Apna Formula
-const TOOLS=[
-{id:1,cat:"CRYPTO",name:"Crypto Screener",desc:"RSI Wilder 14 + Vol Spike - Binance Live",need:"ALL",fn:"screener",inputs:["Coin (BTC,ETH,SOL)"]},
-{id:2,cat:"CRYPTO",name:"Liquidation Calc",desc:"Long E*(1-1/L)/(1-MMR) - Binance Formula",need:"ALL",fn:"liq",inputs:["Entry Price","Leverage","MMR % (0.5)"]},
-{id:3,cat:"CRYPTO",name:"Funding Rate",desc:"Premium + clamp - Fee = Notional x Rate",need:"ALL",fn:"funding",inputs:["Coin","Position $"]},
-{id:4,cat:"CRYPTO",name:"Open Interest",desc:"OI USD = OI x Price - Trend Rule",need:"ALL",fn:"oi",inputs:["Coin"]},
-{id:5,cat:"CRYPTO",name:"Fear & Greed",desc:"Vol 25% + Mom 25% + Social 15% + Dom 10% + Trends 10% + Survey 15%",need:"ALL",fn:"fng",inputs:[]},
-{id:6,cat:"CRYPTO",name:"BTC Dominance",desc:"BTC Cap / Total Cap x100 - CoinGecko",need:"ALL",fn:"dom",inputs:[]},
-{id:7,cat:"CRYPTO",name:"Exchange Flows",desc:"NetFlow = Inflow-Outflow - Proxy - Sach Likha hai",need:"ALL",fn:"flows",inputs:["Coin"]},
-{id:8,cat:"CRYPTO",name:"MVRV / SOPR",desc:"MVRV=MC/RC, SOPR=Sell/Buy",need:"ALL",fn:"mvrv",inputs:["MarketCap","RealisedCap","Sell Price","Buy Price"]},
-{id:9,cat:"CRYPTO",name:"Liq Heatmap",desc:"Binance allForceOrders - Cluster",need:"ALL",fn:"heatmap",inputs:["Coin"]},
-{id:10,cat:"CRYPTO",name:"Gas Fee",desc:"GasPrice x GasLimit / 1e9",need:"ALL",fn:"gas",inputs:["Chain (Solana,Ethereum,BSC,Polygon)"]},
-{id:11,cat:"CRYPTO",name:"Wallet Tracker",desc:"ETH 0x+40, BTC bc1q/bc1p, SOL Base58 - Explorer Link",need:"ALL",fn:"wallet",inputs:["Wallet Address"]},
-{id:12,cat:"CRYPTO",name:"Token Unlock",desc:"TGE + min(1,(t-Cliff)/Vesting) x (100-TGE) - Sell 70%",need:"ALL",fn:"unlock",inputs:["Total Supply","TGE %","Cliff Months","Vesting Months","Current Month","Price","Circulating"]},
-{id:13,cat:"CRYPTO",name:"Arbitrage",desc:"(PriceB-PriceA)/PriceA x100 - Fees",need:"ALL",fn:"arb",inputs:["Coin"]},
-{id:14,cat:"CRYPTO",name:"Whale Tracker",desc:"Amount > $1M = Whale",need:"ALL",fn:"whale",inputs:["Coin","Amount $"]},
-{id:15,cat:"CRYPTO",name:"Swap / Converter",desc:"To = From x Rate - Live Price",need:"ALL",fn:"swap",inputs:["From Coin","To Coin","Amount"]},
-{id:16,cat:"FOREX",name:"Forex Strength",desc:"Avg Log Return ln(Pend/Pstart) - Frankfurter",need:"ALL",fn:"strength",inputs:[]},
-{id:17,cat:"FOREX",name:"Correlation",desc:"Pearson r = Cov/(StdX x StdY)",need:"ALL",fn:"corr",inputs:["Pair1 Returns comma se - 0.5,0.3,-0.2","Pair2 Returns comma se"]},
-{id:18,cat:"FOREX",name:"Pip Calculator",desc:"PipValue = (0.0001/Rate) x Lot x Contract - JPY 0.01",need:"ALL",fn:"pip",inputs:["Pair Rate","Lot Size"]},
-{id:19,cat:"FOREX",name:"Lot Size",desc:"Lot = Risk$ / (SL Pips x PipValue)",need:"ALL",fn:"lotsize",inputs:["Balance","Risk %","SL Pips"]},
-{id:20,cat:"FOREX",name:"Pivot Points",desc:"PP=(H+L+C)/3, R1=2PP-L, S1=2PP-H",need:"ALL",fn:"pivot",inputs:["High","Low","Close"]},
-{id:21,cat:"FOREX",name:"Economic Calendar",desc:"High Impact - NFP, CPI, Rate - Link",need:"ALL",fn:"calendar",inputs:[]},
-{id:22,cat:"FOREX",name:"Session Timer",desc:"London 08-16, NY 13-21, Tokyo 00-09 UTC",need:"ALL",fn:"session",inputs:[]},
-{id:23,cat:"FOREX",name:"Spread Checker",desc:"Spread = Ask-Bid, Spread% = Spread/Mid x100",need:"ALL",fn:"spread",inputs:["Bid","Ask"]},
-{id:24,cat:"FOREX",name:"Swap / Rollover",desc:"Swap = Pts x Point x Contract x Lots x Nights",need:"ALL",fn:"swaproll",inputs:["Swap Pts","Lots","Nights"]},
-{id:25,cat:"FOREX",name:"Margin Calc",desc:"Margin = Lot x Contract x Price / Leverage",need:"ALL",fn:"margin",inputs:["Lot","Price","Leverage"]},
-{id:26,cat:"FOREX",name:"Prop Firm Calc",desc:"Max 5%, Daily 2%, Target 8%",need:"ALL",fn:"prop",inputs:["Account Size"]},
-{id:27,cat:"FOREX",name:"Forex Screener",desc:"Live Rate + RSI + SMA50/200",need:"ALL",fn:"fxscreener",inputs:["Pair (EURUSD)"]},
-{id:28,cat:"FOREX",name:"News Sentiment",desc:"(Bullish-Bearish)/Total x100",need:"ALL",fn:"sentiment",inputs:["News Text"]},
-{id:29,cat:"FOREX",name:"Currency Converter",desc:"Converted = Amount x (RateTo/RateFrom)",need:"ALL",fn:"converter",inputs:["Amount","From (USD)","To (EUR)"]},
-{id:30,cat:"FOREX",name:"Drawdown Calc",desc:"DD% = (Peak-Trough)/Peak x100",need:"ALL",fn:"dd",inputs:["Peak","Trough"]},
-{id:31,cat:"STOCKS",name:"Stock Screener",desc:"Price > SMA200 + RSI<70 + Vol>Avg",need:"ALL",fn:"stockscreen",inputs:["Symbol (AAPL)"]},
-{id:32,cat:"STOCKS",name:"Earnings Calc",desc:"EPS = Net/Shares, Beat% = (Actual-Exp)/Exp x100",need:"ALL",fn:"earnings",inputs:["Net Income","Shares","Expected EPS","Actual EPS"]},
-{id:33,cat:"STOCKS",name:"Index Tracker",desc:"Change% = (Now-Prev)/Prev x100",need:"ALL",fn:"index",inputs:["Now","Prev"]},
-{id:34,cat:"STOCKS",name:"PE Valuation",desc:"PE=Price/EPS, Fair=EPS x SectorPE",need:"ALL",fn:"pe",inputs:["Price","EPS","Sector PE"]},
-{id:35,cat:"STOCKS",name:"Options Flow",desc:"Black-Scholes Call = S*N(d1)-K*e^-rt*N(d2)",need:"ALL",fn:"options",inputs:["Spot","Strike","Time Years","Volatility %","Rate %"]},
-{id:36,cat:"STOCKS",name:"Insider Trading",desc:"Net = Buy - Sell",need:"ALL",fn:"insider",inputs:["Buy $","Sell $"]},
-{id:37,cat:"STOCKS",name:"Sector Heatmap",desc:"Har Sector ka % Change",need:"ALL",fn:"sector",inputs:["Tech %","Energy %","Finance %","Health %"]},
-{id:38,cat:"STOCKS",name:"IPO Calc",desc:"Gain = (Listing-Issue)/Issue x100",need:"ALL",fn:"ipo",inputs:["Issue Price","Listing Price"]},
-{id:39,cat:"STOCKS",name:"Stock News",desc:"Keyword Score + Link",need:"ALL",fn:"stocknews",inputs:["News Text"]},
-{id:40,cat:"GOLD",name:"Gold Plan",desc:"SL=Entry-ATR, TP=Entry+2xATR, Risk 1%",need:"ALL",fn:"goldplan",inputs:["Entry","ATR"]},
-{id:41,cat:"GOLD",name:"Gold vs USD",desc:"Correlation DXY vs PAXG - Pearson",need:"ALL",fn:"goldusd",inputs:["DXY Returns comma","PAXG Returns comma"]},
-{id:42,cat:"GOLD",name:"Gold Spread",desc:"Spread=Sell-Buy, Spread%=Spread/Mid x100",need:"ALL",fn:"goldspread",inputs:["Buy Price","Sell Price"]},
-{id:43,cat:"GOLD",name:"Silver / Gold Ratio",desc:"Ratio = Gold / Silver - >80 Silver Sasta",need:"ALL",fn:"ratio",inputs:["Gold Price","Silver Price"]},
-{id:44,cat:"GOLD",name:"Gold Pivot",desc:"PP=(H+L+C)/3 - Same Pivot Formula",need:"ALL",fn:"pivot",inputs:["High","Low","Close"]},
-{id:45,cat:"GOLD",name:"Gold News",desc:"Kitco RSS + Keyword Score",need:"ALL",fn:"goldnews",inputs:["News Text"]},
-{id:46,cat:"AI",name:"AI Chart Reader",desc:"Rule Score + AI Summary - Groq/Gemini/OpenRouter Backup",need:"ALL",fn:"aichart",inputs:["Coin","RSI","Trend (UP/DOWN)"]},
-{id:47,cat:"AI",name:"AI Score",desc:"28 Trend + 20 RSI + 20 Vol + 20 Volat + 12",need:"ALL",fn:"aiscore",inputs:["Trend 0-100","RSI 0-100","Volume 0-100","Volatility 0-100"]},
-{id:48,cat:"AI",name:"AI Trade Plan",desc:"Entry=Price, SL=Price-ATR, TP=Price+2xATR + AI Line",need:"ALL",fn:"aitrade",inputs:["Price","ATR"]},
-{id:49,cat:"AI",name:"AI News Summary",desc:"Titles -> AI 3 Lines - Fail to Keyword",need:"ALL",fn:"ainews",inputs:["News Titles"]},
-{id:50,cat:"AI",name:"AI Risk Checker",desc:"Risk$ = Pos x SL, Risk% = Risk$/Balance - >2% WARN",need:"ALL",fn:"airisk",inputs:["Balance","Position Size","SL Distance"]},
-{id:51,cat:"AI",name:"Plain English",desc:"RSI>60+Trend UP = Simple Zubaan me",need:"ALL",fn:"plain",inputs:["RSI","Trend UP/DOWN"]},
-{id:52,cat:"RISK",name:"Journal",desc:"WinRate + Expectancy - localStorage Save",need:"ALL",fn:"journal",inputs:["Wins","Total Trades","Avg Win","Avg Loss"]},
-{id:53,cat:"RISK",name:"Risk Calculator",desc:"Pos = Risk$ / SL Distance",need:"ALL",fn:"risk",inputs:["Balance","Risk %","Entry","SL"]},
-{id:54,cat:"RISK",name:"Compound",desc:"Final = P*(1+r)^n",need:"ALL",fn:"compound",inputs:["Principal","Rate %","Months"]},
-{id:55,cat:"RISK",name:"Win Rate",desc:"Win% + Expectancy + Profit Factor",need:"ALL",fn:"winrate",inputs:["Wins","Losses","Avg Win","Avg Loss"]},
-{id:56,cat:"RISK",name:"Scam Checker",desc:"10 Red Flags - 70+ = SCAM",need:"ALL",fn:"scam",inputs:["Project Claim Text"]},
-{id:57,cat:"RISK",name:"Halal Checker",desc:"Checklist - Interest? Leverage? - Fatwa Nahi - Scholar se Poochne ko Kahenge",need:"ALL",fn:"halal",inputs:["Interest? YES/NO","Leverage? YES/NO","Asset Halal? YES/NO"]},
-{id:58,cat:"RISK",name:"Tax / Fee Calc",desc:"Net = Gross - (Fee% + Tax%)",need:"ALL",fn:"tax",inputs:["Gross Profit","Fee %","Tax %"]},
-{id:59,cat:"RISK",name:"Breakeven Calc",desc:"Long: Entry+Fees+Slippage, Short: Entry-Fees",need:"ALL",fn:"breakeven",inputs:["Entry","Fees $","Slippage $","Side LONG/SHORT"]},
-{id:60,cat:"RISK",name:"Goal Planner",desc:"Monthly = (Target-Current)/Months, Daily = Monthly/20",need:"ALL",fn:"goal",inputs:["Current","Target","Months"]},
-];
-
-function render(){
-  const q=(document.getElementById("search").value||"").toLowerCase();
-  const g=document.getElementById("grid"); g.innerHTML="";
-  TOOLS.filter(t=>t.name.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q)).forEach(t=>{
-    const locked = !unlocked && t.need!=="FREE";
-    const d=document.createElement("div"); d.className="card"+(locked?" locked":""); d.innerHTML=`<b>${t.id}. ${t.name}</b><p>${t.desc}</p><span class="tag">${t.cat} • ${locked?"🔒 Locked - Unlock ALL":"✅ Open"}</span>`;
-    d.onclick=()=>openTool(t.id); g.appendChild(d);
-  });
-}
-function openTool(id){ current=TOOLS.find(t=>t.id===id); if(!unlocked){ document.getElementById("payBox").style.display="block"; window.scrollTo(0,0); document.getElementById("res").textContent="Pehle Unlock Karo - $26.99 - Any Solana Wallet - Ya DEMO-1234 Try Karo"; return; }
-  document.getElementById("mTitle").textContent=current.name; document.getElementById("mDesc").textContent=current.desc;
-  document.getElementById("mForm").innerHTML=current.inputs.map((inp,i)=>`<label>${inp}</label><input id="in${i}" placeholder="${inp}">`).join("");
-  document.getElementById("res").textContent="Result Yahan Aayega..."; document.getElementById("modal").style.display="flex";
-}
-function closeModal(){ document.getElementById("modal").style.display="none"; }
-function openPay(){ document.getElementById("payBox").style.display="block"; window.scrollTo(0,0); }
-function openImport(){ document.getElementById("importBox").style.display="block"; window.scrollTo(0,0); }
-function copyWallet(){ navigator.clipboard.writeText(WALLET); alert("Wallet Copy Ho Gaya"); }
-function v(i){ return document.getElementById("in"+i)?.value||""; }
-function setRes(s){ document.getElementById("res").textContent=s; }
-
-// Multi-Source Fetch - Ek Fail to Doosra
-async function tryFetch(urls){ for(let u of urls){ try{ let r=await fetch(u); if(r.ok) return await r.json(); }catch(e){} } throw new Error("All sources fail"); }
-async function getPrice(sym){ try{ let j=await tryFetch([`https://data-api.binance.vision/api/v3/ticker/price?symbol=${sym}USDT`,`https://api.bybit.com/v5/market/tickers?category=spot&symbol=${sym}USDT`]); if(j.price) return parseFloat(j.price); if(j.result?.list) return parseFloat(j.result.list[0].lastPrice); }catch(e){} return 0; }
-function calcRSI(closes,period=14){ let g=[],l=[]; for(let i=1;i<=period;i++){ let d=closes[i]-closes[i-1]; if(d>=0)g.push(d); else l.push(-d); } let ag=g.reduce((a,b)=>a+b,0)/period, al=l.reduce((a,b)=>a+b,0)/period; for(let i=period+1;i<closes.length;i++){ let d=closes[i]-closes[i-1]; ag=(ag*(period-1)+Math.max(d,0))/period; al=(al*(period-1)+Math.max(-d,0))/period; } let rs=al===0?100:ag/al; return 100-(100/(1+rs)); }
-function pearson(x,y){ let mx=x.reduce((a,b)=>a+b)/x.length, my=y.reduce((a,b)=>a+b)/y.length; let num=x.reduce((s,xi,i)=>s+(xi-mx)*(y[i]-my),0); let den=Math.sqrt(x.reduce((s,xi)=>s+(xi-mx)**2,0)*y.reduce((s,yi)=>s+(yi-my)**2,0)); return den===0?0:num/den; }
-function normCdf(x){ let t=1/(1+0.2316419*Math.abs(x)); let d=0.3989423*Math.exp(-x*x/2); let p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274)))); return x>0?1-p:p; }
-
-async function runTool(){
-  if(!current) return; const fn=current.fn; const a=(i)=>parseFloat(v(i))||0;
-  try{
-  if(fn==="screener"){ let sym=(v(0)||"BTC").toUpperCase(); let kl=await tryFetch([`https://data-api.binance.vision/api/v3/klines?symbol=${sym}USDT&interval=1h&limit=50`,`https://api.bybit.com/v5/market/kline?category=linear&symbol=${sym}USDT&interval=60&limit=50`]); let closes=Array.isArray(kl)?kl.map(k=>parseFloat(k[4])):kl.result.list.map(k=>parseFloat(k[4])).reverse(); let rsi=calcRSI(closes); let last=closes[closes.length-1]; let volX=1.8; setRes(`${sym} Price $${last.toFixed(2)}\nRSI 14 (Wilder): ${rsi.toFixed(1)} ${rsi>70?"OVERBOUGHT - Bechne ka Socho":rsi<30?"OVERSOLD - Buy ka Socho":"Neutral"}\nTrend: ${last>closes[closes.length-20]?"UP":"DOWN"}\nSources: Binance Vision -> Bybit Backup - Live`); }
-  else if(fn==="liq"){ let e=a(0),l=a(1)||10,mmr=(a(2)||0.5)/100; let lo=e*(1-1/l)/(1-mmr), sh=e*(1+1/l)/(1+mmr); setRes(`Entry $${e} Lev ${l}x MMR ${mmr*100}%\nLong Liq: $${lo.toFixed(2)} (${((lo-e)/e*100).toFixed(2)}%)\nShort Liq: $${sh.toFixed(2)} (${((sh-e)/e*100).toFixed(2)}%)\nFormula: E*(1-/+1/L)/(1-/+MMR) - Binance Standard`); }
-  else if(fn==="funding"){ let sym=(v(0)||"BTC").toUpperCase(); let d=await tryFetch([`https://data-api.binance.vision/fapi/v1/premiumIndex?symbol=${sym}USDT`,`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${sym}USDT`]); let rate=parseFloat(d.lastFundingRate)*100; let fee=a(1)*rate/100; setRes(`Funding: ${rate.toFixed(4)}% per 8h\nNext: ${new Date(d.nextFundingTime).toUTCString()}\nTeri Position $${a(1)} pe Fee: $${fee.toFixed(2)} ${rate>0?"Longs Pay Shorts":"Shorts Pay Longs"}\n${Math.abs(rate)>0.05?"EXTREME - Crowded":"Normal"}\nFormula: Premium + clamp(Int-Premium)`); }
-  else if(fn==="oi"){ let sym=(v(0)||"BTC").toUpperCase(); let d=await tryFetch([`https://data-api.binance.vision/fapi/v1/openInterest?symbol=${sym}USDT`]); let oi=parseFloat(d.openInterest); let p=await getPrice(sym); setRes(`OI: ${oi.toFixed(2)} ${sym} = $${((oi*p)/1e9).toFixed(2)}B\nRule: Price Up + OI Up = Strong Trend, Price Up + OI Down = Weak`); }
-  else if(fn==="fng"){ let j=await tryFetch([`https://api.alternative.me/fng/?limit=7`]); let n=j.data[0], y=j.data[1]; setRes(`Aaj: ${n.value} - ${n.value_classification}\nKal: ${y.value}\nFormula: Vol 25% + Mom 25% + Social 15% + Dom 10% + Trends 10% + Survey 15%\n${n.value<=25?"EXTREME FEAR - Contrarian Buy Zone":n.value>=75?"EXTREME GREED - Bechne ka Time":"Neutral"}`); }
-  else if(fn==="dom"){ let j=await tryFetch([`https://api.coingecko.com/api/v3/global`,`https://api.coinpaprika.com/v1/global`]); let dom=j.data?j.data.market_cap_percentage.btc:j.bitcoin_dominance_percentage; setRes(`BTC Dominance: ${dom.toFixed(2)}%\nAltcoins: ${(100-dom).toFixed(2)}%\n${dom>60?"BTC Strong":dom<45?"Alt Season":"Mixed"}\nFormula: BTC Cap / Total Cap x100`); }
-  else if(fn==="flows"){ let sym=(v(0)||"BTC").toUpperCase(); let p=await getPrice(sym); let vol=20e9; setRes(`Coin: ${sym} Price $${p}\n24h Vol Proxy: $${(vol/1e6).toFixed(0)}M\nNetFlow Est: Inflow > Outflow = Sell Pressure - Ye Proxy hai, Real Flow ke Liye Glassnode Chahiye - Humne Sach Likha hai`); }
-  else if(fn==="mvrv"){ let mvrv=a(0)/a(1), sopr=a(2)/a(3); setRes(`MVRV: ${mvrv.toFixed(2)} ${mvrv>3.7?"TOP":mvrv<1?"BOTTOM - Jama Karo":"Fair"}\nSOPR: ${sopr.toFixed(3)} ${sopr>1?"Profit me Bech Rahe hain":"Loss me Bech Rahe hain"}\nMVRV=MC/RC, SOPR=Sell/Buy`); }
-  else if(fn==="heatmap"){ let sym=(v(0)||"BTC").toUpperCase(); let j=await tryFetch([`https://data-api.binance.vision/fapi/v1/allForceOrders?symbol=${sym}USDT&limit=50`]); let longs=j.filter(o=>o.side==="BUY").length, shorts=j.length-longs; setRes(`Last 50 Liq:\nLong Liq (Gira): ${longs}\nShort Liq (Upar): ${shorts}\nHeat: ${shorts>longs?"Upar Cluster - Price Upar Jayega":"Neeche Cluster - Price Neeche Jayega"}`); }
-  else if(fn==="gas"){ let c=v(0)||"Solana"; let t={"Solana":0.00025,"Ethereum":2.5,"BSC":0.15,"Polygon":0.02,"Arbitrum":0.25,"Base":0.05}; let f=t[c]||0.1; setRes(`Chain: ${c}\nTransfer Fee: $${f.toFixed(4)}\nSwap (3x): $${(f*3).toFixed(2)}\nSolana Sasta, ETH Mehnga - $100 Trade pe ETH Mat Karo`); }
-  else if(fn==="wallet"){ let addr=v(0).trim(); let type="",link=""; if(/^0x[0-9a-fA-F]{40}$/.test(addr)){type="ETH/EVM - 0x+40 Hex";link=`https://etherscan.io/address/${addr}`;} else if(/^bc1q/.test(addr)){type="BTC SegWit bc1q";link=`https://mempool.space/address/${addr}`;} else if(/^bc1p/.test(addr)){type="BTC Taproot bc1p";link=`https://mempool.space/address/${addr}`;} else if(/^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/.test(addr)){type="BTC Legacy";link=`https://mempool.space/address/${addr}`;} else if(/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(addr)){type="Solana Base58 32-44";link=`https://solscan.io/account/${addr}`;} else{setRes("INVALID - Koi Format Match Nahi - Dobara Copy Karo");return;} setRes(`VALID - ${type}\nExplorer: ${link}\nWARNING: Address Sahi hai Matlab Paise Pohanch Jayenge - Seed Kabhi Mat Dena`); }
-  else if(fn==="unlock"){ let total=a(0),tge=a(1)/100,cliff=a(2),vest=a(3),m=a(4),price=a(5),circ=a(6); let up=tge+Math.min(1,Math.max(0,(m-cliff)/vest))*(1-tge); let toks=total*up, usd=toks*price, imp=toks/circ*100; setRes(`Unlocked: ${(up*100).toFixed(2)}% = ${toks.toLocaleString()} = $${usd.toLocaleString()}\nImpact Circ pe: ${imp.toFixed(2)}% ${imp>5?"DANGER - 8-15% Drop History":"Safe"}\nSell Est 70%: $${(usd*0.7).toLocaleString()}`); }
-  else if(fn==="arb"){ let sym=(v(0)||"BTC").toUpperCase(); let b=await getPrice(sym); let by=b*1.0015; setRes(`Binance: $${b.toFixed(2)}\nBybit Est: $${by.toFixed(2)}\nArbitrage: ${((by-b)/b*100).toFixed(3)}% - Fees 0.2% Minus Karo - Agar 0.2% se Kam to Loss hai`); }
-  else if(fn==="whale"){ let amt=a(1); setRes(`Amount: $${amt}\n${amt>1000000?"🐋 WHALE - $1M se Zyada - Market Hilega":"Normal - Whale Nahi"}\nCoin: ${v(0)}`); }
-  else if(fn==="swap"){ let from=(v(0)||"BTC").toUpperCase(), to=(v(1)||"ETH").toUpperCase(), amt=a(2); let pf=await getPrice(from), pt=await getPrice(to); let out=amt*pf/pt; setRes(`${amt} ${from} ($${pf}) = ${out.toFixed(4)} ${to} ($${pt})\nRate: ${from}/${to} = ${(pf/pt).toFixed(4)}`); }
-  else if(fn==="strength"){ let j=await tryFetch([`https://api.frankfurter.app/latest?from=USD`,`https://api.exchangerate-api.com/v4/latest/USD`]); let r=j.rates; let arr=Object.entries(r).slice(0,8).map(([k,val])=>`${k}: ${((1/val-1)*100).toFixed(2)}%`).join("\n"); setRes(`Strength (Frankfurter - USD Base):\n${arr}\nStrong vs Weak Pair Buy Karo - Strong/Weak`); }
-  else if(fn==="corr"){ let x=v(0).split(",").map(Number), y=v(1).split(",").map(Number); let r=pearson(x,y); setRes(`Correlation: ${r.toFixed(3)}\n${r>0.7?"STRONG POS - Dono Ek hi Trade - Lot Split Karo":r<-0.7?"STRONG NEG - Risk Kam":"Moderate"}\nFormula: Pearson r = Cov/(StdX x StdY)`); }
-  else if(fn==="pip"){ let rate=a(0), lot=a(1); let pv=(0.0001/rate)*lot*100000; setRes(`Pip Value: $${pv.toFixed(2)} per Pip\n1 Lot EUR/USD ~ $10 - JPY ke Liye 0.01 Use Karo`); }
-  else if(fn==="lotsize"){ let bal=a(0), rp=a(1), sl=a(2); let risk=bal*rp/100; let lot=risk/(sl*10); setRes(`Risk: $${risk}\nLot Size: ${lot.toFixed(2)}\nFormula: Risk$ / (SL Pips x PipValue)`); }
-  else if(fn==="pivot"){ let h=a(0),l=a(1),c=a(2); let pp=(h+l+c)/3, r1=2*pp-l, s1=2*pp-h, r2=pp+(h-l), s2=pp-(h-l); setRes(`PP: ${pp.toFixed(2)}\nR1: ${r1.toFixed(2)} R2: ${r2.toFixed(2)}\nS1: ${s1.toFixed(2)} S2: ${s2.toFixed(2)}`); }
-  else if(fn==="calendar"){ setRes(`Economic Calendar - High Impact:\n- NFP - First Friday 8:30 ET - USD - HIGH\n- CPI - Monthly - USD - HIGH\n- FOMC Rate - 8x Year - USD - HIGH\n- ECB Rate - EUR - HIGH\nSource: ForexFactory - Link: forexfactory.com/calendar\nTip: High Event pe 30 Min Pehle Trade Mat Karo`); }
-  else if(fn==="session"){ let h=new Date().getUTCHours(); let sess=h>=8&&h<16?"London":h>=13&&h<21?"New York":h>=0&&h<9?"Tokyo":"Sydney"; setRes(`Abhi UTC: ${h}:00\nLive Session: ${sess}\nLondon 08-16, NY 13-21, Tokyo 00-09, Sydney 22-07\nOverlap London+NY (13-16) = Sab se Zyada Volatility`); }
-  else if(fn==="spread"){ let bid=a(0),ask=a(1); setRes(`Spread: ${(ask-bid).toFixed(5)}\nSpread%: ${((ask-bid)/((bid+ask)/2)*100).toFixed(4)}%\nSpread Kam = Acha Broker`); }
-  else if(fn==="swaproll"){ let pts=a(0),lots=a(1),nights=a(2); setRes(`Swap Fee: $${(pts*0.0001*100000*lots*nights).toFixed(2)}\nFormula: Pts x Point x Contract x Lots x Nights`); }
-  else if(fn==="margin"){ let m=(a(0)*100000*a(1))/a(2); setRes(`Margin Required: $${m.toFixed(2)}\nFormula: Lot x Contract x Price / Leverage`); }
-  else if(fn==="prop"){ let b=a(0); setRes(`Account: $${b}\nMax Loss 5%: $${(b*0.05).toFixed(2)}\nDaily Loss 2%: $${(b*0.02).toFixed(2)}\nTarget 8%: $${(b*0.08).toFixed(2)}`); }
-  else if(fn==="fxscreener"){ let p=(v(0)||"EURUSD").toUpperCase(); let j=await tryFetch([`https://api.frankfurter.app/latest?from=EUR`]); setRes(`Pair: ${p}\nEUR Base Rate: ${JSON.stringify(j.rates).slice(0,120)}\nRSI + SMA ke Liye Binance Klines Use Karo - Live Rate Frankfurter se`); }
-  else if(fn==="sentiment"){ let t=v(0).toLowerCase(); let bull=(t.match(/bull|up|gain|strong|buy|growth/g)||[]).length, bear=(t.match(/bear|down|loss|weak|sell|fall/g)||[]).length; let s=(bull-bear)/Math.max(1,bull+bear)*100; setRes(`Bullish Words: ${bull}, Bearish: ${bear}\nSentiment: ${s.toFixed(0)} ${s>0?"Bullish":s<0?"Bearish":"Neutral"}\nFormula: (Bull-Bear)/Total x100`); }
-  else if(fn==="converter"){ let amt=a(0), from=(v(1)||"USD").toUpperCase(), to=(v(2)||"EUR").toUpperCase(); let j=await tryFetch([`https://api.frankfurter.app/latest?from=${from}`]); let rate=j.rates[to]||0; setRes(`${amt} ${from} = ${(amt*rate).toFixed(2)} ${to}\nRate: 1 ${from} = ${rate} ${to} - Frankfurter Live`); }
-  else if(fn==="dd"){ let dd=(a(0)-a(1))/a(0)*100; setRes(`Drawdown: ${dd.toFixed(2)}%\nPeak $${a(0)} -> Trough $${a(1)}\n${dd>20?"DANGER - Strategy Band Karo":dd>10?"Caution":"Normal"}`); }
-  else if(fn==="stockscreen"){ setRes(`Symbol: ${v(0)}\nCheck: Price > SMA200 + RSI <70 + Vol > Avg = Strong\nLive ke Liye Yahoo Finance / Stooq API - Demo me Formula Sahi hai - Price Yahoo se Lo`); }
-  else if(fn==="earnings"){ let eps=a(0)/a(1), beat=(a(3)-a(2))/a(2)*100; setRes(`EPS: $${eps.toFixed(2)}\nBeat: ${beat.toFixed(2)}% ${beat>0?"BEAT - Acha":"MISS - Bura"}\nEPS = Net/Shares`); }
-  else if(fn==="index"){ setRes(`Change: ${((a(0)-a(1))/a(1)*100).toFixed(2)}%\nNow ${a(0)} Prev ${a(1)}`); }
-  else if(fn==="pe"){ let pe=a(0)/a(1), fair=a(1)*a(2), up=(fair-a(0))/a(0)*100; setRes(`PE: ${pe.toFixed(1)}\nFair Value: $${fair.toFixed(2)} (EPS x Sector PE)\nUpside: ${up.toFixed(1)}% ${up>0?"Undervalued - Buy Socho":"Overvalued"}`); }
-  else if(fn==="options"){ let S=a(0),K=a(1),T=a(2),sig=a(3)/100,r=a(4)/100; let d1=(Math.log(S/K)+(r+sig*sig/2)*T)/(sig*Math.sqrt(T)); let d2=d1-sig*Math.sqrt(T); let call=S*normCdf(d1)-K*Math.exp(-r*T)*normCdf(d2); setRes(`Black-Scholes Call: $${call.toFixed(2)}\nd1: ${d1.toFixed(3)} d2: ${d2.toFixed(3)}\nCall = S*N(d1) - K*e^-rt*N(d2)`); }
-  else if(fn==="insider"){ let net=a(0)-a(1); setRes(`Net Insider: $${net.toLocaleString()} ${net>0?"Bullish - Insider Buy Kar Rahe hain":"Bearish - Insider Bech Rahe hain"}`); }
-  else if(fn==="sector"){ let vals=[["Tech",a(0)],["Energy",a(1)],["Finance",a(2)],["Health",a(3)]].sort((x,y)=>y[1]-x[1]); setRes(`Sector Heatmap:\n${vals.map(x=>`${x[0]}: ${x[1].toFixed(2)}%`).join("\n")}\nStrongest: ${vals[0][0]} - Wahan Paisa Ja Raha hai`); }
-  else if(fn==="ipo"){ setRes(`Listing Gain: ${((a(1)-a(0))/a(0)*100).toFixed(2)}%\nIssue $${a(0)} -> Listing $${a(1)}`); }
-  else if(fn==="stocknews"){ let t=v(0).toLowerCase(); let b=(t.match(/up|gain|beat|strong|growth/g)||[]).length; setRes(`Stock News Score: Bullish Words ${b}\n${b>2?"Bullish":"Neutral"} - Yahoo News RSS se Titles Lo`); }
-  else if(fn==="goldplan"){ let e=a(0),atr=a(1); setRes(`Entry $${e} ATR $${atr}\nSL: $${(e-atr).toFixed(2)}\nTP: $${(e+2*atr).toFixed(2)}\nRR 1:2 - Risk 1%`); }
-  else if(fn==="goldusd"){ let x=v(0).split(",").map(Number), y=v(1).split(",").map(Number); let r=pearson(x,y); setRes(`DXY vs Gold Correlation: ${r.toFixed(3)}\n${r<-0.5?"DXY Up = Gold Down - Sahi Relation":"Weak"}`); }
-  else if(fn==="goldspread"){ let sp=a(1)-a(0); setRes(`Spread: ${sp}\nSpread%: ${(sp/((a(0)+a(1))/2)*100).toFixed(2)}%\nSpread Kam = Acha Jeweler`); }
-  else if(fn==="ratio"){ let ratio=a(0)/a(1); setRes(`Gold/Silver Ratio: ${ratio.toFixed(2)}\n${ratio>80?"Silver Sasta - Silver Lo":ratio<60?"Gold Sasta":"Normal"}`); }
-  else if(fn==="goldnews"){ setRes(`Gold News: ${v(0).slice(0,80)}\nKitco RSS se Titles Lo - Keyword Score se Bullish/Bearish`); }
-  else if(fn==="aichart"){ let coin=v(0)||"BTC", rsi=a(1); let score=rsi>60?73:55; setRes(`AI Chart Reader - ${coin}\nRSI ${rsi} Trend ${v(2)}\nRule Score: ${score}/100\nAI Summary (Groq/Gemini Backup): ${score>70?"Strong Buy - Trend Up hai":"Wait - Trend Clear Nahi"}\nAI Backend me hai - Groq -> Gemini -> OpenRouter -> Rule Fallback`); }
-  else if(fn==="aiscore"){ let s=28*a(0)/100+20*a(1)/100+20*a(2)/100+20*a(3)/100+12; setRes(`AI Score: ${s.toFixed(1)}/100\n${s>70?"Strong Buy":s>50?"Buy":"Wait"}\nFormula: 28 Trend + 20 RSI + 20 Vol + 20 Volat + 12`); }
-  else if(fn==="aitrade"){ let p=a(0),atr=a(1); setRes(`AI Trade Plan:\nEntry $${p}\nSL $${(p-atr).toFixed(2)}\nTP $${(p+2*atr).toFixed(2)}\nAI Line: Risk 1% - Lot 0.05 - Groq/Gemini se`); }
-  else if(fn==="ainews"){ setRes(`AI News Summary:\nTitles: ${v(0).slice(0,100)}\nAI Summary: ${v(0).toLowerCase().includes("etf")?"Bullish - ETF Inflow Zyada":"Neutral - Mixed News"}\nBackend: Groq -> Gemini -> OpenRouter -> Keyword Fallback`); }
-  else if(fn==="airisk"){ let risk=a(1)*a(2), pct=risk/a(0)*100; setRes(`Risk$: $${risk.toFixed(2)}\nRisk%: ${pct.toFixed(2)}% ${pct>2?"WARN - 2% se Zyada Mat Lo":"Safe - 2% ke Andar"}`); }
-  else if(fn==="plain"){ let rsi=a(0); setRes(`Plain English:\n${rsi>60&&v(1).toUpperCase().includes("UP")?"Sab Acha hai - Price Upar Ja Raha hai - Buy ka Soch Sakte ho, Lekin Risk 1% se Zyada Mat Lo":"Abhi Ruko - Trend Clear Nahi hai - Jaldi Mat Karo"}`); }
-  else if(fn==="journal"){ let wr=a(0)/a(1)*100, exp=(wr/100)*a(2)-((100-wr)/100)*a(3); setRes(`WinRate: ${wr.toFixed(1)}%\nExpectancy: $${exp.toFixed(2)} per Trade\n${exp>0?"Strategy Achi hai - Chalao":"Strategy Kharab - Band Karo"}\nSave: localStorage me`); localStorage.setItem("ods_journal",JSON.stringify({wins:a(0),total:a(1),exp:exp})); }
-  else if(fn==="risk"){ let risk=a(0)*a(1)/100, pos=risk/Math.abs(a(2)-a(3)); setRes(`Risk: $${risk}\nPosition: ${pos.toFixed(4)}\nFormula: Risk$ / |Entry-SL|`); }
-  else if(fn==="compound"){ let fin=a(0)*Math.pow(1+a(1)/100,a(2)); setRes(`Start $${a(0)} -> End $${fin.toFixed(2)}\nProfit $${(fin-a(0)).toFixed(2)}\nFormula: P*(1+r)^n`); }
-  else if(fn==="winrate"){ let wr=a(0)/(a(0)+a(1))*100, exp=(wr/100)*a(2)-((100-wr)/100)*a(3), pf=(a(0)*a(2))/(Math.max(1,a(1)*a(3))); setRes(`WinRate: ${wr.toFixed(1)}%\nExpectancy: $${exp.toFixed(2)}\nProfit Factor: ${pf.toFixed(2)} ${pf>1.5?"Acha":"Kharab"}`); }
-  else if(fn==="scam"){ let t=v(0).toLowerCase(); let score=0; if(t.includes("guaranteed"))score+=30; if(t.includes("100%"))score+=20; if(t.includes("daily"))score+=15; if(t.includes("double"))score+=20; if(t.includes("no risk"))score+=15; setRes(`Scam Score: ${score}/100\n${score>=70?"🚨 SCAM - Door Raho":score>=40?"Caution - Check Karo":"Low Risk"}\nRed Flags: Guaranteed, 100%, Double, No Risk`); }
-  else if(fn==="halal"){ let intr=v(0).toUpperCase().includes("YES"), lev=v(1).toUpperCase().includes("YES"), halal=v(2).toUpperCase().includes("YES"); setRes(`Halal Checklist:\nInterest: ${intr?"YES - Problem":"NO - OK"}\nLeverage: ${lev?"YES - Check":"NO - OK"}\nAsset Halal: ${halal?"YES":"NO"}\n${intr||!halal?"Likely Not Halal - Scholar se Confirm Karo":"Checklist OK - Phir bhi Scholar se Confirm Karo"}\nHum Fatwa Nahi Dete - Sirf Checklist Dete hain`); }
-  else if(fn==="tax"){ let net=a(0)*(1-a(1)/100-a(2)/100); setRes(`Gross $${a(0)}\nFee ${a(1)}% Tax ${a(2)}%\nNet: $${net.toFixed(2)}`); }
-  else if(fn==="breakeven"){ let be=v(3).toUpperCase().includes("SHORT")?a(0)-a(1)-a(2):a(0)+a(1)+a(2); setRes(`Breakeven: $${be.toFixed(2)}\nEntry $${a(0)} + Fees $${a(1)} + Slippage $${a(2)}`); }
-  else if(fn==="goal"){ let mon=(a(1)-a(0))/a(2), daily=mon/20; setRes(`Target: $${a(1)} Current: $${a(0)} Months: ${a(2)}\nMonthly Needed: $${mon.toFixed(2)}\nDaily (20 Days): $${daily.toFixed(2)}\nPer Trade (3 Trades/Day): $${(daily/3).toFixed(2)}`); }
-  }catch(e){ setRes("API Fail - Backup bhi Fail - Rule se Try Karo - Error: "+e.message); }
-}
-
-async function verifyPay(){
-  const txid=document.getElementById("txidIn").value.trim();
-  const pack=document.getElementById("packSel").value;
-  if(!txid) return document.getElementById("payRes").textContent="TxID Daalo";
-  document.getElementById("payRes").textContent="Checking Solana... Wait Karo...";
-  if(APPS_SCRIPT_URL.includes("PASTE")){ document.getElementById("payRes").innerHTML="Backend Link Nahi Dala - Pehle Apps Script URL Daalo - Testing ke Liye Code <b>DEMO-1234</b> Use Karo"; return; }
-  try{ let r=await fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify({action:"verify",txid:txid,pack:pack})}); let j=await r.json(); document.getElementById("payRes").textContent=j.ok?"✅ "+j.msg+" Code: "+j.code+" - Ab Import Karo": "❌ "+j.msg; }catch(e){ document.getElementById("payRes").textContent="Backend Fail - Dobara Try Karo"; }
-}
-async function importCode(){
-  const code=document.getElementById("codeIn").value.trim();
-  if(code==="DEMO-1234"){ localStorage.setItem("ods_unlock","1"); unlocked=true; render(); document.getElementById("impRes").textContent="✅ Demo Unlock Ho Gaya - Sab Tools Khul Gaye"; return; }
-  if(APPS_SCRIPT_URL.includes("PASTE")){ document.getElementById("impRes").textContent="Backend Link Nahi hai - DEMO-1234 Use Karo"; return; }
-  try{ let r=await fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify({action:"check",code:code})}); let j=await r.json(); if(j.ok){ localStorage.setItem("ods_unlock","1"); unlocked=true; render(); document.getElementById("impRes").textContent="✅ Unlock Ho Gaya"; } else document.getElementById("impRes").textContent="❌ "+j.msg; }catch(e){ document.getElementById("impRes").textContent="Backend Fail"; }
-}
-render();
-</script></body></html>
+<div id="langModal" class="lang-modal hidden">
+<div class="lang-box">
+<h3 data-i18n="choose_lang">Choose Language</h3>
+<div id="langList"></div>
+<button onclick="closeLang()" class="close-btn">✕ Close</button>
+</div>
+</div>
+<script src="lang.js"></script>
+</body></html>
